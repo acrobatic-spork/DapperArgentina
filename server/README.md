@@ -20,7 +20,7 @@ The backend is comprised of a few parts:
 ###Database Setup
 First, you need to setup the mysql database.  Steps are:
   1. Install mysql if you do not already have it
-  1.5 in terminal, start a mysql server 
+  1.5 in terminal, start mysql server if it is not already running
   ```term
    mysql.server start
    ``` 
@@ -44,8 +44,26 @@ will start the web server.   If you want to rerun the background data collection
 as we did when setting up the database or run devops/data-processor.sh.
 
 ###Prod Environment
-Below are instructions for setting up a production environment, where the web server is always running and the background jobs
-run automatically.
+Below are instructions for setting up a production environment, where the web server is always running and the background jobs run automatically.
+
+####Tips for setup on a standard DigitalOcean Ubuntu 14.04 server
+
+you probably need to create a swapfile in order for npm install to work correctly. See [here](https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-12-04) for how to do that.
+
+Install MySQL server:
+```shell
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install mysql-server
+```
+
+Update node so it can use ES6:
+```shell
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable
+```
+
   
 ####Pushing code to production server  
 Read the following link.  You'll want to use the file in /devops/post-receive for the post receive hook. It contains hooks to 

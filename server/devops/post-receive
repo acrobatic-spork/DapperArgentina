@@ -1,8 +1,8 @@
 #!/bin/bash
 source /root/.nvm/nvm.sh #this loads nvm's environment vars
 
-git --work-tree=/var/www/gitbegin --git-dir=/var/repo/gitbegin.git checkout -f
-cd /var/www/gitbegin
+git --work-tree=/var/www/sporkhub --git-dir=/var/repo/sporkhub.git checkout -f
+cd /var/www/sporkhub
 
 echo "--> Running npm install..."
 npm install

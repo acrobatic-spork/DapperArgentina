@@ -4,11 +4,11 @@ source /root/.nvm/nvm.sh #this loads nvm's environment vars
 echo "Running data-processor batch script"
 export PATH=/usr/local/bin:$PATH
 
-cd /var/www/gitbegin
+cd /var/www/sporkhub
 
 echo --------------------------------------------------------------------------------------------------
 echo 
-NODE_ENV=production $NVM_BIN/node /var/www/gitbegin/server/data-processor/fetchIssuesRepos.js
-NODE_ENV=production $NVM_BIN/node /var/www/gitbegin/server/data-processor/refreshRepos.js
+NODE_ENV=production /var/www/sporkhub/server/data-processor/fetchIssuesRepos.js
+NODE_ENV=production /var/www/sporkhub/server/data-processor/refreshRepos.js
 echo
 echo --------------------------------------------------------------------------------------------------
