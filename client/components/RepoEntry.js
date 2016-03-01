@@ -5,24 +5,7 @@ const TimeAgo = require('../../node_modules/react-timeago/timeago');
 class RepoEntry extends React.Component {
   constructor (props) {
     super(props);
-
-    this.state = {
-      thumbsUp: 0,
-      thumbsDown: 0,
-    };
   }
-
-  onThumbsUp () {
-    this.setState({
-      thumbsUp: this.state.thumbsUp + 1
-    });
-  }
-
-  onThumbsDown () {
-    this.setState({
-      thumbsDown: this.state.thumbsDown - 1
-    });
-  }  
 
   render() {
     return (
