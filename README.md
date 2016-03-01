@@ -1,6 +1,6 @@
-[![Stories in Backlog](https://badge.waffle.io/DapperArgentina/DapperArgentina.png?label=backlog&title=Backlog)](https://waffle.io/DapperArgentina/DapperArgentina)
-[![Stories in Ready](https://badge.waffle.io/DapperArgentina/DapperArgentina.png?label=ready&title=Ready)](https://waffle.io/DapperArgentina/DapperArgentina)
-# DapperArgentina  
+[![Stories in Ready](https://badge.waffle.io/acrobatic-spork/SporkHub.svg?label=ready&title=Ready)](http://waffle.io/acrobatic-spork/SporkHub)
+
+# SporkHub
 
 > An app that makes contributing to the open source community on Github fun and easy.  
 
