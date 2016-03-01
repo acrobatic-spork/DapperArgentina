@@ -21,7 +21,7 @@ const TicketEntry = (props) => (
             </div>
           </div>
           <div className="row">
-            <p className="left-align col s6"><span className="octicon octicon-calendar"></span> created <TimeAgo date={props.data.created_at} /></p>
+            <p className="left-align col s6"><span className="octicon octicon-calendar"></span> Created <TimeAgo date={props.data.created_at} /></p>
           </div>
           <div className="row">
             <p className="left-align col s6">repo: <Link className="cyan-text lighten-2" to={`/repoProfile/${props.data.repo_id}`}>{props.data.repo_name}
@@ -30,7 +30,7 @@ const TicketEntry = (props) => (
           </div>
         </div>
       <div className="card-reveal">
-        <span className="card-title grey-text text-darken-4">{props.data.title}<i className="material-icons right">close</i></span>
+        <span className="card-title grey-text text-darken-4">{props.data.title}<i className="material-icons right">Close</i></span>
         <p>{props.data.body}</p>
       </div>
       </div>
