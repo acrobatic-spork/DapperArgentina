@@ -1,7 +1,7 @@
-[![Stories in Backlog](https://badge.waffle.io/acrobatic-spork/SporkHub.svg?label=backlog&title=Backlog)](http://waffle.io/acrobatic-spork/SporkHub)
+[![Stories in Backlog](https://badge.waffle.io/acrobatic-spork/SporkHub.svg?label=Backlog&title=Backlog)](http://waffle.io/acrobatic-spork/SporkHub)
 [![Stories in Ready](https://badge.waffle.io/acrobatic-spork/SporkHub.svg?label=ready&title=Ready)](http://waffle.io/acrobatic-spork/SporkHub)
-[![Stories in In Progress](https://badge.waffle.io/acrobatic-spork/SporkHub.svg?label=inprogress&title=InProgress)](http://waffle.io/acrobatic-spork/SporkHub)
-[![Stories in Done](https://badge.waffle.io/acrobatic-spork/SporkHub.svg?label=done&title=Done)](http://waffle.io/acrobatic-spork/SporkHub)
+[![Stories in In Progress](https://badge.waffle.io/acrobatic-spork/SporkHub.svg?label=In%20Progress&title=In%20Progress)](http://waffle.io/acrobatic-spork/SporkHub)
+[![Stories in Done](https://badge.waffle.io/acrobatic-spork/SporkHub.svg?label=Done&title=Done)](http://waffle.io/acrobatic-spork/SporkHub)
 
 # SporkHub
 
