@@ -8,7 +8,7 @@ cd /var/www/sporkhub
 
 echo --------------------------------------------------------------------------------------------------
 echo 
-NODE_ENV=production /var/www/sporkhub/server/data-processor/fetchIssuesRepos.js
-NODE_ENV=production /var/www/sporkhub/server/data-processor/refreshRepos.js
+NODE_ENV=production node /var/www/sporkhub/server/data-processor/fetchIssuesRepos.js
+NODE_ENV=production node /var/www/sporkhub/server/data-processor/refreshRepos.js
 echo
 echo --------------------------------------------------------------------------------------------------
