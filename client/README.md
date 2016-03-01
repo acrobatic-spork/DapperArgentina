@@ -1,13 +1,13 @@
 #Client-side README#
 
 ##Overview##
-Our client-side uses React, React-Router, and ES6 and achieves this with webpack. Webpack compiles all of the client-side files into a single .js file that the browser can read.
+Our client-side uses React, React-Router, and ES6, managed with with webpack. Webpack compiles and minifies the client-side files.
 
 ##Webpack##
-The init.js file is the root of our client side, the "entry" in the webpack.config.js file. This is where webpack begins it's compiling process, and outputs that compilation to bundle.js. Init.js simply points to the children components through the App component and through the Router. 
+The init.js file is the entry point for the webpack bundle. This is where webpack begins the compiling process, which outputs a minified production script file. Init.js simply points to the children components through the App component and through the Router. 
 
 ##React Router##
-React Router refers to the specified path and renders that component when that specific path is referenced. The path names are somewhat arbitrary, but must match the path name where it is requested, although we decided to match path names to the component names. In our app, the requests are mostly from the NavBar component. The router establishes that the RepoList, RepoProfile, and ResourceList components are all siblings of each other and will occupy the same space within the App component.
+React Router handles the client-side routing, displaying component when a path is referenced. In our app most of the user navigation happens through the NavBar component. The RepoList, RepoProfile, and ResourceList components are all siblings and will occupy the same space within the App component.
 React Router API
 https://github.com/reactjs/react-router/blob/master/docs/API.md#routercontext
 npm react router docs
