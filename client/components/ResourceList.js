@@ -5,7 +5,7 @@ const ResourceList = (props) => (
       <div className="col s12 m10">
       <h4>Getting Started</h4>
       <blockquote>
-      Want to contribute to open source projects on github, but unsure where to start? You've come to the right place!
+      Want to contribute to open source projects on GitHub, but unsure where to start? You've come to the right place!
       We comb through active repos to find the easy issues that beginners can handle. Still not ready to dive in? Check out these guides:
       </blockquote>
         <div className="card white">

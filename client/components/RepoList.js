@@ -45,7 +45,7 @@ class RepoList extends React.Component {
     return (
     <div >
       <RepoSearch searchHandler={this.getRepos} />
-      <h4>{this.state.numberOfRepos} repositories</h4>
+      <h4>{this.state.numberOfRepos} Repos with easy issues</h4>
       <div className="main-repo-view">
         {this.state.reposToRender.map ((repo, index) => 
           <RepoEntry data={repo} key={index} />

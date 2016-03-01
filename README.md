@@ -5,7 +5,7 @@
 
 # SporkHub
 
-> An app that makes contributing to the open source community on Github fun and easy.  
+> An app that makes contributing to the open source community on GitHub fun and easy.  
 
 ## Team Members  
 

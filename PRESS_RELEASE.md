@@ -1,8 +1,8 @@
 # Good First Ticket #
-  An app that guides software engineers on how to start contributing to the open source community on Github.
+  An app that guides software engineers on how to start contributing to the open source community on GitHub.
 
 ## Summary ##
-  Want to contribute to open source projects on Github, but wondering where to start? You've come to the right place! We comb through open tickets and gather everything labeled good for beginners in one, easy to browse list. Pick a ticket and become an active member of the open source community.
+  Want to contribute to open source projects on GitHub, but wondering where to start? You've come to the right place! We comb through open tickets and gather everything labeled good for beginners in one, easy to browse list. Pick a ticket and become an active member of the open source community.
 
 ## Problem ##
   Not sure how to contribute? How to decide which organization or repository to get involved with?
@@ -15,7 +15,7 @@
   --Daniel Sun Kim
 
 ## How to Get Started ##
-  Visit www.GoodFirstTicket.example and start browsing the easy tickets on Github asking for contributors. For a deeper dive, browse individual repositories and see which have the most tickets available.
+  Visit www.GoodFirstTicket.example and start browsing the easy tickets on GitHub asking for contributors. For a deeper dive, browse individual repositories and see which have the most tickets available.
 
 ## Customer Quote ##
   "Wow. This is a product I would actually use."

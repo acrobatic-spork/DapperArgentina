@@ -41,7 +41,7 @@ class TicketList extends React.Component {
     return (
     <div>
       <TicketSearch searchHandler={this.getIssues} />
-      <h4>{this.state.numberOfTickets} Beginner Issues Found</h4>
+      <h4>{this.state.numberOfTickets} Beginner issues found</h4>
       <div className="main-ticket-view">
           {this.state.ticketsToRender.map ((ticket, index) => (
               <TicketEntry data={ticket} key={index} />
