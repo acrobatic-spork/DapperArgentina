@@ -1,7 +1,7 @@
 {
-  "name": "dapper",
+  "name": "sporkHub",
   "version": "1.0.0",
-  "description": "'awesomeness'",
+  "description": "",
   "engines": {
     "node": "4.2.4"
   },
