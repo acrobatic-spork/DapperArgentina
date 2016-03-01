@@ -20,12 +20,22 @@ The backend is comprised of a few parts:
 ###Database Setup
 First, you need to setup the mysql database.  Steps are:
   1. Install mysql if you do not already have it
-  2. Open a mysql terminal and run the commands in server/db/setup.sql one by one.  This file contains the commands
+  1.5 in terminal, start a mysql server 
+  ```term
+   mysql.server start
+   ``` 
+  2. Open a mysql terminal
+   ```term
+   mysql -u root -p
+   ```
+   and run the commands in server/db/setup.sql one by one.  This file contains the commands
   to create the database, create a user to interact w/ the db and create the tables necessary for the db.  MAKE SURE TO CHANGE
   THE PASSWORD IN THE 2ND COMMAND
-  3. Copy server/config.example.js and rename to config.js.  Fill in your database credentials.
+  3. Copy server/config.example.js and rename to config.js.
+    1. Fill in your database credentials.
+    2. Fill in your github credentials. If you don't have any, create some [here](https://github.com/settings/applications/new)
   4. Execute the following two files in order using node.  This will reach out to the Github API and populate
-  your database w/ live data.  server/fetchIssuesRepos.js and server/refreshRepos.js.
+  your database w/ live data.  server/data-processor/fetchIssuesRepos.js and server/data-processor/refreshRepos.js.
   5. View the repos and issues tables and make sure you have data.
   
 ###Dev Environment
