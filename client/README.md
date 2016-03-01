@@ -1,7 +1,7 @@
 #Client-side README#
 
 ##Overview##
-Our client-side uses React, React-Router, and ES6, managed with with webpack. Webpack compiles and minifies the client-side files.
+Our client-side uses React, React-Router, and ES6, managed with webpack. Webpack compiles and minifies the client-side files.
 
 ##Webpack##
 The init.js file is the entry point for the webpack bundle. This is where webpack begins the compiling process, which outputs a minified production script file. Init.js simply points to the children components through the App component and through the Router. 
