@@ -4,7 +4,7 @@ var db = require('./db/database');
 var passport = require('passport');
 var session = require('express-session');
 var GitHubStrategy = require('passport-github2').Strategy;
-
+var methodOverride = require('method-override');
 
 
 var GITHUB_CLIENT_ID = '658fea61e03af746bc5d';
@@ -28,6 +28,7 @@ passport.use(new GitHubStrategy({
     callbackURL: "http://127.0.0.1:3000/auth/github/callback"
   },
   function(accessToken, refreshToken, profile, done) {
+    console.log('passport handler..')
     // asynchronous verification, for effect...
     process.nextTick(function () {
       
@@ -51,6 +52,7 @@ Repos = new Repos();
 
 app.use(bodyParser.json());
 
+app.use(methodOverride());
 app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
@@ -69,7 +71,7 @@ var port = process.env.PORT || 3000;
 
 app.route('/api')
   .get(function(req, res){
-    console.log('/api', req);
+    // console.log('/api', req);
     res.send('Hello World');
   });
 
@@ -99,13 +101,8 @@ app.route('/api/repos')
   //   request.  The first step in GitHub authentication will involve redirecting
   //   the user to github.com.  After authorization, GitHub will redirect the user
   //   back to this application at /auth/github/callback
-  app.route('/auth/github').get(function(req, res) {
-    passport.authenticate('github', { scope: [ 'user' ] }),
-    function(req, res){
-      // The request will be redirected to GitHub for authentication, so this
-      // function will not be called.
-    };
-  })
+  app.get('/auth/github', 
+    passport.authenticate('github', {scope: ['user:email']}))
 
 
   // GET /auth/github/callback
