@@ -2,14 +2,14 @@
 [![Stories in Ready](https://badge.waffle.io/DapperArgentina/DapperArgentina.png?label=ready&title=Ready)](https://waffle.io/DapperArgentina/DapperArgentina)
 # DapperArgentina  
 
-> An app that guides software engineers on how to start contributing to the open source community on Github.  
+> An app that makes contributing to the open source community on Github fun and easy.  
 
 ## Team Members  
 
-- Megan Ring  
-- Vince Cipriani  
-- Daniel Kim  
-- Colin Whitmarsh  
+- Product Owner: Sivaguru Periyasamy
+- Scrum Master: Nick Echols
+- Development Team Members: Gerrit Yntema, Sondra Silverhawk
+  
 
 ## Requirements  
 
