@@ -30,6 +30,33 @@ var baseGithubOptions = {
   client_secret: config.githubSecret}
 };
 
+/*Queries GitHub for the events of a specific user by username
+**Returns a promise that resolves to JSON of all the user's events
+*/
+
+var onlyRelevantEvents = function(events) {
+  // got through the user events and only return the ones we need
+  return events.reduce((relevant, current) => {
+    var type = current.type;
+    if(type === 'PushEvent' || type === 'ForkEvent' || type === 'PullRequestEvent') {
+      relevant.push(current);
+    }
+    return relevant;
+  }, []);
+};
+
+var getUserGitHubEvents = function(username) {
+  var options = {
+    url: 'https://api.github.com/users/' + username + '/events',
+  };
+  mergeObj(options, baseGithubOptions);
+
+  return request.get(options).then((result) => {
+    console.log(onlyRelevantEvents(result.body));
+  });
+};
+
+
 /**Searches Github for issues w/ the provided label.
  * Returns a promise which resolves to a a JSON object containing the issues.
  */
