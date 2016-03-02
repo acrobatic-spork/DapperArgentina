@@ -30,13 +30,22 @@ passport.use(new GitHubStrategy({
     callbackURL: "http://localhost:3000/auth/github/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log('passport handler..')
-    console.log('tokens', accessToken, refreshToken, profile)
-    // asynchronous verification, for effect...
     process.nextTick(function () {
       User.findOrCreate({where: {id: profile.id}})
       .spread(function(user, created) {
-        console.log('user in db:' + JSON.stringify(user));
+        user.update({
+          username: profile._json.login,
+          name: profile._json.name,
+          html_url: profile._json.html_url,
+          repos_url: profile._json.repos_url,
+          avatar_url: profile._json.avatar_url
+        }).then(function(user){
+          console.log('updated user: ', JSON.stringify(user));
+          return done(null, user);
+        }).catch(function(error) {
+          console.error('error updating user: ', error);
+          return done(error, null);
+        });
       });
       
       // return done(null, profile);

@@ -12,24 +12,13 @@ var User = db.define( 'users', {
     type: Sequelize.STRING,
     unique: true
   },
-  firstname: {
-    type: Sequelize.STRING,
-    unique: true
-  },
-  lastname: {
-    type: Sequelize.STRING,
-    unique: true
-  },
-  avatarUrl: {
-    type: Sequelize.STRING
-  },
-  points: Sequelize.INTEGER,
-  email: {
-    type: Sequelize.STRING,
-    validate: {
-      isEmail: true
-    }
-  },
+  name: Sequelize.STRING,
+  html_url: Sequelize.STRING,
+  repos_url: Sequelize.STRING,
+  avatar_url: Sequelize.STRING,
+  spork_1: Sequelize.INTEGER,
+  spork_2: Sequelize.INTEGER,
+  spork_3: Sequelize.INTEGER,
 });
 
 
