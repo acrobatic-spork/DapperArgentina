@@ -1,6 +1,7 @@
 const DateDiff = require('date-diff');
 const Promise = require('bluebird');
-var { db } = require('../db/database');
+var database = require('../db/database');
+var db = database.db;
 
 
 var Issues = function() {
