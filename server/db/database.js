@@ -91,6 +91,7 @@ var UserIssues = db.define( 'user_issues', {
     primaryKey: true
   },
   issue_id: {type: Sequelize.INTEGER, allowNull: false},
+  repo_id: {type:Sequelize.INTEGER, allowNull: false},
   user_id: {type: Sequelize.INTEGER, references: {model: User, key: 'id'}}
 }
 );
