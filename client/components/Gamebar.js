@@ -1,4 +1,5 @@
 const React = require('react');
+const SporkEntry = require('./SporkEntry');
 
 class GameBar extends React.Component {
   
@@ -34,7 +35,7 @@ class GameBar extends React.Component {
     return (
       <div className="game-stats">
         {this.state.sporks.map ((spork, index) => (
-              <Spork number={number} key={index} />
+              <SporkEntry number={number} key={index} />
             )
           )}
       </div>
