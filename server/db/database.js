@@ -63,6 +63,12 @@ var Repo = db.define( 'repos', {
   etag: Sequelize.STRING(50),
   subscribers_count: Sequelize.INTEGER,
   network_count: Sequelize.INTEGER,
+  indexes: [
+  {
+    name: 'OrgRepo',
+    fields:['name', 'org_name']
+  }
+  ]
 } );
 
 var Issue = db.define( 'issues', {
