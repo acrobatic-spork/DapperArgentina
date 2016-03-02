@@ -15,13 +15,8 @@ var getUserInfoFromApi = function (successCallback, errCallback, user) {
 
 // Get a url for pic, array of sporks...
 module.exports.getUserInfo = function(successCallback, errCallback, user) {
-  getUserFromApi((data) => {
+  getUserInfoFromApi((data) => {
     return successCallback(data);
   }, errCallback, user);
 };
 
-var Auth = {};
-
-Auth.isLoggedIn = function () {
-  return document.cookie.indexOf('username') >= 0
-}
