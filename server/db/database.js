@@ -84,6 +84,17 @@ var Issue = db.define( 'issues', {
 );
 
 
+var UserIssues = db.define( 'user_issues', {
+  internal_id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  issue_id: {type: Sequelize.INTEGER, allowNull: false},
+  repo_id: {type:Sequelize.INTEGER, allowNull: false},
+  user_id: {type: Sequelize.INTEGER, references: {model: User, key: 'id'}}
+}
+);
   // user_id: {type: Sequelize.INTEGER, references: {model: Users, key: 'id'}},
   // room_id: {type: Sequelize.INTEGER, references: {model: Rooms, key: 'id'}},
 
@@ -98,7 +109,10 @@ User.sync()
   } )
   .then( function() {
     return Repo.sync();
-  } );
+  } )
+  .then( function() {
+    return  UserIssues.sync();
+  })
 
 module.exports.db = db;
 module.exports.User = User;
