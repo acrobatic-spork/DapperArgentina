@@ -7,6 +7,8 @@ var GitHubStrategy = require('passport-github2').Strategy;
 var methodOverride = require('method-override');
 var config = require('./config');
 
+var User = db.User;
+
 var GITHUB_CLIENT_ID = config.githubClientId;
 var GITHUB_CLIENT_SECRET = config.githubSecret;
 
@@ -32,12 +34,12 @@ passport.use(new GitHubStrategy({
     console.log('tokens', accessToken, refreshToken, profile)
     // asynchronous verification, for effect...
     process.nextTick(function () {
+      User.findOrCreate({where: {id: profile.id}})
+      .spread(function(user, created) {
+        console.log('user in db:' + JSON.stringify(user));
+      });
       
-      // To keep the example simple, the user's GitHub profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
-      // to associate the GitHub account with a user record in your database,
-      // and return that user instead.
-      return done(null, profile);
+      // return done(null, profile);
     });
   }
 ));
