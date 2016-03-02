@@ -6,6 +6,7 @@ var session = require('express-session');
 var GitHubStrategy = require('passport-github2').Strategy;
 var methodOverride = require('method-override');
 var config = require('./config');
+var Util = require('./data-processor/util');
 
 var User = db.User;
 var UserIssues = db.UserIssues;
@@ -90,8 +91,20 @@ app.route('/api')
     res.send('Hello World');
   });
 
-app.route('/api/users/:user_id')
+app.route('/api/events/:username')
   .get(function(req, res) {
+    Util.getUserGitHubEvents(req.params.username)
+    .then((events) => {
+      res.json(events);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.statusCode = 501;
+      res.send('Error Getting GitHub Events');
+    });
+  });
+
+app.get('/api/users/:user_id', function(req, res) {
     User.findById(req.params.user_id)
     .then((user) => {
       res.json(user);
