@@ -24,7 +24,7 @@ class App extends React.Component {
       route: '/',
       isLoggedIn: false,
       user: null,
-      img: data.imgUrl,
+      img: null,
       sporks: []
     };
   }
