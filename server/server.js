@@ -103,7 +103,7 @@ app.route('/api/repos')
   //   the user to github.com.  After authorization, GitHub will redirect the user
   //   back to this application at /auth/github/callback
   app.get('/auth/github', 
-    passport.authenticate('github', {scope: ['user:email']}))
+    passport.authenticate('github', {scope: ['user', 'repo']}))
 
 
   // GET /auth/github/callback
