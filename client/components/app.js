@@ -32,7 +32,7 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount(){
+  componentWillMount(){
     console.log('component mounted: ', Auth.getUserId())
     if(Auth.isLoggedIn()){
      var userId = Auth.getUserId();
