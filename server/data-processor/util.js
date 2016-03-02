@@ -247,5 +247,6 @@ module.exports = {
   getRepoInformation: getRepoInformation,
   convertIssueToDbIssue: convertIssueToDbIssue,
   convertRepoToDbRepo: convertRepoToDbRepo,
-  refreshReposFromGithub: refreshReposFromGithub
+  refreshReposFromGithub: refreshReposFromGithub,
+  getUserGitHubEvents: getUserGitHubEvents
 };
