@@ -9,7 +9,9 @@ const LoginBar = (props) => (
 			<li>Earn Sporks by finding and solving outstanding issues in your favorite open source projects</li>
 			<button><a href="http://localhost:3000/auth/github">Login with Github</a></button>
 		</ul>
-		<TicketList />
+		<div className='app-shell grey lighten-2'>
+			<TicketList />
+		</div>
 	</div>
 	)
 
