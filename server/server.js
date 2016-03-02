@@ -141,11 +141,14 @@ app.route('/api/repos')
   app.get('/auth/github/callback', 
     passport.authenticate('github', { failureRedirect: '/login' }),
     function(req, res) {
+      console.log('github callback : req..', req)
+      res.cookie('userid', req.user.dataValues.id, { maxAge: 2592000000 });
       res.redirect('/');
     });
 
   app.get('/logout', function(req, res){
     req.logout();
+    res.clearCookie();
     res.redirect('/');
   });
 

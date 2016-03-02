@@ -1,8 +1,8 @@
 const React = require('react');
 const NavBar = require('./NavBar'); 
 const LoginBar = require('./LoginBar');
-const User = require('../js/users');
-
+const Users = require('../js/users');
+const Auth = require('../js/auth')
 const linksList = [
   {
     name: "Tickets", url: '/'
@@ -23,25 +23,38 @@ class App extends React.Component {
     this.state = {
       route: '/',
       isLoggedIn: false,
-      user: null,
+      userId: null,
+      userName: null,
       img: null,
       sporks: []
     };
   }
 
-  getUserInfo(user){
+  componentDidMount(){
+    console.log('component mounted: ', Auth.getUserId())
+    if(Auth.isLoggedIn()){
+     var userId = Auth.getUserId();
+      this.setState({
+        userId: userId,
+        isLoggedIn: true
+      });
+      this.getUserInfo(userId);
+    }
+  }
+  getUserInfo(userId){
     // Get the user's information
     var self = this;
 
     Users.getUserInfo(function(data) {
-      self.setState({
-        sporks: data.sporks,
-        user: data.user
-      });
+      // self.setState({
+      //   sporks: data.sporks,
+      //   userName: data.user
+      // });
+      console.log('success callback, data:', data);
     }, function(error) {
       console.error("Problem getting user data!");
     },
-    user);
+    userId);
   }
 
   // Need to load the info when the user logs in
