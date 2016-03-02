@@ -5,10 +5,10 @@ var passport = require('passport');
 var session = require('express-session');
 var GitHubStrategy = require('passport-github2').Strategy;
 var methodOverride = require('method-override');
+var config = require('./config');
 
-
-var GITHUB_CLIENT_ID = '658fea61e03af746bc5d';
-var GITHUB_CLIENT_SECRET = 'bde548d3cba62df8b2cbbb9fd184c6bb7b667ab3';
+var GITHUB_CLIENT_ID = config.githubClientId;
+var GITHUB_CLIENT_SECRET = config.githubSecret;
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -24,10 +24,12 @@ passport.deserializeUser(function(obj, done) {
 //   profile), and invoke a callback with a user object.
 passport.use(new GitHubStrategy({
     clientID: GITHUB_CLIENT_ID,
-    clientSecret: GITHUB_CLIENT_SECRET
+    clientSecret: GITHUB_CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/auth/github/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     console.log('passport handler..')
+    console.log('tokens', accessToken, refreshToken, profile)
     // asynchronous verification, for effect...
     process.nextTick(function () {
       
