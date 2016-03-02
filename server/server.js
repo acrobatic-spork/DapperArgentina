@@ -8,6 +8,7 @@ var methodOverride = require('method-override');
 var config = require('./config');
 
 var User = db.User;
+var UserIssues = db.UserIssues;
 
 var GITHUB_CLIENT_ID = config.githubClientId;
 var GITHUB_CLIENT_SECRET = config.githubSecret;
@@ -94,6 +95,23 @@ app.route('/api/users/:user_id')
     User.findById(req.params.user_id)
     .then((user) => {
       res.json(user);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.statusCode = 501;
+      res.send('Unknown Server Error');
+    });
+  });
+
+app.route('/api/users/issues/:user_id')
+  .get(function(req, res) {
+    UserIssues.findAll({
+      where: {
+        user_id: req.params.user_id
+      }
+    })
+    .then((issues) => {
+      res.json(issues);
     })
     .catch((err) => {
       console.log(err);
