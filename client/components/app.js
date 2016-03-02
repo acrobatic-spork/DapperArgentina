@@ -3,6 +3,7 @@ const NavBar = require('./NavBar');
 const LoginBar = require('./LoginBar');
 const Users = require('../js/users');
 const Auth = require('../js/auth')
+const User = require('./UserInfoView');
 const linksList = [
   {
     name: "Tickets", url: '/'
@@ -24,13 +25,14 @@ class App extends React.Component {
       route: '/',
       isLoggedIn: false,
       userId: null,
+      name: null,
       userName: null,
       img: null,
       sporks: []
     };
   }
 
-  componentDidMount(){
+  componentWillMount(){
     console.log('component mounted: ', Auth.getUserId())
     if(Auth.isLoggedIn()){
      var userId = Auth.getUserId();
@@ -38,18 +40,23 @@ class App extends React.Component {
         userId: userId,
         isLoggedIn: true
       });
+      console.log('user id ', userId);
       this.getUserInfo(userId);
     }
   }
+
+
   getUserInfo(userId){
     // Get the user's information
     var self = this;
 
     Users.getUserInfo(function(data) {
-      // self.setState({
-      //   sporks: data.sporks,
-      //   userName: data.user
-      // });
+      self.setState({
+        userId: data.id,
+        name: data.name,
+        userName: data.username,
+        img: data.avatar_url
+      });
       console.log('success callback, data:', data);
     }, function(error) {
       console.error("Problem getting user data!");
