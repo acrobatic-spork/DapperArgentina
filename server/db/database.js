@@ -92,7 +92,8 @@ var UserIssues = db.define( 'user_issues', {
   },
   issue_id: {type: Sequelize.INTEGER, allowNull: false},
   repo_id: {type:Sequelize.INTEGER, allowNull: false},
-  user_id: {type: Sequelize.INTEGER, references: {model: User, key: 'id'}}
+  user_id: {type: Sequelize.INTEGER, references: {model: User, key: 'id'}},
+  forked_repo_id:{type: Sequelize.INTEGER, allowNull: true}
 }
 );
   // user_id: {type: Sequelize.INTEGER, references: {model: Users, key: 'id'}},
