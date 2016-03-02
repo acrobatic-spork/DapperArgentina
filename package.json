@@ -8,7 +8,7 @@
   "main": "client/app.js",
   "scripts": {
     "postinstall": "npm run build",
-    "start": "node --harmony server/server.js",
+    "start": "node server/server.js",
     "testclient": "mocha client/spec/ClientTest.js",
     "testserver": "mocha server/spec/ServerTest.js",
     "testdata": "mocha server/spec/DataTest.js",
