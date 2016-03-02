@@ -15,14 +15,32 @@ const linksList = [
 ];
 
 
-const App = class App extends React.Component {
+class App extends React.Component {
   
   constructor(props) {
     super(props);
     this.state = {
       route: '/',
-      isLoggedIn: false
+      isLoggedIn: false,
+      user: null,
+      img: data.imgUrl,
+      sporks: []
     };
+  }
+
+  getUserInfo(user){
+    // Get the user's spork information
+    var self = this;
+
+    Users.getUserInfo(function(data) {
+      self.setState({
+        sporks: data.sporks,
+        user: data.user
+      });
+    }, function(error) {
+      console.error("Problem getting user data!");
+    },
+    user);
   }
   
   render () {
@@ -31,7 +49,7 @@ const App = class App extends React.Component {
     <div className='app-shell grey lighten-2'>
       <NavBar links={linksList}/>
       <div>
-        <User />
+        <User img={this.state.img}/>
       </div>
       <div className="row">
         <div className="main col-sm-10 container">
