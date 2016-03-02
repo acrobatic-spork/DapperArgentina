@@ -30,7 +30,7 @@ class App extends React.Component {
   }
 
   getUserInfo(user){
-    // Get the user's spork information
+    // Get the user's information
     var self = this;
 
     Users.getUserInfo(function(data) {
@@ -43,6 +43,8 @@ class App extends React.Component {
     },
     user);
   }
+
+  // Need to load the info when the user logs in
   
   render () {
     return (
