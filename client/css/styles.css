@@ -6,3 +6,10 @@
    overflow: auto; 
    max-height: 100vh;
 }
+
+.login-bar {
+  background-color: #5e35b1;
+  padding: 0.4em;
+  color: white;
+  font-size: 1.5em;
+}

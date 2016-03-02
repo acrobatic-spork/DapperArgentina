@@ -1,6 +1,7 @@
 const React = require('react');
 const NavBar = require('./NavBar'); 
- 
+const LoginBar = require('./LoginBar');
+
 const linksList = [
   {
     name: "Tickets", url: '/'
@@ -19,12 +20,14 @@ const App = class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      route: '/'
+      route: '/',
+      isLoggedIn: false
     };
   }
   
   render () {
     return (
+    !this.state.isLoggedIn ? <LoginBar /> :
     <div className='app-shell grey lighten-2'>
       <NavBar links={linksList}/>
       <div className="row">
