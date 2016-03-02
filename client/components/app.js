@@ -1,6 +1,7 @@
 const React = require('react');
 const NavBar = require('./NavBar'); 
 const LoginBar = require('./LoginBar');
+const User = require('../js/users');
 
 const linksList = [
   {
