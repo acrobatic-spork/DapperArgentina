@@ -4,6 +4,8 @@ const LoginBar = require('./LoginBar');
 const Users = require('../js/users');
 const Auth = require('../js/auth')
 const User = require('./UserInfoView');
+const TicketList = require('./TicketList');
+
 const linksList = [
   {
     name: "Tickets", url: '/'
@@ -65,18 +67,15 @@ class App extends React.Component {
   }
 
   // Need to load the info when the user logs in
-  
+  // Add userinfo somewhere
+
   render () {
     return (
-    !this.state.isLoggedIn ? <LoginBar /> :
-    <div className='app-shell grey lighten-2'>
-      <NavBar links={linksList}/>
-      <div>
-        <User img={this.state.img}/>
-      </div>
+    <div className='app-shell grey lighten-2' >
+    {this.state.isLoggedIn ? <NavBar links={linksList} /> : <LoginBar /> }
       <div className="row">
         <div className="main col-sm-10 container">
-          {this.props.children}
+          {this.state.isLoggedIn ? this.props.children : <TicketList /> }
         </div>
       </div>
     </div>
