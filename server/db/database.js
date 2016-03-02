@@ -62,14 +62,16 @@ var Repo = db.define( 'repos', {
   record_inserted_at: Sequelize.DATE,
   etag: Sequelize.STRING(50),
   subscribers_count: Sequelize.INTEGER,
-  network_count: Sequelize.INTEGER,
-  indexes: [
+  network_count: Sequelize.INTEGER
+  },
   {
-    name: 'OrgRepo',
-    fields:['name', 'org_name']
-  }
-  ]
-} );
+    indexes: [{
+      name: 'OrgRepo',
+      fields:['name', 'org_name']
+    }]
+  },
+  {timestamps:false}
+);
 
 var Issue = db.define( 'issues', {
   internal_id: {
@@ -88,7 +90,9 @@ var Issue = db.define( 'issues', {
   assignee: Sequelize.STRING,
   body: Sequelize.STRING(1500),
   labels: Sequelize.STRING(1000),
-} );
+},
+{timestamps:false}
+);
 
 
   // user_id: {type: Sequelize.INTEGER, references: {model: Users, key: 'id'}},
