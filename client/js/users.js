@@ -19,3 +19,9 @@ module.exports.getUserInfo = function(successCallback, errCallback, user) {
     return successCallback(data);
   }, errCallback, user);
 };
+
+var Auth = {};
+
+Auth.isLoggedIn = function () {
+  return document.cookie.indexOf('username') >= 0
+}
