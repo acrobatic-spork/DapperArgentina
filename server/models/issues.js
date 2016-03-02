@@ -1,6 +1,8 @@
 const DateDiff = require('date-diff');
 const Promise = require('bluebird');
-var db = require('../db/database');
+var database = require('../db/database');
+var db = database.db;
+
 
 var Issues = function() {
   this._issues = [];
@@ -13,10 +15,10 @@ Issues.prototype.getIssues = function () {
   
   if (this._issues.length === 0 ||
    hoursSinceLastFetch > 1) {
-    return db.raw(`select i.*, r.language, r.id as repo_id 
+    return db.query(`select i.*, r.language, r.id as repo_id 
             from issues i 
             left join repos r on i.org_name=r.org_name and i.repo_name=r.name 
-            order by created_at desc;`)
+            order by created_at desc;`, { type: sequelize.QueryTypes.SELECT})
             .then((results) => {
               results[0].forEach((issue) => {
                 issue.labels = JSON.parse(issue.labels);

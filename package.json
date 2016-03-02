@@ -56,6 +56,7 @@
     "react-router": "^2.0.0",
     "react-timeago": "^2.2.1",
     "request-promise": "^2.0.1",
+    "sequelize": "^3.19.3",
     "webpack": "^1.12.13"
   },
   "devDependencies": {
