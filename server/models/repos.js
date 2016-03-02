@@ -1,7 +1,7 @@
 
 const DateDiff = require('date-diff');
 const Promise = require('bluebird');
-var db = require('../db/database');
+var { db } = require('../db/database');
 
 var Repos = function() {
   this._repos = [];
@@ -14,7 +14,7 @@ Repos.prototype.getRepos = function () {
   
   if (this._repos.length === 0 ||
    hoursSinceLastFetch > 1) {
-    return db.raw(`select * from repos`)
+    return db.query(`select * from repos`, { type: sequelize.QueryTypes.SELECT})
             .then((results) => {
               this._repos = results[0];
               this._lastUpdateDate = new Date();

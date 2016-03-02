@@ -54,26 +54,3 @@ CREATE TABLE repos (
 
 CREATE INDEX OrgRepo ON repos (name,org_name);
 
-
-
-CREATE TABLE users (
-  id int AUTO_INCREMENT PRIMARY KEY,
-  username nvarchar(255) NOT NULL, 
-  email nvarchar(255) NOT NULL,
-  avatar_url nvarchar(255),
-  created_at datetime,
-  updated_at datetime
-);
-
-create table users_repos
-(
-  user_id int,
-  repo_id int,
-  CONSTRAINT users_repos_pk PRIMARY KEY (user_id, repo_id),
-  CONSTRAINT FK_users 
-      FOREIGN KEY (user_id) REFERENCES users (internal_id),
-  CONSTRAINT FK_repos 
-      FOREIGN KEY (repo_id) REFERENCES repos (id)
-);
-
-
