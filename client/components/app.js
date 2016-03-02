@@ -30,6 +30,9 @@ const App = class App extends React.Component {
     !this.state.isLoggedIn ? <LoginBar /> :
     <div className='app-shell grey lighten-2'>
       <NavBar links={linksList}/>
+      <div>
+        <User />
+      </div>
       <div className="row">
         <div className="main col-sm-10 container">
           {this.props.children}
