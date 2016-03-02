@@ -31,7 +31,9 @@ passport.use(new GitHubStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     process.nextTick(function () {
-      User.findOrCreate({where: {id: profile.id}})
+      User.findOrCreate({where: {id: profile.id}, 
+        defaults: {spork_1: 0, spork_2: 0,spork_3: 0}
+      })
       .spread(function(user, created) {
         user.update({
           username: profile._json.login,
@@ -86,6 +88,20 @@ app.route('/api')
     // console.log('/api', req);
     res.send('Hello World');
   });
+
+app.route('/api/users/:user_id')
+  .get(function(req, res) {
+    User.findById(req.params.user_id)
+    .then((user) => {
+      res.json(user);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.statusCode = 501;
+      res.send('Unknown Server Error');
+    });
+  });
+
 
 app.route('/api/issues')
   .get(function(req, res) {
