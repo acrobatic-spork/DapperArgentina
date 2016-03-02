@@ -18,7 +18,7 @@ Issues.prototype.getIssues = function () {
     return db.query(`select i.*, r.language, r.id as repo_id 
             from issues i 
             left join repos r on i.org_name=r.org_name and i.repo_name=r.name 
-            order by created_at desc;`, { type: sequelize.QueryTypes.SELECT})
+            order by created_at desc;`)
             .then((results) => {
               results[0].forEach((issue) => {
                 issue.labels = JSON.parse(issue.labels);

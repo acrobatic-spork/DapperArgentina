@@ -15,7 +15,7 @@ Repos.prototype.getRepos = function () {
   
   if (this._repos.length === 0 ||
    hoursSinceLastFetch > 1) {
-    return db.query(`select * from repos`, { type: sequelize.QueryTypes.SELECT})
+    return db.query(`select * from repos`)
             .then((results) => {
               this._repos = results[0];
               this._lastUpdateDate = new Date();
