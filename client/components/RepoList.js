@@ -48,7 +48,7 @@ class RepoList extends React.Component {
       <h4>{this.state.numberOfRepos} Repos with easy issues</h4>
       <div className="main-repo-view">
         {this.state.reposToRender.map ((repo, index) => 
-          <RepoEntry data={repo} key={index} />
+          <RepoEntry data={repo} username={this.props.username} key={index} />
         )}
       </div>
     </div>
