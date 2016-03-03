@@ -6,7 +6,7 @@
 
 const Promise = require('bluebird');
 const util = require('./util');
-const db = require('../db/database');
+const db = require('../db/dbKnex');
 const sql = require('./sqlQueries');
 
 const beginnerLabels = [
