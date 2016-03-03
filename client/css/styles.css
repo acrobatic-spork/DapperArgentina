@@ -41,14 +41,13 @@ li {
   border:none;
   font-size: 1.25rem;
   background-color: #00838f;
-  // color:#00bcd4;
   padding: 0.5em 1em;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
   transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 .login-bar button:hover {
   background-color: #00bcd4;
   box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  // color:white;
 }
 
 @media (max-width: 700px) {
