@@ -244,9 +244,9 @@ var refreshReposFromGithub = function(repos) {
 
 var forkRepo = function (req, res) {
   request.post({
-    uri: 'https://api.github.com/repos/'+req.query.owner+'/'+req.query.repo'/forks/',
+    uri: 'https://api.github.com/repos/'+req.query.owner+'/'+req.query.repo+'/forks/',
     headers: {
-      Content-Type: 'application/json'
+      'Content-Type': 'application/json'
     }
   })
   .then(function (response) {
