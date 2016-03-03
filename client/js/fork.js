@@ -21,7 +21,7 @@ module.exports.forkRepo = function(successCallback, errCallback, owner, repo) {
 
 var getForksFromApi = function (successCallback, errCallback, username) {
   var options = {
-    url: '/api/getforks?username='+username,
+    url: '/api/user/forks?username='+username,
     type: 'GET',
     success: successCallback,
     error: errCallback

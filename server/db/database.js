@@ -105,6 +105,7 @@ var UserForks = db.define( 'user_forks', {
   },
   username: Sequelize.STRING(50), 
   parent_url: Sequelize.STRING,
+  parent_repo_id: Sequelize.STRING,
   fork_url: Sequelize.STRING
 })
   // user_id: {type: Sequelize.INTEGER, references: {model: Users, key: 'id'}},

@@ -153,9 +153,11 @@ app.get('/api/repos', function(req, res){
 app.get('/api/fork', Util.forkRepo);
 
 app.post('/api/fork', function (req, res) {
+  console.log('req.body', req.body);
   UserForks.create({      
     username: req.query.username,
     parent_url: req.body.parent.html_url,
+    parent_repo_id: req.body.parent.id,
     fork_url: req.body.html_url
   })
   .then(function(user){
@@ -165,14 +167,13 @@ app.post('/api/fork', function (req, res) {
     });
 })
 
-app.get('/api/getforks', function (req, res) {
+app.get('/api/user/forks', function (req, res) {
   Util.getForkedRepos(req.query.username)
   .then(function (results) {
-    console.log('results from db: ', results);
-    var forkedParentUrls = results.map(function (forkObj) {
-      return forkObj.parent_url;
+    var forkedParentUrlsId = results.map(function (forkObj) {
+      return [forkObj.parent_url, forkObj.parent_id];
     })
-    Util.getPullRequests(req.query.username, forkedParentUrls, function(response) {
+    Util.getPullRequests(req.query.username, forkedParentUrlsId, function(response) {
       res.json(response);
     })
   })

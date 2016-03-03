@@ -95,9 +95,9 @@ var getPullRequests = function(username, urls, callback) {
             return;
           }
           if(result.body !== ' ') {
-            userStats[[url[1]] = onlyUserContributions(username, result.body);
+            userStats[url[1]] = onlyUserContributions(username, result.body);
           } else {
-            userStats[[url[1]] = { pulls: 0, merges: 0};
+            userStats[url[1]] = { pulls: 0, merges: 0};
           }
           resolve(true);
         }
