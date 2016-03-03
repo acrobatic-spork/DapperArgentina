@@ -8,7 +8,7 @@ const TicketList = require('./TicketList');
 
 const linksList = [
   {
-    name: "Home", url: '/user'
+    name: "Home", url: '/'
   },
   {
     name: "issues", url: '/issues'
@@ -27,13 +27,15 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      route: '/',
+      // route: '/',
       isLoggedIn: false,
       userId: null,
       name: null,
       userName: null,
       img: null,
-      sporks: []
+      sporks: [],
+      userRepos: [],
+      userIssues:[],
     };
   }
 
@@ -59,8 +61,8 @@ class App extends React.Component {
       self.setState({
         userId: data.id,
         name: data.name,
-        userName: data.username,
-        img: data.avatar_url
+        username: data.username,
+        avatar_url: data.avatar_url
       });
       console.log('success callback, data:', data);
     }, function(error) {
@@ -73,12 +75,23 @@ class App extends React.Component {
   // Add userinfo somewhere
 
   render () {
+    var childrenWithProps = React.Children.map(this.props.children, (child) => {
+      return React.cloneElement(child, { 
+        userId: this.state.userId,
+        username: this.state.username,
+        name: this.state.name,
+        avatar_url: this.state.avatar_url,
+        userRepos: this.state.userRepos,
+        userIssues: this.state.userIssues
+        // ...this.props 
+      });
+    });
     return (
     <div className='app-shell grey lighten-2' >
     {this.state.isLoggedIn ? <NavBar links={linksList} /> : <LoginBar /> }
       <div className="row">
         <div className="main col-sm-10 container">
-          {this.state.isLoggedIn ? this.props.children : <TicketList /> }
+          {this.state.isLoggedIn ? childrenWithProps : <TicketList /> }
         </div>
       </div>
     </div>
