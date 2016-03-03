@@ -11,7 +11,7 @@ class GameBar extends React.Component {
   render() {
     return (
       <div className="game-stats">
-        {this.state.sporks.map ((spork, index) => (
+        {this.props.sporks.map ((spork, index) => (
               <SporkEntry number={number} key={index} i={index} />
             )
           )}
