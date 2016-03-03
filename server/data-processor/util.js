@@ -70,15 +70,15 @@ var onlyUserContributions = function(user, prCollection) {
   }, { pulls: 0, merges: 0});
 }
 
-var getPullRequests = function(username, repos) {
-  // for each repo:
+// Takes a GitHub username and array of repo urls
+var getPullRequests = function(username, urls, callback) {
   var userStats = {};
   
   // Make a bunch of promises!!!
-  var promises = repos.map(function(repo) {
+  var promises = urls.map(function(url) {
     return new Promise(function (resolve, reject) {
       var options = {
-        url: repo + '/pulls?state=all',
+        url: url + '/pulls?state=all',
       };
       mergeObj(options, baseGithubOptions);
       
@@ -86,7 +86,7 @@ var getPullRequests = function(username, repos) {
         if (err) {
           reject (err);
         } else {
-          userStats[repo] = onlyUserContributions(username, result.body);
+          userStats[url] = onlyUserContributions(username, result.body);
           resolve(true);
         }
       })
@@ -95,12 +95,15 @@ var getPullRequests = function(username, repos) {
 
   // DO EM!
   Promise.all(promises).then(function(result) {
-    // the final object with each url as a key, val is another obj with merges and pulls
-    return userStats;
+    // an object with each url as a key, val is another obj with merges: # and pulls: #
+    callback(userStats);
   });
 };
 
-// getPullRequests("Ocramius", ["https://api.github.com/repos/symfony/symfony", "https://api.github.com/repos/doctrine/dbal"]);
+// getPullRequests("Ocramius", ["https://api.github.com/repos/symfony/symfony", "https://api.github.com/repos/doctrine/dbal"], function(stats) {
+//   console.log(stats);
+// });
+
 
 
 /**Searches Github for issues w/ the provided label.
@@ -328,5 +331,6 @@ module.exports = {
   convertRepoToDbRepo: convertRepoToDbRepo,
   refreshReposFromGithub: refreshReposFromGithub,
   getUserGitHubEvents: getUserGitHubEvents,
+  getPullRequests: getPullRequests,
   forkRepo: forkRepo
 };
