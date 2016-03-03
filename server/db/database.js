@@ -16,9 +16,8 @@ var User = db.define( 'users', {
   html_url: Sequelize.STRING,
   repos_url: Sequelize.STRING,
   avatar_url: Sequelize.STRING,
-  spork_1: Sequelize.INTEGER,
-  spork_2: Sequelize.INTEGER,
-  spork_3: Sequelize.INTEGER,
+  access_token: Sequelize.STRING,
+  refresh_token: Sequelize.STRING
 });
 
 

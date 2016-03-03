@@ -34,16 +34,16 @@ passport.use(new GitHubStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     process.nextTick(function () {
-      User.findOrCreate({where: {id: profile.id}, 
-        defaults: {spork_1: 0, spork_2: 0,spork_3: 0}
-      })
+      User.findOrCreate({where: {id: profile.id}})
       .spread(function(user, created) {
         user.update({
           username: profile._json.login,
           name: profile._json.name,
           html_url: profile._json.html_url,
           repos_url: profile._json.repos_url,
-          avatar_url: profile._json.avatar_url
+          avatar_url: profile._json.avatar_url,
+          access_token: accessToken,
+          refresh_token: refreshToken
         }).then(function(user){
           console.log('updated user: ', JSON.stringify(user));
           return done(null, user);
@@ -152,26 +152,11 @@ app.get('/api/repos', function(req, res){
 
 app.get('/api/fork', Util.forkRepo);
 
-app.post('/api/fork', function (req, res) {
-  console.log('req.body', req.body);
-  UserForks.create({      
-    username: req.query.username,
-    parent_url: req.body.parent.html_url,
-    parent_repo_id: req.body.parent.id,
-    fork_url: req.body.html_url
-  })
-  .then(function(user){
-      console.log('updated user: ', JSON.stringify(user));
-    }).catch(function(error) {
-      console.error('error updating user: ', error);
-    });
-})
-
 app.get('/api/user/forks', function (req, res) {
   Util.getForkedRepos(req.query.username)
   .then(function (results) {
     var forkedParentUrlsId = results.map(function (forkObj) {
-      return [forkObj.parent_url, forkObj.parent_id];
+      return [forkObj.parent_url, forkObj.parent_repo_id];
     })
     Util.getPullRequests(req.query.username, forkedParentUrlsId, function(response) {
       res.json(response);

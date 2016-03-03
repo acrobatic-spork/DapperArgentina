@@ -302,29 +302,30 @@ var refreshReposFromGithub = function(repos) {
 };
 
 var forkRepo = function (req, res) {
-  console.log('forkRepo query: ', req.query);
-  request.post({
-    uri: 'https://api.github.com/repos/'+req.query.owner+'/'+req.query.repo+'/forks',
-    headers: {
-      'Content-Type': 'application/json',
-      'User-Agent': 'acrobatic-spork'
-    }
+   User.findOne({where: {username: req.query.username}})
+  .then(function (user) {
+    var options ={
+        uri: 'https://api.github.com/repos/'+req.query.owner+'/'+req.query.repo+'/forks',
+        headers: {
+          'Authorization' : 'Token '+user.dataValues.access_token
+        }
+      }
+    mergeObj(options, baseGithubOptions);  
+    return request.post(options);
   })
-  .then(function (response) {
-    return request.post({
-      uri: '/api/fork?username='+req.query.username,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.parse(response)
+  .then(function (res) {
+    return UserForks.create({      
+      username: req.query.username,
+      parent_url: res.body.parent.html_url,
+      parent_repo_id: res.body.parent.id,
+      fork_url: res.body.html_url
     })
   })
-  .then(function (response) {
-    console.log('added repo to db: ', response);
-  })
-  .catch(function (error) {
-    console.error(error);
-  })
+  .then(function(user){
+      console.log('updated user: ', JSON.stringify(user));
+  }).catch(function(error) {
+      console.error('error updating user: ', error);
+  });
 }
 
 var getForkedRepos = function (username) {
