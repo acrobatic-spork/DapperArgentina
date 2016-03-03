@@ -103,6 +103,7 @@ var UserForks = db.define( 'user_forks', {
     autoIncrement: true,
     primaryKey: true
   },
+  username: Sequelize.STRING(50), 
   parent_url: Sequelize.STRING,
   fork_url: Sequelize.STRING,
   created_at: Sequelize.DATE,
