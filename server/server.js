@@ -153,6 +153,7 @@ app.get('/api/repos', function(req, res){
 app.get('/api/fork', Util.forkRepo);
 
 app.post('/api/fork', function (req, res) {
+  console.log('req.body', req.body);
   UserForks.create({      
     username: req.query.username,
     parent_url: req.body.parent.html_url,
