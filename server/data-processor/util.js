@@ -69,11 +69,21 @@ var onlyUserContributions = function(user, prCollection) {
   }, { pulls: 0, merges: 0});
 }
 
-getPullRequests = function(username, repos) {
+var getPullRequests = function(username, repos) {
   // for each repo:
-  // query for the pulls
-  // https://api.github.com/repos/{owner}/{repo name}/pulls?state=all
-  // for each pr, check user, if match check status, award points
+  return repos.reduce((repo, userStats) => {
+    // query for the pulls
+    var options = {
+      url: repo + '/pulls?state=all',
+    };
+    mergeObj(options, baseGithubOptions);
+
+    return request.get(options).then((result) => {
+      userStats[repo] = onlyUserContributions(username, result.body);
+      return userStats;
+    });
+    // https://api.github.com/repos/{owner}/{repo name}/pulls?state=all    
+  }, {});
 }
 
 
