@@ -158,7 +158,20 @@ app.route('/api/repos')
 
 app.get('/api/fork', Util.forkRepo);
 app.post('/api/fork', function (req, res) {
-
+  UserForks.findOrCreate({
+    where: {
+      username: req.query.username,
+      parent_url: req.body.parent.html_url,
+      fork_url: req.body.html_url
+    }
+  })
+})
+app.get('/api/getforks', function (req, res) {
+  Utils.getForkedRepos(req.query.username)
+  .then(function (results) {
+    console.log('results from db: ', results);
+    res.json(results);
+  })
 })
 
   // GET /auth/github

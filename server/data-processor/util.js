@@ -252,7 +252,16 @@ var forkRepo = function (req, res) {
     }
   })
   .then(function (response) {
-    console.log('response from forking repo: ', response);
+    return request.post({
+      uri: '/api/fork?username='+req.query.username,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.parse(response)
+    })
+  })
+  .then(function (response) {
+    console.log('added repo to db: ', response);
   })
   .catch(function (error) {
     console.error(error);
