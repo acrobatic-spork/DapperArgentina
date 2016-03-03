@@ -242,9 +242,9 @@ var refreshReposFromGithub = function(repos) {
   });
 };
 
-var forkRepo = function (owner, repo, token) {
+var forkRepo = function (req, res) {
   request.post({
-    uri: 'https://api.github.com/repos/'+owner+'/'+repo'/forks/',
+    uri: 'https://api.github.com/repos/'+req.query.owner+'/'+req.query.repo'/forks/',
     headers: {
       Content-Type: 'application/json'
     }
@@ -263,5 +263,6 @@ module.exports = {
   convertIssueToDbIssue: convertIssueToDbIssue,
   convertRepoToDbRepo: convertRepoToDbRepo,
   refreshReposFromGithub: refreshReposFromGithub,
-  getUserGitHubEvents: getUserGitHubEvents
+  getUserGitHubEvents: getUserGitHubEvents,
+  forkRepo: forkRepo
 };
