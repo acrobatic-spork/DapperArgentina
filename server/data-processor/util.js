@@ -71,7 +71,7 @@ var onlyUserContributions = function(user, prCollection) {
 }
 
 // Takes a GitHub username and array of repo urls
-var getPullRequests = function(username, urls) {
+var getPullRequests = function(username, urls, callback) {
   var userStats = {};
   
   // Make a bunch of promises!!!
@@ -96,11 +96,14 @@ var getPullRequests = function(username, urls) {
   // DO EM!
   Promise.all(promises).then(function(result) {
     // an object with each url as a key, val is another obj with merges: # and pulls: #
-    return userStats;
+    callback(userStats);
   });
 };
 
-// getPullRequests("Ocramius", ["https://api.github.com/repos/symfony/symfony", "https://api.github.com/repos/doctrine/dbal"]);
+// getPullRequests("Ocramius", ["https://api.github.com/repos/symfony/symfony", "https://api.github.com/repos/doctrine/dbal"], function(stats) {
+//   console.log(stats);
+// });
+
 
 
 /**Searches Github for issues w/ the provided label.
