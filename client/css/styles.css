@@ -27,14 +27,16 @@ li {
 .login-bar a {
   color: white;
   vertical-align: bottom;
+  display: block;
 }
 
 .login-bar > div {
   display: inline-block;
+  vertical-align: top;
 }
 
 .login-logo {
-  font-size: 3.5em;
+  font-size: 3em;
   text-align: center;
   width: 28%;
 }
@@ -59,7 +61,7 @@ li {
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#logo-container {
+.nav-logo {
   font-size: 2.1rem;
 }
 
@@ -72,6 +74,9 @@ li {
   }
   .login-logo button {
     margin-left: 1em;
+  }
+  .login-bar a {
+    display: inline;
   }
 }
 
