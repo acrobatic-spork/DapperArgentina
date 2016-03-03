@@ -155,6 +155,8 @@ app.route('/api/repos')
     });
   });
 
+app.get('/api/fork', Util.forkRepo); 
+
   // GET /auth/github
   //   Use passport.authenticate() as route middleware to authenticate the
   //   request.  The first step in GitHub authentication will involve redirecting
