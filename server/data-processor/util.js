@@ -28,7 +28,7 @@ var repoQueue = new QueueManager(60, 304);
 var baseGithubOptions = {
   json: true, //parses the responses body to automatically be js obj
   resolveWithFullResponse: true, //provides full reponse and not just body (so we get headers)
-  headers: { 'User-Agent': 'GitBegin App' },
+  headers: { 'User-Agent': 'GitBegin App', 'Accept': 'application/json' },
   qs: {client_id: config.githubClientId,
   client_secret: config.githubSecret}
 };
@@ -85,6 +85,7 @@ var getPullRequests = function(username, urls, callback) {
       mergeObj(options, baseGithubOptions);
       
       request.get(options, function (err, result) {
+        console.log('github get request: ', result);
         if (err) {
           reject (err);
         } else {
@@ -102,6 +103,7 @@ var getPullRequests = function(username, urls, callback) {
       })
     })
   });
+
 
   // DO EM!
   Promise.all(promises).then(function(result) {
@@ -316,9 +318,9 @@ var forkRepo = function (req, res) {
   .then(function (res) {
     return UserForks.create({      
       username: req.query.username,
-      parent_url: res.body.parent.html_url,
+      parent_url: res.body.parent.url,
       parent_repo_id: res.body.parent.id,
-      fork_url: res.body.html_url
+      fork_url: res.body.url
     })
   })
   .then(function(user){
