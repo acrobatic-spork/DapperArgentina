@@ -5,9 +5,24 @@ class GitInstruct extends React.Component {
     super(props);
 
     this.state = {
+      hidden: false,
       showClass: ''
     };
 
+  }
+
+  toggleHide () {
+    if(this.state.hidden) {
+      this.setState({
+        hidden: false,
+        showClass: ''
+      }); 
+    } else {
+      this.setState({
+        hidden: true,
+        showClass: 'hide'
+      });
+    }
   }
 
   render() {
@@ -17,6 +32,11 @@ class GitInstruct extends React.Component {
           <div className="card blue-grey darken-1">
             <div className="card-content white-text">
               <span className="card-title">How to Contribute</span>
+              <div className="col s2 right right-align">
+                <a href="#" className="hide-button" onClick={this.toggleHide}>
+                  <span className="mega-octicon octicon-x"></span>
+                </a>
+              </div>
               <h5>Fork the Repo</h5>
               <p>To fork, just click the button! The repo will now appear in your list of repos on GitHub</p>
               <h5>Copy the files to your computer</h5>
