@@ -3,12 +3,15 @@ const NavBar = require('./NavBar');
 const LoginBar = require('./LoginBar');
 const Users = require('../js/users');
 const Auth = require('../js/auth')
-const User = require('./UserInfoView');
+const User = require('./UserInfo');
 const TicketList = require('./TicketList');
 
 const linksList = [
   {
-    name: "Tickets", url: '/'
+    name: "Home", url: '/user'
+  },
+  {
+    name: "issues", url: '/issues'
   },
   {
     name: "Repos", url: '/repos'
