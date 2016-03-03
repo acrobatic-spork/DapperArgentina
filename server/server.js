@@ -6,7 +6,11 @@ var session = require('express-session');
 var GitHubStrategy = require('passport-github2').Strategy;
 var methodOverride = require('method-override');
 var config = require('./config');
+<<<<<<< HEAD
 var Util = require('./data-processor/util');
+=======
+var util = require('./data-processor/util');
+>>>>>>> 3a8ef0b0b308c7e156122ba039559a0ab96d9314
 
 var User = db.User;
 var UserIssues = db.UserIssues;
