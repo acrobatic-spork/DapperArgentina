@@ -323,6 +323,7 @@ var forkRepo = function (req, res) {
   })
   .then(function(user){
       console.log('updated user: ', JSON.stringify(user));
+      res.json(user);
   }).catch(function(error) {
       console.error('error updating user: ', error);
   });
