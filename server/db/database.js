@@ -96,6 +96,18 @@ var UserIssues = db.define( 'user_issues', {
   forked_repo_id:{type: Sequelize.INTEGER, allowNull: true}
 }
 );
+
+var UserForks = db.define( 'user_forks', {
+  internal_id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  parent_url: Sequelize.STRING,
+  fork_url: Sequelize.STRING,
+  created_at: Sequelize.DATE,
+  updated_at: Sequelize.DATE
+})
   // user_id: {type: Sequelize.INTEGER, references: {model: Users, key: 'id'}},
   // room_id: {type: Sequelize.INTEGER, references: {model: Rooms, key: 'id'}},
 
@@ -113,6 +125,8 @@ User.sync()
   } )
   .then( function() {
     return  UserIssues.sync();
+  }).then( function() {
+    return UserForks.sync();
   })
 
 module.exports.db = db;
