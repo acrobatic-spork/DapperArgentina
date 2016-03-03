@@ -33,7 +33,7 @@ class RepoList extends React.Component {
       <h4>Your sporked issues:</h4>
       <div className="main-repo-view">
         {this.props.repos.map ((repo, index) => 
-          <RepoEntry data={repo} key={index} />
+          <UserRepoEntry data={repo} key={index} />
         )}
       </div>
     </div>
