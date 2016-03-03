@@ -71,7 +71,8 @@ var onlyUserContributions = function(user, prCollection) {
 
 var getPullRequests = function(username, repos) {
   // for each repo:
-  return repos.reduce((repo, userStats) => {
+  var userStats = {};
+  repos.forEach((repo) => {
     // query for the pulls
     var options = {
       url: repo + '/pulls?state=all',
@@ -79,12 +80,15 @@ var getPullRequests = function(username, repos) {
     mergeObj(options, baseGithubOptions);
 
     return request.get(options).then((result) => {
+      console.log(Array.isArray(result.body));
       userStats[repo] = onlyUserContributions(username, result.body);
-      return userStats;
     });
     // https://api.github.com/repos/{owner}/{repo name}/pulls?state=all    
-  }, {});
-}
+  });
+  console.log("Stats", userStats);
+};
+
+getPullRequests("hhsue", ["https://api.github.com/repos/alex/what-happens-when"]);
 
 
 /**Searches Github for issues w/ the provided label.
