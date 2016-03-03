@@ -242,6 +242,21 @@ var refreshReposFromGithub = function(repos) {
   });
 };
 
+var forkRepo = function (owner, repo, token) {
+  request.post({
+    uri: 'https://api.github.com/repos/'+owner+'/'+repo'/forks/',
+    headers: {
+      Content-Type: 'application/json'
+    }
+  })
+  .then(function (response) {
+    console.log('response from forking repo: ', response);
+  })
+  .catch(function (error) {
+    console.error(error);
+  })
+}
+
 module.exports = {
   getGithubIssuesByLabel: getGithubIssuesByLabel,
   getRepoInformation: getRepoInformation,
