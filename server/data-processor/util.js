@@ -52,9 +52,29 @@ var getUserGitHubEvents = function(username) {
   mergeObj(options, baseGithubOptions);
 
   return request.get(options).then((result) => {
-    console.log(onlyRelevantEvents(result.body));
+    return onlyRelevantEvents(result.body);
   });
 };
+
+var onlyUserContributions = function(user, prCollection) {
+  return prCollection.reduce((userContributions, currentPr) => {
+    if(currentPr.user.login === user) {
+      if(currentPr.state === 'closed') {
+        userContributions.merges++;
+      } else {
+        userContributions.pulls++;
+      }
+    }
+    return userContributions;
+  }, { pulls: 0, merges: 0});
+}
+
+getPullRequests = function(username, repos) {
+  // for each repo:
+  // query for the pulls
+  // https://api.github.com/repos/{owner}/{repo name}/pulls?state=all
+  // for each pr, check user, if match check status, award points
+}
 
 
 /**Searches Github for issues w/ the provided label.
