@@ -36,20 +36,3 @@ module.exports.getUserIssues = function(successCallback, errCallback, user_id, u
     return successCallback(data);
   }, errCallback, user_id, username);
 };
-
-var forkRepoFromApi = function (successCallback, errCallback, owner, repo) {
-  var options = {
-    url: '/api/fork?owner='+owner+'&repo='+repo,
-    type: 'GET',
-    success: successCallback,
-    error: errCallback
-  };
-
-  $.ajax(options);  
-};
-
-module.exports.forkRepo = function(successCallback, errCallback, owner, repo) {
-  getUserInfoFromApi((data) => {
-    return successCallback(data);
-  }, errCallback, owner, repo);
-};
