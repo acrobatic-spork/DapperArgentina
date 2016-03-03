@@ -86,14 +86,11 @@ app.use(function(req, res, next) {
 
 var port = process.env.PORT || 3000;
 
-app.route('/api')
-  .get(function(req, res){
-    // console.log('/api', req);
+app.get('/api', function(req, res){
     res.send('Hello World');
   });
 
-app.route('/api/events/:username')
-  .get(function(req, res) {
+app.get('/api/events/:username', function(req, res) {
     Util.getUserGitHubEvents(req.params.username)
     .then((events) => {
       res.json(events);
@@ -117,8 +114,7 @@ app.get('/api/users/:user_id', function(req, res) {
     });
   });
 
-app.route('/api/users/issues/:user_id')
-  .get(function(req, res) {
+app.get('/api/users/issues/:user_id', function(req, res) {
     UserIssues.findAll({
       where: {
         user_id: req.params.user_id
@@ -135,8 +131,7 @@ app.route('/api/users/issues/:user_id')
   });
 
 
-app.route('/api/issues')
-  .get(function(req, res) {
+app.get('/api/issues', function(req, res) {
     Issues.getIssues()
     .then((results) => res.send(results))
     .catch((err) => {
@@ -146,8 +141,7 @@ app.route('/api/issues')
     });
   });
 
-app.route('/api/repos')
-  .get(function(req, res){
+app.get('/api/repos', function(req, res){
     Repos.getRepos()
     .then((results) => res.send(results))
     .catch(() => {
