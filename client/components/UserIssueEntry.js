@@ -22,7 +22,6 @@ const UserIssueEntry = (props) => (
             <p className="left-align col s6"><span className="octicon octicon-calendar"></span> Created <TimeAgo date={props.issue.created_at} /></p>
           </div>
         </div>
-      <div className="card-reveal">
         <p>{props.issue.body}</p>
   </li>
 );

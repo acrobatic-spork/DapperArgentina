@@ -19,20 +19,3 @@ module.exports.getUserInfo = function(successCallback, errCallback, user) {
     return successCallback(data);
   }, errCallback, user);
 };
-
-// var getUserReposFromApi = function (successCallback, errCallback, user_id, username) {
-//   var options = {
-//     url: '/api/users/forks?id='+user_id+'&username='+username,
-//     type: 'GET',
-//     success: successCallback,
-//     error: errCallback
-//   };
-
-//   $.ajax(options);  
-// };
-
-// module.exports.getUserRepos = function(successCallback, errCallback, user_id, username) {
-//   getUserReposFromApi((data) => {
-//     return successCallback(data);
-//   }, errCallback, user_id, username);
-// };
