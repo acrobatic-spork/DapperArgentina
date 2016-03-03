@@ -13,6 +13,7 @@ var pick = require('lodash.pick');
 var path = require('path');
 var dateFormat = require('dateformat');
 var User = db.User;
+
 var QueueManager = require('./queueManager');
 
 //The issue API is throttled by 30 req/min
@@ -72,23 +73,34 @@ var onlyUserContributions = function(user, prCollection) {
 var getPullRequests = function(username, repos) {
   // for each repo:
   var userStats = {};
-  repos.forEach((repo) => {
-    // query for the pulls
-    var options = {
-      url: repo + '/pulls?state=all',
-    };
-    mergeObj(options, baseGithubOptions);
-
-    return request.get(options).then((result) => {
-      console.log(Array.isArray(result.body));
-      userStats[repo] = onlyUserContributions(username, result.body);
-    });
-    // https://api.github.com/repos/{owner}/{repo name}/pulls?state=all    
+  
+  // Make a bunch of promises!!!
+  var promises = repos.map(function(repo) {
+    return new Promise(function (resolve, reject) {
+      var options = {
+        url: repo + '/pulls?state=all',
+      };
+      mergeObj(options, baseGithubOptions);
+      
+      request.get(options, function (err, result) {
+        if (err) {
+          reject (err);
+        } else {
+          userStats[repo] = onlyUserContributions(username, result.body);
+          resolve(true);
+        }
+      })
+    })
   });
-  console.log("Stats", userStats);
+
+  // DO EM!
+  Promise.all(promises).then(function(result) {
+    // the final object with each url as a key, val is another obj with merges and pulls
+    return userStats;
+  });
 };
 
-getPullRequests("hhsue", ["https://api.github.com/repos/alex/what-happens-when"]);
+// getPullRequests("Ocramius", ["https://api.github.com/repos/symfony/symfony", "https://api.github.com/repos/doctrine/dbal"]);
 
 
 /**Searches Github for issues w/ the provided label.
