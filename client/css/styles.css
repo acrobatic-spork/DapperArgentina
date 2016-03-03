@@ -2,14 +2,62 @@
   background-color: #DFDAC8;
   color: #3B5A91;
 }*/
+li {
+  list-style: none;
+  margin-bottom:0.5em;
+}
+.octicon::before {
+  font-size: 1.35em;
+}
 .main-ticket-view {
    overflow: auto; 
    max-height: 100vh;
 }
-
 .login-bar {
-  background-color: #5e35b1;
-  padding: 0.4em;
   color: white;
+  padding: 3em 1em;
+  height:auto;
+}
+.login-bar a {
+  color: white;
+  vertical-align: bottom;
+}
+.login-bar > div {
+  display: inline-block;
+}
+
+.login-logo {
+  font-size: 3.5em;
+  text-align: center;
+  width: 28%;
+}
+.tagline {
+  padding:0.5em;
   font-size: 1.5em;
+  width: 70%;
+}
+
+.login-bar button {
+  border:none;
+  font-size: 1.25rem;
+  background-color: #00838f;
+  padding: 0.5em 1em;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+  transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+.login-bar button:hover {
+  background-color: #00bcd4;
+  box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+@media (max-width: 700px) {
+  .login-bar > div {
+    width:100%;
+  }
+  .login-logo {
+    margin-bottom: 1em;
+  }
+  .login-logo button {
+    margin-left: 1em;
+  }
 }
