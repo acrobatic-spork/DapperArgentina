@@ -6,6 +6,20 @@ const UserIssueEntry = require('./UserIssueEntry');
 class UserRepoEntry extends React.Component {
   constructor (props) {
     super(props);
+
+    this.state = {
+      repoToRender: {},
+      issues: []
+    };
+
+    this.getRepo = this.getRepo.bind(this);
+  }
+
+  getRepo(id) {
+    //Fetch repo and tickets;
+    var that = this;
+    Repos.getRepoById(id, (data) => this.setState({repoToRender: data}));
+    Issues.getIssuesByRepoId(id, data => this.setState({issues: data}));
   }
 
   render() {
@@ -15,19 +29,19 @@ class UserRepoEntry extends React.Component {
           <div className="card white">
             <div className="card-content black-text" >
               <span className="card-title">
-                <Link className="left cyan-text lighten-2" to={`/repoProfile/${this.props.repo.id}`}>{this.props.repo.name}</Link>
+                <Link className="left cyan-text lighten-2" to={`/repoProfile/${this.state.repoToRender.id}`}>{this.state.repoToRender.name}</Link>
               </span>
               <div className="row">
-                <p className="left-align grey-text lighten-2 col s12">{this.props.repo.description}</p>
+                <p className="left-align grey-text lighten-2 col s12">{this.state.repoToRender.description}</p>
               </div>
               <div className="row">
-                <strong className={"center-align col s4" + (this.props.repo.forked ? "text-light-green" : "text-grey")}><span className="mega-octicon octicon-git-branch"></span></strong>
-                <strong className={"center-align col s4" + (this.props.repo.pulled ? "text-light-green" : "text-grey")}><span className="mega-octicon octicon-git-pull-request"></span></strong>
-                <strong className={"center-align col s4" + (this.props.repo.closed ? "text-light-green" : "text-grey")}><span class="mega-octicon octicon-issue-closed"></span></strong>
+                <strong className={"center-align col s4" + (this.state.repoToRender.forked ? "text-light-green" : "text-grey")}><span className="mega-octicon octicon-git-branch"></span></strong>
+                <strong className={"center-align col s4" + (this.state.repoToRender.pulled ? "text-light-green" : "text-grey")}><span className="mega-octicon octicon-git-pull-request"></span></strong>
+                <strong className={"center-align col s4" + (this.state.repoToRender.closed ? "text-light-green" : "text-grey")}><span class="mega-octicon octicon-issue-closed"></span></strong>
               </div>
               <div className="row">
                 <ul className="collection">
-                 {this.props.repo.issues.map ((issue, index) => 
+                 {this.state.issues.map ((issue, index) => 
                   <UserIssueEntry issue={issue} key={"issue-"+index} />
                 )}
                 </ul>

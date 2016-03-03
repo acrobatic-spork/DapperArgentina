@@ -20,19 +20,19 @@ module.exports.getUserInfo = function(successCallback, errCallback, user) {
   }, errCallback, user);
 };
 
-var getUserIssuesFromApi = function (successCallback, errCallback, user_id, username) {
-  var options = {
-    url: '/api/users/issues?id='+user_id+'&username='+username,
-    type: 'GET',
-    success: successCallback,
-    error: errCallback
-  };
+// var getUserReposFromApi = function (successCallback, errCallback, user_id, username) {
+//   var options = {
+//     url: '/api/users/forks?id='+user_id+'&username='+username,
+//     type: 'GET',
+//     success: successCallback,
+//     error: errCallback
+//   };
 
-  $.ajax(options);  
-};
+//   $.ajax(options);  
+// };
 
-module.exports.getUserIssues = function(successCallback, errCallback, user_id, username) {
-  getUserInfoFromApi((data) => {
-    return successCallback(data);
-  }, errCallback, user_id, username);
-};
+// module.exports.getUserRepos = function(successCallback, errCallback, user_id, username) {
+//   getUserReposFromApi((data) => {
+//     return successCallback(data);
+//   }, errCallback, user_id, username);
+// };
