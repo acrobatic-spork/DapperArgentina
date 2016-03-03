@@ -28,7 +28,7 @@ var repoQueue = new QueueManager(60, 304);
 var baseGithubOptions = {
   json: true, //parses the responses body to automatically be js obj
   resolveWithFullResponse: true, //provides full reponse and not just body (so we get headers)
-  headers: { 'User-Agent': 'GitBegin App'},
+  headers: { 'User-Agent': 'GitBegin App' },
   qs: {client_id: config.githubClientId,
   client_secret: config.githubSecret}
 };
@@ -95,9 +95,9 @@ var getPullRequests = function(username, urls, callback) {
             return;
           }
           if(result.body !== ' ') {
-            userStats[url] = onlyUserContributions(username, result.body);
+            userStats[[url[1]] = onlyUserContributions(username, result.body);
           } else {
-            userStats[url] = { pulls: 0, merges: 0};
+            userStats[[url[1]] = { pulls: 0, merges: 0};
           }
           resolve(true);
         }
