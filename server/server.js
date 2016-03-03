@@ -166,10 +166,15 @@ app.post('/api/fork', function (req, res) {
 })
 
 app.get('/api/getforks', function (req, res) {
-  Utils.getForkedRepos(req.query.username)
+  Util.getForkedRepos(req.query.username)
   .then(function (results) {
     console.log('results from db: ', results);
-    res.json(results);
+    var forkedParentUrls = results.map(function (forkObj) {
+      return forkObj.parent_url;
+    })
+    Util.getPullRequests(req.query.username, forkedParentUrls, function(response) {
+      res.json(response);
+    })
   })
 })
 

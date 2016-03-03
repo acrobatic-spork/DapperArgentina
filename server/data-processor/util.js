@@ -13,6 +13,8 @@ var pick = require('lodash.pick');
 var path = require('path');
 var dateFormat = require('dateformat');
 var User = db.User;
+var UserForks = db.UserForks;
+
 
 var QueueManager = require('./queueManager');
 
@@ -78,7 +80,7 @@ var getPullRequests = function(username, urls, callback) {
   var promises = urls.map(function(url) {
     return new Promise(function (resolve, reject) {
       var options = {
-        url: url + '/pulls?state=all',
+        url: url[0] + '/pulls?state=all',
       };
       mergeObj(options, baseGithubOptions);
       
@@ -86,7 +88,17 @@ var getPullRequests = function(username, urls, callback) {
         if (err) {
           reject (err);
         } else {
-          userStats[result.body[0].id] = onlyUserContributions(username, result.body);
+
+          console.log('--------------------- ', result);
+          if(result.statusCode > 400) {
+            reject(err);
+            return;
+          }
+          if(result.body !== ' ') {
+            userStats[[url[1]] = onlyUserContributions(username, result.body);
+          } else {
+            userStats[[url[1]] = { pulls: 0, merges: 0};
+          }
           resolve(true);
         }
       })
@@ -97,7 +109,7 @@ var getPullRequests = function(username, urls, callback) {
   Promise.all(promises).then(function(result) {
     // an object with each url as a key, val is another obj with merges: # and pulls: #
     callback(userStats);
-  });
+  }).catch(console.log)
 };
 
 // getPullRequests("Ocramius", ["https://api.github.com/repos/symfony/symfony", "https://api.github.com/repos/doctrine/dbal"], function(stats) {
@@ -318,7 +330,7 @@ var forkRepo = function (req, res) {
 }
 
 var getForkedRepos = function (username) {
-  return User.findAll({where: {
+  return UserForks.findAll({where: {
     username: username
   }
 })
@@ -332,5 +344,7 @@ module.exports = {
   refreshReposFromGithub: refreshReposFromGithub,
   getUserGitHubEvents: getUserGitHubEvents,
   getPullRequests: getPullRequests,
-  forkRepo: forkRepo
+  forkRepo: forkRepo,
+  getForkedRepos: getForkedRepos
+
 };
