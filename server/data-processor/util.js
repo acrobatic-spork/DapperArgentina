@@ -326,6 +326,8 @@ var forkRepo = function (req, res) {
       res.json(user);
   }).catch(function(error) {
       console.error('error updating user: ', error);
+      res.setStatus(500);
+      res.send(error);
   });
 }
 
