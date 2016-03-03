@@ -86,7 +86,7 @@ var getPullRequests = function(username, urls, callback) {
         if (err) {
           reject (err);
         } else {
-          userStats[url] = onlyUserContributions(username, result.body);
+          userStats[result.body[0].id] = onlyUserContributions(username, result.body);
           resolve(true);
         }
       })
