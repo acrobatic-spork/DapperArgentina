@@ -6,6 +6,7 @@ var session = require('express-session');
 var GitHubStrategy = require('passport-github2').Strategy;
 var methodOverride = require('method-override');
 var config = require('./config');
+var util = require('./data-processor/util');
 
 var User = db.User;
 var UserIssues = db.UserIssues;
@@ -141,6 +142,8 @@ app.route('/api/repos')
       res.send('Unknown Server Error');
     });
   });
+
+app.get('/api/fork', util.forkRepo); 
 
   // GET /auth/github
   //   Use passport.authenticate() as route middleware to authenticate the
