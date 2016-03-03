@@ -31,7 +31,7 @@ var getForksFromApi = function (successCallback, errCallback, username) {
 };
 
 module.exports.getForks = function(successCallback, errCallback, username) {
-  getUserInfoFromApi((data) => {
+  getForksFromApi((data) => {
     return successCallback(data);
   }, errCallback, username);
 };

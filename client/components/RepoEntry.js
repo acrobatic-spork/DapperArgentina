@@ -7,18 +7,30 @@ class RepoEntry extends React.Component {
     super(props);
   }
 
+  forkRepo (){
+    console.log('forkrepo');
+  }
+
   render() {
     return (
     <div className="row">
         <div className="col s12 m10">
           <div className="card white">
             <div className="card-content black-text" >
+                <div className="row">
+                <div className="col s10">
                 <span className="card-title">
                   <Link className="left cyan-text lighten-2" to={`/repoProfile/${this.props.data.id}`}>{this.props.data.name}
                   </Link>
                 </span>
-                <div className="row">
-                  <p className="left-align grey-text lighten-2 col s12">{this.props.data.description}</p>
+                  <p className="left-align grey-text col s12">{this.props.data.description}</p>
+                </div>
+                <div className="col s2 right right-align">
+                  <a href="#" className="fork-button" onClick={this.forkRepo}>
+                    <span className="mega-octicon octicon-git-branch"></span>
+                    <span className="small">spork it!</span>
+                  </a>
+                </div>
                 </div>
                 <div className="row">
                   <strong className="left-align col s3"><span className="octicon octicon-history"></span> updated <TimeAgo date={this.props.data.updated_at} /></strong>

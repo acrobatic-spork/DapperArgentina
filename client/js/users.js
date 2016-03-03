@@ -19,20 +19,3 @@ module.exports.getUserInfo = function(successCallback, errCallback, user) {
     return successCallback(data);
   }, errCallback, user);
 };
-
-var getUserIssuesFromApi = function (successCallback, errCallback, user_id, username) {
-  var options = {
-    url: '/api/users/issues?id='+user_id+'&username='+username,
-    type: 'GET',
-    success: successCallback,
-    error: errCallback
-  };
-
-  $.ajax(options);  
-};
-
-module.exports.getUserIssues = function(successCallback, errCallback, user_id, username) {
-  getUserInfoFromApi((data) => {
-    return successCallback(data);
-  }, errCallback, user_id, username);
-};
