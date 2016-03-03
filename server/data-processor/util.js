@@ -80,7 +80,7 @@ var getPullRequests = function(username, urls, callback) {
   var promises = urls.map(function(url) {
     return new Promise(function (resolve, reject) {
       var options = {
-        url: url + '/pulls?state=all',
+        url: url[0] + '/pulls?state=all',
       };
       mergeObj(options, baseGithubOptions);
       
