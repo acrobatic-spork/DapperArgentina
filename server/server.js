@@ -10,6 +10,7 @@ var Util = require('./data-processor/util');
 
 var User = db.User;
 var UserIssues = db.UserIssues;
+var UserForks = db.UserForks;
 
 var GITHUB_CLIENT_ID = config.githubClientId;
 var GITHUB_CLIENT_SECRET = config.githubSecret;
@@ -155,7 +156,10 @@ app.route('/api/repos')
     });
   });
 
-app.get('/api/fork', Util.forkRepo); 
+app.get('/api/fork', Util.forkRepo);
+app.post('/api/fork', function (req, res) {
+
+})
 
   // GET /auth/github
   //   Use passport.authenticate() as route middleware to authenticate the
