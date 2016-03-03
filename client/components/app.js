@@ -2,8 +2,7 @@ const React = require('react');
 const NavBar = require('./NavBar'); 
 const LoginBar = require('./LoginBar');
 const Users = require('../js/users');
-const Auth = require('../js/auth')
-const User = require('./UserInfo');
+const Auth = require('../js/auth');
 const TicketList = require('./TicketList');
 
 const linksList = [
