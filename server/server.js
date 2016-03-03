@@ -159,21 +159,16 @@ app.route('/api/repos')
 app.get('/api/fork', Util.forkRepo);
 
 app.post('/api/fork', function (req, res) {
-  UserForks.findOrCreate({
-    where: {username: req.query.username}
+  UserForks.create({      
+    username: req.query.username,
+    parent_url: req.body.parent.html_url,
+    fork_url: req.body.html_url
   })
-  .spread(function(user, created) {
-    user.update({
-      parent_url: req.body.parent.html_url,
-      fork_url: req.body.html_url
-    }).then(function(user){
+  .then(function(user){
       console.log('updated user: ', JSON.stringify(user));
-      return done(null, user);
     }).catch(function(error) {
       console.error('error updating user: ', error);
-      return done(error, null);
     });
-  });
 })
 
 app.get('/api/getforks', function (req, res) {

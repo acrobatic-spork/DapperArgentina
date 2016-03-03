@@ -105,9 +105,7 @@ var UserForks = db.define( 'user_forks', {
   },
   username: Sequelize.STRING(50), 
   parent_url: Sequelize.STRING,
-  fork_url: Sequelize.STRING,
-  created_at: Sequelize.DATE,
-  updated_at: Sequelize.DATE
+  fork_url: Sequelize.STRING
 })
   // user_id: {type: Sequelize.INTEGER, references: {model: Users, key: 'id'}},
   // room_id: {type: Sequelize.INTEGER, references: {model: Rooms, key: 'id'}},
@@ -134,3 +132,5 @@ module.exports.db = db;
 module.exports.User = User;
 module.exports.Repo = Repo;
 module.exports.Issue = Issue;
+module.exports.UserForks = UserForks;
+
