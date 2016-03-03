@@ -12,7 +12,7 @@ var mergeObj = require('lodash.merge');
 var pick = require('lodash.pick');
 var path = require('path');
 var dateFormat = require('dateformat');
-
+var User = db.User;
 var QueueManager = require('./queueManager');
 
 //The issue API is throttled by 30 req/min
@@ -256,6 +256,13 @@ var forkRepo = function (req, res) {
     console.error(error);
   })
 }
+
+var getForkedRepos = function (username) {
+  return User.findAll({where: {
+    username: username
+  }
+})
+};
 
 module.exports = {
   getGithubIssuesByLabel: getGithubIssuesByLabel,
