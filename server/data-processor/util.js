@@ -243,14 +243,25 @@ var refreshReposFromGithub = function(repos) {
 };
 
 var forkRepo = function (req, res) {
+  console.log('forkRepo query: ', req.query);
   request.post({
-    uri: 'https://api.github.com/repos/'+req.query.owner+'/'+req.query.repo+'/forks/',
+    uri: 'https://api.github.com/repos/'+req.query.owner+'/'+req.query.repo+'/forks',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'User-Agent': 'acrobatic-spork'
     }
   })
   .then(function (response) {
-    console.log('response from forking repo: ', response);
+    return request.post({
+      uri: '/api/fork?username='+req.query.username,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.parse(response)
+    })
+  })
+  .then(function (response) {
+    console.log('added repo to db: ', response);
   })
   .catch(function (error) {
     console.error(error);

@@ -10,6 +10,7 @@ var Util = require('./data-processor/util');
 
 var User = db.User;
 var UserIssues = db.UserIssues;
+var UserForks = db.UserForks;
 
 var GITHUB_CLIENT_ID = config.githubClientId;
 var GITHUB_CLIENT_SECRET = config.githubSecret;
@@ -155,7 +156,28 @@ app.route('/api/repos')
     });
   });
 
-app.get('/api/fork', Util.forkRepo); 
+app.get('/api/fork', Util.forkRepo);
+
+app.post('/api/fork', function (req, res) {
+  UserForks.create({      
+    username: req.query.username,
+    parent_url: req.body.parent.html_url,
+    fork_url: req.body.html_url
+  })
+  .then(function(user){
+      console.log('updated user: ', JSON.stringify(user));
+    }).catch(function(error) {
+      console.error('error updating user: ', error);
+    });
+})
+
+app.get('/api/getforks', function (req, res) {
+  Utils.getForkedRepos(req.query.username)
+  .then(function (results) {
+    console.log('results from db: ', results);
+    res.json(results);
+  })
+})
 
   // GET /auth/github
   //   Use passport.authenticate() as route middleware to authenticate the
