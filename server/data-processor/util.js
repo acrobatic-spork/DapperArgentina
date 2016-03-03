@@ -88,8 +88,6 @@ var getPullRequests = function(username, urls, callback) {
         if (err) {
           reject (err);
         } else {
-
-          console.log('--------------------- ', result);
           if(result.statusCode > 400) {
             reject(err);
             return;
