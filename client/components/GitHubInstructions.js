@@ -6,8 +6,6 @@ const GitInstruct = (props) => (
     <div className="col s12 m12">
       <div className="card white">
         <div className="card-content black-text">
-          <span className="card-title"><strong>How to Contribute</strong></span>
-          
           <h5>Fork the Repo</h5>
           <p>To fork, just click the button! The repo will now appear in your list of repos on GitHub</p>
           <h5>Copy the files to your computer</h5>

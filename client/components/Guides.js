@@ -5,7 +5,6 @@ const Guides = (props) => (
       <div className="col s12 m12">
         <div className="card white">
           <div className="card-content black-text" >
-            <span className="card-title"><strong>Guides that are good for beginners</strong></span>
             <div className="row">
               <a className="left-align col s12 cyan-text lighten-2 cyan-text lighten-2" href={'https://guides.github.com/introduction/flow/'}>The guide on Understanding the GitHub workflow</a>
               <p className="left-align col s12">

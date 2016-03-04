@@ -62,7 +62,7 @@ var getUserGitHubEvents = function(username) {
 var onlyUserContributions = function(user, prCollection) {
   return prCollection.reduce((userContributions, currentPr) => {
     if(currentPr.user.login === user) {
-      if(currentPr.state === 'closed') {
+      if(currentPr.state === 'closed' && currentPr.merged_at) {
         userContributions.merges++;
       } else {
         userContributions.pulls++;
