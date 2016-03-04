@@ -343,6 +343,14 @@ var getForkedRepos = function (username) {
 })
 };
 
+var getUsers = function () {
+  User.findAll()
+    .then(function(users) {
+      console.log('users ==================',users);
+      res.json(users);
+    })
+}
+
 module.exports = {
   getGithubIssuesByLabel: getGithubIssuesByLabel,
   getRepoInformation: getRepoInformation,
@@ -352,6 +360,6 @@ module.exports = {
   getUserGitHubEvents: getUserGitHubEvents,
   getPullRequests: getPullRequests,
   forkRepo: forkRepo,
-  getForkedRepos: getForkedRepos
-
+  getForkedRepos: getForkedRepos,
+  getUsers: getUsers
 };
