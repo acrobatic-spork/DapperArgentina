@@ -17,7 +17,7 @@ const linksList = [
   }, 
   {
     name: "Getting Started", url: '/resources'
-  }
+  },
 ];
 
 

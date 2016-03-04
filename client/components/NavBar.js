@@ -3,7 +3,7 @@ const React = require('react');
 const Router = require('react-router').Router;
 const Route = require('react-router').Route;
 const Link = require('react-router').Link;
-
+const Auth = require('../js/auth')
 
 const NavBar = class NavBar extends React.Component {
   constructor(props) {
@@ -22,6 +22,9 @@ const NavBar = class NavBar extends React.Component {
               {this.props.links.map ((link, index) => 
                 <NavEntry data={link} key={index} />
               )}
+              <li>
+                <a href='' onClick={Auth.logOut}>Log Out</a>
+              </li>
             </ul>
             <ul id="nav-mobile" className="side-nav">
               {this.props.links.map ((link, index) => 

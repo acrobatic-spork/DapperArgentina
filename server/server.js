@@ -186,11 +186,11 @@ app.get('/api/user/forks', function (req, res) {
       res.redirect('/');
     });
 
-  app.get('/logout', function(req, res){
-    req.logout();
-    res.clearCookie();
+app.get('/logout', function(req, res){
+  req.session.destroy(() => {
     res.redirect('/');
   });
+});
 
 console.log(`server running on port ${port} in ${process.env.NODE_ENV} mode`);
 // start listening to requests on port 3000
