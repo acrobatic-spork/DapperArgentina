@@ -1,7 +1,7 @@
 const React = require('react');
 const getUsers = require('../js/users').getUsers;
 const UserEntry = require('./UserEntry');
-const UserNav = require('./UserNavSub');
+const UserNav = require('./UserNav');
 const addFriend = require('../js/friends').addFriend;
 
 const navLinks = [

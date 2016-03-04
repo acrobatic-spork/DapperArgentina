@@ -2,11 +2,11 @@ const React = require('react');
 const UserNavEntry = require('./UserNavEntry')
 
 const UserNav = function (props) {
-  console.log('In UserNav')
+  console.log('In UserNav............')
   return (
     <div className="navbar-fixed">
-            <nav className="cyan lighten-2" role="navigation">
-              <div className="nav-wrapper container col s12 l8">
+            <nav className="grey darken-3 col s12 " role="navigation">
+              <div className="nav-wrapper container col s6 l8">
                 <ul className="right hide-on-small-and-down">
                   {props.links.map ((link, index) => 
                     <UserNavEntry data={link} key={index} />
@@ -23,4 +23,6 @@ const UserNav = function (props) {
           </div>
           )
 }
+
+module.exports = UserNav;
 

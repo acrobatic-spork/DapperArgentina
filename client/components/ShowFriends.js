@@ -27,7 +27,7 @@ const ShowFriends = class ShowFriends extends React.Component {
   }
 
   render() {
-    if(this.state.friendsToRender.length === 0) return (<div>No friends yet</div>)
+    if(this.state.friendsToRender.length === 0) return (<h1>No friends yet</h1>)
     else {
       var FriendEntry = () => (
         <div>

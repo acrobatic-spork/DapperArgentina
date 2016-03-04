@@ -17,10 +17,8 @@ ReactDOM.render((
   <Router history={hashHistory}>
     <Route path='/' component={App}>
       <IndexRoute component={UserInfo} />
-      <Route path='users' component={ShowUsers}>
-        <Route path='users' component={ShowUsers}/>
-        <Route path='friends' component={ShowFriends}/>  
-      </Route>      
+      <Route path='users' component={ShowUsers} />
+      <Route path='friends' component={ShowFriends}/>  
       <Route path='issues' component={TicketList} />
       <Route path='repos' component={RepoList} />
       <Route path='repoProfile/:repoId' component={RepoProfile} />

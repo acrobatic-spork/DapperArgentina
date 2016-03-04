@@ -1,14 +1,19 @@
-const React = require('react');
-const Router = require('react-router').Router;
 const Route = require('react-router').Route;
 const Link = require('react-router').Link;
+const React = require('react');
 
-const UserNavEntry = (props) => {
-  console.log('In Show Users Nav Entry');
-  return
-  (<li>
-    <Link to={props.data.url}>{props.data.name}</Link>
-  </li>)
+class UserNavEntry extends React.Component {
+  constructor(props){
+    super(props);
+  }
+
+  render(){
+  console.log('In Show Users Nav Entry')
+  return (<li>
+      <Link to={this.props.data.url}>{this.props.data.name}</Link>
+    </li>)
+  }
+  
 }
 
 module.exports = UserNavEntry;
