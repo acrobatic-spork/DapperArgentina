@@ -24,17 +24,13 @@ class TicketList extends React.Component {
       if(filterBy){
         switch(filterBy){
           case 'Most Recent':
-            if(self.state.currentSort === 'Most Recent') break;
-            data = data.reverse();
-            this.setState({currentSort:'Most Recent'})
-            break;
+              self.setState({currentSort:'Most Recent'})
+              data = data.reverse()
+              break;
           case 'Oldest':
           if(self.state.currentSort === 'Oldest') break;
             data = data.reverse();
-            this.setState({currentSort: 'Oldest'})
-            break;
-          case 'Forks':
-            data = data.sort((a,b) => b.forks-a.forks);
+            self.setState({currentSort: 'Oldest'})
             break;
         }
       }
