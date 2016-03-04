@@ -1,7 +1,10 @@
-const userUtil = {};
+'use strict';
+
 const config = '../config';
 const Promise = require('bluebird');
 const request = require('request-promise');
+const db = require('../db/database');
+var User = db.User;
 
 var baseGithubOptions = {
   json: true, //parses the responses body to automatically be js obj
@@ -12,7 +15,7 @@ var baseGithubOptions = {
 };
 
 var stats ={};
-userUtil.getStatsOfRepos = function(user) {
+var getStatsOfRepos = function(user) {
   var options = {url: 'https://api.github.com/users/'+user+'/repos'}
   Object.assign(options, baseGithubOptions);
   return request.get(options).then((results) => {
@@ -28,4 +31,15 @@ userUtil.getStatsOfRepos = function(user) {
   .catch(console.log)
 }
 
-userUtil.getStatsOfRepos('allenjprice')
+var getUsers = function (req, res) {
+  User.findAll()
+    .then(function(users) {
+      console.log('users ==================',users);
+      res.json(users);
+    })
+}
+
+module.exports = {
+  getStatsOfRepos: getStatsOfRepos,
+  getUsers: getUsers
+};
