@@ -5,23 +5,7 @@ class UserInfo extends React.Component {
 
   constructor(props) {
     super(props);
-    
-    this.state = {
-      // userRepos : []
-    }
-
   }
-  
-
-  componentWillMount() {
-    // this.getForks();
-  }
-
-  componentWillUpdate() {
-    // this.getForks();
-  }
-
-
 
   render () {
     return (
