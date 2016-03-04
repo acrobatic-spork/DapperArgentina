@@ -1,8 +1,6 @@
 import React from 'react';
 const GitInstruct = require('./GitHubInstructions');
 const Guides = require('./Guides');
-const ConfirmFork = require('./ConfirmFork');
-
 
 const ResourceList = (props) => (
   <div className="row"> 

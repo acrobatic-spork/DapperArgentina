@@ -5,18 +5,14 @@ class ConfirmFork extends React.Component {
 
   constructor (props) {
     super(props);
-
-    this.state = {
-      isShowingModal: true,
-    }
   }
 
-  handleClick () { this.setState({isShowingModal: true}) }
-  handleClose () { this.setState({isShowingModal: false}) }
+  handleClick () { this.props.openModel() }
+  handleClose () { this.props.closeModal() }
   render() {
     return (<div onClick={this.handleClick}>
       {
-        this.state.isShowingModal &&
+        this.props.isShowing &&
         <ModalContainer onClose={this.handleClose.bind(this)}>
           <ModalDialog onClose={this.handleClose.bind(this)}>
             <h4>You're about to fork a repo!</h4>
