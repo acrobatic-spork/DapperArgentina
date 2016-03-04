@@ -9,7 +9,7 @@ li {
 }
 
 .octicon::before {
-  font-size: 1.35em;
+  margin-left: 10px;
 }
 
 .main-ticket-view {
