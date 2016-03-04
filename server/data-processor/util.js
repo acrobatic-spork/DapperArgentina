@@ -353,19 +353,17 @@ var getUsers = function (req, res) {
 }
 
 var addFriend = function (req, res) {
-  Friends.findOrCreate({where: { user_id: req.body.user_id, friend_id: req.body.friend_id }})
-  .spread(function(user, created) {
-    Friends.update({
-      user_id: req.body.user_id,
-      friend_id: req.body.friend_id
-    }).then(function(friend){
+  Friends.create({ 
+    user_id: req.body.user_id, 
+    friend_id: req.body.friend_id 
+  })
+  .then(function(friend) {
       console.log('FRIEND: ', JSON.stringify(friend));
       res.json(friend);
     }).catch(function(error) {
       console.error('error updating user: ', error);
       res.json(error);
     });
-  });
 }
 
 module.exports = {
