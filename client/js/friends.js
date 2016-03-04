@@ -2,7 +2,7 @@ const $ = require('jquery');
 
 module.exports = {};
 
-var getFriends = function (successCallback, errCallback, user_id) {
+module.exports.getFriends = function (successCallback, errCallback, user_id) {
   var options = {
     url: '/api/friend?user_id='+user_id, // add route to query users db for github info
     type: 'GET',
@@ -17,7 +17,7 @@ var getFriends = function (successCallback, errCallback, user_id) {
   $.ajax(options);  
 };
 
-var addFriend = function (successCallback, errCallback, user_id, friend_id) {
+module.exports.addFriend = function (successCallback, errCallback, user_id, friend_id) {
   var options = {
     url: '/api/friend', // add route to query users db for github info
     type: 'POST',
