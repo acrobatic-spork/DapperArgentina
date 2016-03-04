@@ -2,6 +2,8 @@ const React = require('react');
 const Link = require('react-router').Link;
 const TimeAgo = require('../../node_modules/react-timeago/timeago');
 const UserIssueEntry = require('./UserIssueEntry');
+const Repos = require('../js/repos');
+const Issues = require('../js/issues'); 
 
 class UserRepoEntry extends React.Component {
   constructor (props) {
@@ -13,6 +15,10 @@ class UserRepoEntry extends React.Component {
     };
 
     this.getRepo = this.getRepo.bind(this);
+  }
+
+  componentWillMount() {
+    this.getRepo(this.props.data.id);
   }
 
   getRepo(id) {
@@ -37,7 +43,7 @@ class UserRepoEntry extends React.Component {
               <div className="row">
                 <strong className={"center-align col s4" + (this.state.repoToRender.forked ? "text-light-green" : "text-grey")}><span className="mega-octicon octicon-git-branch"></span></strong>
                 <strong className={"center-align col s4" + (this.state.repoToRender.pulled ? "text-light-green" : "text-grey")}><span className="mega-octicon octicon-git-pull-request"></span></strong>
-                <strong className={"center-align col s4" + (this.state.repoToRender.closed ? "text-light-green" : "text-grey")}><span class="mega-octicon octicon-issue-closed"></span></strong>
+                <strong className={"center-align col s4" + (this.state.repoToRender.closed ? "text-light-green" : "text-grey")}><span className="mega-octicon octicon-issue-closed"></span></strong>
               </div>
               <div className="row">
                 <ul className="collection">

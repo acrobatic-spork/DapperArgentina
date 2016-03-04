@@ -4,6 +4,7 @@ const LoginBar = require('./LoginBar');
 const Users = require('../js/users');
 const Auth = require('../js/auth');
 const TicketList = require('./TicketList');
+const forkUtil = require('../js/fork');
 
 const linksList = [
   {
@@ -32,11 +33,12 @@ class App extends React.Component {
       name: null,
       username: null,
       avatar_url: null,
+      userRepos: []
     };
   }
 
   componentWillMount(){
-    console.log('component mounted: ', Auth.getUserId())
+    console.log('component mounted: ', Auth.getUserId());
     if(Auth.isLoggedIn()){
      var userId = Auth.getUserId();
       this.setState({
@@ -47,7 +49,14 @@ class App extends React.Component {
       this.getUserInfo(userId);
     }
   }
-
+  
+  getForks(username) {
+    forkUtil.getForks(function(data) {
+      this.setState({
+        userRepos: data || []
+      });
+    }.bind(this), console.error, username);
+  }
 
   getUserInfo(userId){
     // Get the user's information
@@ -60,6 +69,7 @@ class App extends React.Component {
         username: data.username,
         avatar_url: data.avatar_url
       });
+      self.getForks(data.username);
       console.log('success callback, data:', data);
     }, function(error) {
       console.error("Problem getting user data!");
@@ -76,7 +86,8 @@ class App extends React.Component {
         userId: this.state.userId,
         username: this.state.username,
         name: this.state.name,
-        avatar_url: this.state.avatar_url
+        avatar_url: this.state.avatar_url,
+        userRepos: this.state.userRepos
         // ...this.props 
       });
     });

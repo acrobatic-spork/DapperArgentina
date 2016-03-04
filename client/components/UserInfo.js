@@ -1,6 +1,5 @@
 const React = require('react');
 const UserRepoList = require('./UserRepoList');
-const forkUtil = require('../js/fork');
 
 class UserInfo extends React.Component {
 
@@ -8,27 +7,21 @@ class UserInfo extends React.Component {
     super(props);
     
     this.state = {
-      userRepos : []
+      // userRepos : []
     }
 
   }
   
 
   componentWillMount() {
-    this.getForks();
+    // this.getForks();
   }
 
   componentWillUpdate() {
-    this.getForks();
+    // this.getForks();
   }
 
-  getForks() {
-    forkUtil.getForks(function(data) {
-      this.setState({
-        userRepos: data || []
-      })
-    }.bind(this), console.error, this.props.username);
-  }
+
 
   render () {
     return (
@@ -44,7 +37,7 @@ class UserInfo extends React.Component {
           </div>
         </div>
         <div className="col s12 m8 l8">        
-         <UserRepoList repos={this.state.userRepos} />
+         <UserRepoList repos={this.props.userRepos} />
         </div>
       </div>
     );
