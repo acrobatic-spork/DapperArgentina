@@ -43,7 +43,7 @@ class RepoEntry extends React.Component {
     return (
     <div className="row">
       <ConfirmFork isShowing={this.state.showConfirm} openModel={this.openConfirm.bind(this)} closeModal={this.closeConfirm.bind(this)} fork={this.forkRepo.bind(this)}/>
-        <div className="col s12 m10">
+        <div className="col s12">
           <div className="card white">
             <div className="card-content black-text" >
                 <div className="row">
