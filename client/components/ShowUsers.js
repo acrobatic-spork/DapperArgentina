@@ -38,18 +38,19 @@ const ShowUsers = class ShowUsers extends React.Component {
   }
 
   render() {
-    <UserNav links={navLinks}/>
     if(this.state.usersToRender.length === 0){
-     return (<div>No Users to show</div>) 
+     return (<div><UserNav links={navLinks}/>
+              <div>No Users to show</div></div>) 
     } else {
-        return (<div>
-        <div class='all-users-view'>
-        {this.state.usersToRender.map((user, index) => {
-          return (<UserEntry user={user} key={index}/>)
-          })
-        }
-        </div>
-      
+        return (
+        <div>
+          <UserNav links={navLinks}/>
+          <div class='all-users-view'>
+          {this.state.usersToRender.map((user, index) => {
+            return (<UserEntry user={user} key={index}/>)
+            })
+          }
+          </div>
       </div>)
     }
   }
