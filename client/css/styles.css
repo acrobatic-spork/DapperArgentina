@@ -67,10 +67,8 @@ li {
 
 .fork-button span::before {
   font-size: 2em;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.16);
-  transition: color 0.3s ease-out, text-shadow 0.3s ease-out;
 }
-.fork-button {
+.fork-button, .fork-button span::before {
   display: block;
   color :#64dd17;
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.16);

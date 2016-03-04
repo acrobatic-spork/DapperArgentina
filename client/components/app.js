@@ -30,11 +30,8 @@ class App extends React.Component {
       isLoggedIn: false,
       userId: null,
       name: null,
-      userName: null,
-      img: null,
-      sporks: [],
-      userRepos: [],
-      userIssues:[],
+      username: null,
+      avatar_url: null,
     };
   }
 
@@ -58,7 +55,7 @@ class App extends React.Component {
 
     Users.getUserInfo(function(data) {
       self.setState({
-        userId: data.id,
+        userId: userId,
         name: data.name,
         username: data.username,
         avatar_url: data.avatar_url
@@ -79,9 +76,7 @@ class App extends React.Component {
         userId: this.state.userId,
         username: this.state.username,
         name: this.state.name,
-        avatar_url: this.state.avatar_url,
-        userRepos: this.state.userRepos,
-        userIssues: this.state.userIssues
+        avatar_url: this.state.avatar_url
         // ...this.props 
       });
     });

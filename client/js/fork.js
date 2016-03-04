@@ -2,9 +2,9 @@ const $ = require('jquery');
 
 module.exports = {};
 
-var forkRepoFromApi = function (successCallback, errCallback, owner, repo) {
+var forkRepoFromApi = function (successCallback, errCallback, owner, repo, username) {
   var options = {
-    url: '/api/fork?owner='+owner+'&repo='+repo,
+    url: '/api/fork?owner='+owner+'&repo='+repo+'&username='+username,
     type: 'GET',
     success: successCallback,
     error: errCallback
@@ -13,10 +13,10 @@ var forkRepoFromApi = function (successCallback, errCallback, owner, repo) {
   $.ajax(options);  
 };
 
-module.exports.forkRepo = function(successCallback, errCallback, owner, repo) {
-  getUserInfoFromApi((data) => {
+module.exports.forkRepo = function(successCallback, errCallback, owner, repo, username) {
+  forkRepoFromApi((data) => {
     return successCallback(data);
-  }, errCallback, owner, repo);
+  }, errCallback, owner, repo, username);
 };
 
 var getForksFromApi = function (successCallback, errCallback, username) {
@@ -32,6 +32,7 @@ var getForksFromApi = function (successCallback, errCallback, username) {
 
 module.exports.getForks = function(successCallback, errCallback, username) {
   getForksFromApi((data) => {
+    console.log('got fork data: ' + data);
     return successCallback(data);
   }, errCallback, username);
 };
