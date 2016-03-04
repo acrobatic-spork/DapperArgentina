@@ -21,6 +21,16 @@ class UserRepoEntry extends React.Component {
     this.getRepo(this.props.data.id);
   }
 
+  componentDidMount () {
+    $('.collapsible').collapsible({
+      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });
+  }
+
+  deleteRepo(e) {
+    e.preventDefault();
+  }
+
   getRepo(id) {
     var that = this;
     Repos.getRepoById(id, (data) => this.setState({repoToRender: data}));
@@ -32,9 +42,10 @@ class UserRepoEntry extends React.Component {
     <div className="row">
         <div className="col s12">
           <div className="card white">
-            <div className="card-content black-text" >
+            <div className="card-content" >
               <span className="card-title">
                 <Link className="left cyan-text lighten-2" to={`/repoProfile/${this.state.repoToRender.id}`}>{this.state.repoToRender.name}</Link>
+                <a href="#" onClick={this.deleteRepo.bind(this)} className="right delete-icon"><i className="material-icons">delete</i></a>
               </span>
               <div className="row">
                 <p className="left-align grey-text lighten-2 col s12">{this.state.repoToRender.description}</p>
@@ -44,13 +55,18 @@ class UserRepoEntry extends React.Component {
                 <strong className={"center-align col s4" + (this.props.data.pulls ? " light-green-text" : " grey-text")}><span className="mega-octicon octicon-git-pull-request"></span> {this.props.data.pulls} pull requests</strong>
                 <strong className={"center-align col s4" + (this.props.data.merges ? " light-green-text" : " grey-text")}><span className="mega-octicon octicon-issue-closed"></span> {this.props.data.merges} merged</strong>
               </div>
-              <div className="row">
-                <ul className="collection">
-                 {this.state.issues.map ((issue, index) => 
-                  <UserIssueEntry issue={issue} key={"issue-"+index} />
-                )}
+              <ul className="collapsible" data-collapsible="accordion">
+                <li>
+                  <div className="collapsible-header hoverable light-green-text"><span className="octicon octicon-issue-opened"></span> Beginner Issues</div>
+                    <div className="collapsible-body">
+                      <ul className="collection">
+                       {this.state.issues.map ((issue, index) => 
+                        <UserIssueEntry issue={issue} key={"issue-"+index} />
+                      )}
+                      </ul>
+                    </div>
+                  </li>
                 </ul>
-              </div>
             </div>
           </div>
         </div>

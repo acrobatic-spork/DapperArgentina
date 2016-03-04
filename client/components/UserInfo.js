@@ -10,7 +10,7 @@ class UserInfo extends React.Component {
   render () {
     return (
       <div className="section">
-        <div className="col s12 m4 l4 center-align">
+        <div className="col m12 l3 center-align">
           <div>
             <img className="circle responsive-img" src={ this.props.avatar_url || 'http://static1.squarespace.com/static/55842e41e4b0875de16c3ebc/t/55e09d99e4b0db1790432d93/1440783771027/Profile+Holder.png' } width='200'/>
           </div>
@@ -20,7 +20,7 @@ class UserInfo extends React.Component {
 
           </div>
         </div>
-        <div className="col s12 m8 l8">        
+        <div className="col m12 l9">        
          <UserRepoList repos={this.props.userRepos} />
         </div>
       </div>

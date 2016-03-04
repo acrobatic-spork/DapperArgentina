@@ -28,8 +28,9 @@ class RepoList extends React.Component {
     // var maxHeight = $(window).height() - $('.navbar').outerHeight() - margin * 2;
     
     return (
-    <div >
-      <h4 className="center-align">Your sporked repos</h4>
+    <div>
+      <div className="divider hide-on-large-only"></div>
+      <h4 className="center-align grey-text text-darken-2">Your sporked repos</h4>
       <div className="main-repo-view">
         {this.props.repos.map ((repo, index) => 
           <UserRepoEntry data={repo} key={index} />
