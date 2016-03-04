@@ -167,7 +167,7 @@ app.get('/api/user/forks', function (req, res) {
       res.json(response);
     })
   })
-})
+});
 
 app.get('/api/users', UserUtil.getUsers);
 
@@ -176,7 +176,7 @@ app.get('/api/friend', FriendUtil.getFriends);
 
 
 app.get('/auth/github', 
-  passport.authenticate('github', {scope: ['user', 'repo']}))
+  passport.authenticate('github', {scope: ['user', 'repo']}));
 
 
 app.get('/auth/github/callback', 
