@@ -72,8 +72,8 @@ class RepoSearch extends React.Component {
 
   handleSort(e){
     var newSort = this.grabSelectedSortField();
-
-    console.log(e);
+    console.log('sortField is: ', newSort);
+    this.props.searchHandler(this.state.searchText, this.state.language, newSort)
   }
 
   dummy (){
