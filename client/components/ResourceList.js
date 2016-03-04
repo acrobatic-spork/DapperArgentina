@@ -1,4 +1,5 @@
 import React from 'react';
+const GitInstruct = require('./GitHubInstructions');
 
 const ResourceList = (props) => (
     <div className="row"> 
@@ -8,6 +9,7 @@ const ResourceList = (props) => (
       Want to contribute to open source projects on GitHub, but unsure where to start? You've come to the right place!
       We comb through active repos to find the easy issues that beginners can handle. Still not ready to dive in? Check out these guides:
       </blockquote>
+      <GitInstruct />
         <div className="card white">
           <div className="card-content black-text" >
             <span className="card-title"><strong>Guides that are good for beginners</strong></span>
