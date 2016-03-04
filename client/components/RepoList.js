@@ -21,6 +21,7 @@ class RepoList extends React.Component {
     //refactor to exclude 'self/this' with es6 syntax?
     var self = this;
     Repos.getRepos(function(data) {
+      console.log('fetched repos.....................', data)
       self.setState({
         numberOfRepos: data.length,
         reposToRender: data.slice(0,199)

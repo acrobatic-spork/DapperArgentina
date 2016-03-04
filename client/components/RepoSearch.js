@@ -10,7 +10,9 @@ class RepoSearch extends React.Component {
       searchText: null,
       //default to Javascript for search
       currentLanguage: 'Javascript',
-      languages: []
+      languages: [],
+      sortBy:[],
+      defaultSort: 'default'
     };
     
     this.searchHandler = this.searchHandler.bind(this);
@@ -58,6 +60,11 @@ class RepoSearch extends React.Component {
     return $selected[0].innerText.trim();
   }
 
+   grabSelectedLanguageVal() {
+    var $selected = $(`.${this.sortByDropDownClass}`).find('.selected');
+    return $selected[0].innerText.trim();
+  }
+
   dummy (){
     //this doesn't actually get called because onChange doesn't work w/ the materialize select.
     //we just feed it in so React doesn't throw any errors
@@ -72,6 +79,11 @@ class RepoSearch extends React.Component {
             <div className="input-field col s2">
               <select className={this.languageDropDownClass} value={this.state.currentLanguage} onChange={this.dummy}>
                 {this.state.languages.map((lang, index) => <option value={lang} key={lang}>{lang}</option>)}
+              </select>
+            </div>
+            <div className="input-field col s2">
+              <select className={this.sortByDropDownClass} value={this.state.currentLanguage} onChange={this.dummy}>
+                {this.state.sortBy.map((sortField, index) => <option value={sortField} key={sortField}>{sortField}</option>)}
               </select>
             </div>
           </div>;
