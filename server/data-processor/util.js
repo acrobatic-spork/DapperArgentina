@@ -343,7 +343,7 @@ var getForkedRepos = function (username) {
 })
 };
 
-var getUsers = function () {
+var getUsers = function (req, res) {
   User.findAll()
     .then(function(users) {
       console.log('users ==================',users);
