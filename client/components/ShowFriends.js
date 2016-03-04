@@ -1,5 +1,5 @@
 const React = require('react');
-const getUsers = require('../js/friends').getFriends;
+const getFriends = require('../js/friends').getFriends;
 
 
 const ShowFriends = class ShowFriends extends React.Component {
@@ -13,7 +13,7 @@ const ShowFriends = class ShowFriends extends React.Component {
 
   getAllFriendsList() {
     self = this;
-    getUsers((data) => {
+    getFriends((data) => {
       if(data.length){
         self.setState({
           friendsToRender: data
@@ -27,6 +27,7 @@ const ShowFriends = class ShowFriends extends React.Component {
   }
 
   render() {
+    if(this.state.friendsToRender.length === 0) return (<div>No friends yet</div>)
     var FriendEntry = () => (
       <div>
         <img src={props.friend.avatar_url} width="50" />

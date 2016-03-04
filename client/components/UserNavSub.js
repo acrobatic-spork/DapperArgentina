@@ -1,6 +1,8 @@
-import React from 'react';
+const React = require('react');
+const UserNavEntry = require('./UserNavEntry')
 
 const UserNav = function (props) {
+  console.log('In UserNav')
   return (
     <div className="navbar-fixed">
             <nav className="cyan lighten-2" role="navigation">

@@ -23,6 +23,7 @@ const ShowUsers = class ShowUsers extends React.Component {
   }
 
   getAllUsersList() {
+    console.log('in getAllUsersList')
     self = this;
     getUsers((data) => {
       if(data.length){
@@ -39,9 +40,11 @@ const ShowUsers = class ShowUsers extends React.Component {
 
   render() {
     if(this.state.usersToRender.length === 0){
+      console.log('length 0')
      return (<div><UserNav links={navLinks}/>
               <div>No Users to show</div></div>) 
     } else {
+      console.log('about to render');
         return (
         <div>
           <UserNav links={navLinks}/>
