@@ -74,7 +74,7 @@ var onlyUserContributions = function(user, prCollection) {
 
 // Takes a GitHub username and array of repo urls
 var getPullRequests = function(username, urls, callback) {
-  var userStats = {};
+  var userStats = [];
   
   // Make a bunch of promises!!!
   var promises = urls.map(function(url) {
@@ -96,7 +96,7 @@ var getPullRequests = function(username, urls, callback) {
           if(result.body !== ' ') {
             userStats[url[1]] = onlyUserContributions(username, result.body);
           } else {
-            userStats[url[1]] = { pulls: 0, merges: 0};
+            userStats.push({id:url[1], pulls: 0, merges: 0});
           }
           resolve(true);
         }
