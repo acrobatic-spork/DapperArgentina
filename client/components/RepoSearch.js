@@ -11,8 +11,8 @@ class RepoSearch extends React.Component {
       //default to Javascript for search
       currentLanguage: 'Javascript',
       languages: [],
-      sortBy:[],
-      defaultSort: 'default'
+      sortBy:['default', 'Popularity', 'Tickets' ],
+      currentSort: 'default'
     };
     
     this.searchHandler = this.searchHandler.bind(this);
@@ -60,9 +60,8 @@ class RepoSearch extends React.Component {
     return $selected[0].innerText.trim();
   }
 
-   grabSelectedLanguageVal() {
-    var $selected = $(`.${this.sortByDropDownClass}`).find('.selected');
-    return $selected[0].innerText.trim();
+  handleSort(e){
+    console.log(e);
   }
 
   dummy (){
@@ -81,8 +80,8 @@ class RepoSearch extends React.Component {
                 {this.state.languages.map((lang, index) => <option value={lang} key={lang}>{lang}</option>)}
               </select>
             </div>
-            <div className="input-field col s2">
-              <select className={this.sortByDropDownClass} value={this.state.currentLanguage} onChange={this.dummy}>
+            <div className="sort-field">
+              <select className={this.sortByDropDownClass} value={this.state.currentSort} onChange={this.handleSort}>
                 {this.state.sortBy.map((sortField, index) => <option value={sortField} key={sortField}>{sortField}</option>)}
               </select>
             </div>
