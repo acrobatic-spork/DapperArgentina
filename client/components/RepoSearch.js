@@ -42,6 +42,7 @@ class RepoSearch extends React.Component {
   componentDidMount() {
     // Use Materialize custom select input
     this.setLanguages();
+    this.setSort();
   }
 
   searchHandler(e) {
@@ -60,7 +61,18 @@ class RepoSearch extends React.Component {
     return $selected[0].innerText.trim();
   }
 
+  setSort () {
+    $('.repo-sort-dropdown').material_select(this.handleSort.bind(this));
+  }
+
+  grabSelectedSortField() {
+    var $selected = $('.repo-sort-dropdown').find('.selected');
+    return $selected[0].innerText.trim();
+  }
+
   handleSort(e){
+    var newSort = this.grabSelectedSortField();
+
     console.log(e);
   }
 
@@ -71,7 +83,7 @@ class RepoSearch extends React.Component {
 
   render () {
     return <div className="row">
-            <div className="input-field col s8">
+            <div className="input-field col s6">
               <input type="text" value={this.state.searchText} 
                 placeholder="search here..." onChange={this.searchHandler} onKeyPress={this.searchHandler} />
             </div>
@@ -80,8 +92,8 @@ class RepoSearch extends React.Component {
                 {this.state.languages.map((lang, index) => <option value={lang} key={lang}>{lang}</option>)}
               </select>
             </div>
-            <div className="sort-field">
-              <select className={this.sortByDropDownClass} value={this.state.currentSort} onChange={this.handleSort}>
+            <div className="sort-field input-field col s2">
+              <select className='repo-sort-dropdown' value={this.state.currentSort} onChange={this.dummy}>
                 {this.state.sortBy.map((sortField, index) => <option value={sortField} key={sortField}>{sortField}</option>)}
               </select>
             </div>
