@@ -12,8 +12,17 @@ class UserInfo extends React.Component {
     }
 
   }
-   
+  
+
   componentWillMount() {
+    this.getForks();
+  }
+
+  componentWillUpdate() {
+    this.getForks();
+  }
+
+  getForks() {
     forkUtil.getForks(function(data) {
       this.setState({
         userRepos: data || []

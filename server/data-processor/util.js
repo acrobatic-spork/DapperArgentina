@@ -316,6 +316,7 @@ var forkRepo = function (req, res) {
     return request.post(options);
   })
   .then(function (res) {
+    console.log("creating fork in db.............................................");
     return UserForks.create({      
       username: req.query.username,
       parent_url: res.body.parent.url,
@@ -328,7 +329,7 @@ var forkRepo = function (req, res) {
       res.json(user);
   }).catch(function(error) {
       console.error('error updating user: ', error);
-      res.setStatus(500);
+      res.status(500);
       res.send(error);
   });
 }

@@ -1,14 +1,18 @@
 const React = require('react');
 const Link = require('react-router').Link;
 const TimeAgo = require('../../node_modules/react-timeago/timeago');
+const forkUtil = require('../js/fork');
 
 class RepoEntry extends React.Component {
   constructor (props) {
     super(props);
   }
 
-  forkRepo (){
-    console.log('forkrepo');
+  forkRepo (e){
+    e.preventDefault();
+    forkUtil.forkRepo(function (data) {
+      console.log('successfully forked repo');
+    }, console.error, this.props.data.org_name, this.props.data.name, this.props.username);
   }
 
   render() {
@@ -26,7 +30,7 @@ class RepoEntry extends React.Component {
                   <p className="left-align grey-text col s12">{this.props.data.description}</p>
                 </div>
                 <div className="col s2 right right-align">
-                  <a href="#" className="fork-button" onClick={this.forkRepo}>
+                  <a href="#" className="fork-button" onClick={this.forkRepo.bind(this)}>
                     <span className="mega-octicon octicon-git-branch"></span>
                     <span className="small">spork it!</span>
                   </a>

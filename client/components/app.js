@@ -55,7 +55,7 @@ class App extends React.Component {
 
     Users.getUserInfo(function(data) {
       self.setState({
-        userId: data.id,
+        userId: userId,
         name: data.name,
         username: data.username,
         avatar_url: data.avatar_url
