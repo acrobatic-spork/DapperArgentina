@@ -3,6 +3,7 @@ const Link = require('react-router').Link;
 const TimeAgo = require('../../node_modules/react-timeago/timeago');
 const forkUtil = require('../js/fork');
 const ConfirmFork = require('./ConfirmFork');
+const SporkButton = require('./SporkButton');
 
 class RepoEntry extends React.Component {
   constructor (props) {
@@ -55,10 +56,7 @@ class RepoEntry extends React.Component {
                   <p className="left-align grey-text col s12">{this.props.data.description}</p>
                 </div>
                 <div className="col s2 right right-align">
-                  <a href="#" className="fork-button" onClick={this.handleClick.bind(this)}>
-                    <span className="mega-octicon octicon-git-branch"></span>
-                    <span className="small">spork it!</span>
-                  </a>
+                  <SporkButton handleClick={this.handleClick.bind(this)} />
                 </div>
                 </div>
                 <div className="row">
