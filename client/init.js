@@ -10,11 +10,13 @@ const RepoList = require('./components/RepoList');
 const RepoProfile = require('./components/RepoProfile'); 
 const ResourceList = require('./components/ResourceList');
 const UserInfo = require('./components/UserInfo');
+const ShowUsers = require('./components/ShowUsers')
 
 ReactDOM.render((
   <Router history={hashHistory}>
     <Route path='/' component={App}>
       <IndexRoute component={UserInfo} />
+      <Route path='users' component={ShowUsers} />
       <Route path='issues' component={TicketList} />
       <Route path='repos' component={RepoList} />
       <Route path='repoProfile/:repoId' component={RepoProfile} />
