@@ -1,8 +1,11 @@
 const React = require('react');
 const Repos = require('../js/repos');
 const Issues = require('../js/issues');
+const forkUtil = require('../js/fork');
 const TicketEntry = require('./ticketEntry');
 const TimeAgo = require('react-timeago');
+const ConfirmFork = require('./ConfirmFork');
+const SporkButton = require('./SporkButton');
 
 class RepoProfile extends React.Component {
   constructor (props) {
@@ -10,7 +13,8 @@ class RepoProfile extends React.Component {
 
     this.state = {
       repoToRender: {},
-      issues: []
+      issues: [],
+      showConfirm: false
     };
 
     this.getRepo = this.getRepo.bind(this);
@@ -32,15 +36,45 @@ class RepoProfile extends React.Component {
     this.getRepo(this.props.routeParams.repoId);
   }
 
+  handleClick (e) {
+    e.preventDefault();
+    this.setState({
+      showConfirm: true
+    });
+  }
+
+  forkRepo (){
+    forkUtil.forkRepo(function (data) {
+      console.log('successfully forked repo');
+    }, console.error, this.state.repoToRender.org_name, this.state.repoToRender.name, this.props.username);
+    this.closeConfirm();
+  }
+
+  openConfirm () {
+    this.setState({
+      showConfirm: true
+    });
+  }
+
+  closeConfirm () {
+    this.setState({
+      showConfirm: false
+    });
+  }
+
   render() {
     return (
     <div>
       <div className="row main-repo-view"> 
-        <div className="col s10">
+        <ConfirmFork isShowing={this.state.showConfirm} openModel={this.openConfirm.bind(this)} closeModal={this.closeConfirm.bind(this)} fork={this.forkRepo.bind(this)}/>
+        <div className="col s12">
           <h4>repo profile</h4>
           <div className="card white">
               <div className="card-content black-text">
                 <span className="card-title"><a className="cyan-text lighten-2" href={this.state.repoToRender.html_url} target="_blank">{this.state.repoToRender.name}</a></span>
+                  <div className="col s2 right right-align">
+                    <SporkButton handleClick={this.handleClick.bind(this)} />
+                  </div>
                 <div className="row">
                   <p className="left-align grey-text lighten-2 col s12">{this.state.repoToRender.description}</p>
                 </div>
