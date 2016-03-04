@@ -1,7 +1,6 @@
 const React = require('react');
 const Link = require('react-router').Link;
 const TimeAgo = require('../../node_modules/react-timeago/timeago');
-const forkUtil = require('../js/fork');
 const ConfirmFork = require('./ConfirmFork');
 const SporkButton = require('./SporkButton');
 
