@@ -9,17 +9,35 @@ class TicketList extends React.Component {
     super(props);
     
     this.state = {
-      ticketsToRender: []
+      ticketsToRender: [], 
+      currentSort: 'Most Recent'
     };
     
     this.getIssues = this.getIssues.bind(this);
   }
   
-  getIssues(searchTerm, language){
+  getIssues(searchTerm, language, filterBy){
     //Fetch issues;
     var self = this;
 
     Issues.getIssues(function(data) {
+      if(filterBy){
+        switch(filterBy){
+          case 'Most Recent':
+            if(self.state.currentSort === 'Most Recent') break;
+            data = data.reverse();
+            this.setState({currentSort:'Most Recent'})
+            break;
+          case 'Oldest':
+          if(self.state.currentSort === 'Oldest') break;
+            data = data.reverse();
+            this.setState({currentSort: 'Oldest'})
+            break;
+          case 'Forks':
+            data = data.sort((a,b) => b.forks-a.forks);
+            break;
+        }
+      }
       self.setState({
         numberOfTickets: data.length,
         ticketsToRender: data.slice(0,199)
@@ -41,7 +59,7 @@ class TicketList extends React.Component {
     return (
     <div>
       <TicketSearch searchHandler={this.getIssues} />
-      <h4>{this.state.numberOfTickets} Easy issues found</h4>
+      <h4>{this.state.numberOfTickets} Easy issues found - sorted by {this.state.currentSort.toLowerCase()}</h4>
       <div className="main-ticket-view">
           {this.state.ticketsToRender.map ((ticket, index) => (
               <TicketEntry data={ticket} key={index} />

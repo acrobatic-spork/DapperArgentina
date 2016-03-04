@@ -10,7 +10,9 @@ class TicketSearch extends React.Component {
       searchText: null,
       //default to Javascript for search
       currentLanguage: 'Javascript',
-      languages: []
+      languages: [],
+      sortBy: ['Most Recent','Oldest'],
+      currentSort: 'Most Recent'
     };
     
     this.searchHandler = this.searchHandler.bind(this);
@@ -41,6 +43,7 @@ class TicketSearch extends React.Component {
     // Use Materialize custom select input
    //$(`.${this.languageDropDownClass}`).material_select(this.languageHandler);
     this.setLanguages();
+    this.setSort();
   }
   
   searchHandler(e) {
@@ -54,9 +57,27 @@ class TicketSearch extends React.Component {
     });
   }
   
+  setSort () {
+    $('.issue-sort-dropdown').material_select(this.handleSort.bind(this));
+  }
+
   grabSelectedLanguageVal() {
     var $selected = $(`.${this.languageDropDownClass}`).find('.selected');
     return $selected[0].innerText.trim();
+  }
+
+  grabSelectedSortField() {
+    var $selected = $('.issue-sort-dropdown').find('.selected');
+    return $selected[0].innerText.trim();
+  }
+
+  handleSort(e){
+    var newSort = this.grabSelectedSortField();
+    this.setState({
+      currentSort: newSort
+    });
+    console.log('sortField is: ', newSort);
+    this.props.searchHandler(this.state.searchText, this.state.language, newSort)
   }
   
   dummy (){
@@ -66,13 +87,18 @@ class TicketSearch extends React.Component {
   
   render () {
     return <div className="row">
-              <div className="input-field col s8">
+              <div className="input-field col s6">
                 <input type="text" value={this.state.searchText} 
                   placeholder="search here..." onChange={this.searchHandler} onKeyPress={this.searchHandler} />
               </div>
               <div className="input-field col s2">
                 <select className={this.languageDropDownClass} value={this.state.currentLanguage} onChange={this.dummy}>
                   {this.state.languages.map((lang, index) => <option value={lang} key={lang}>{lang}</option>)}
+                </select>
+              </div>
+              <div className="input-field col s2">
+                <select className={'issue-sort-dropdown'} value={this.state.currentSort} onChange={this.dummy}>
+                  {this.state.sortBy.map((sortField, index) => <option value={sortField} key={sortField}>{sortField}</option>)}
                 </select>
               </div>
            </div>;
