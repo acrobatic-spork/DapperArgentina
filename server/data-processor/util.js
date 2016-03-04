@@ -13,8 +13,6 @@ var pick = require('lodash.pick');
 var path = require('path');
 var dateFormat = require('dateformat');
 var User = db.User;
-var UserForks = db.UserForks;
-var Friends = db.Friends;
 
 
 var QueueManager = require('./queueManager');

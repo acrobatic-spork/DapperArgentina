@@ -3,6 +3,8 @@
 const config = '../config';
 const Promise = require('bluebird');
 const request = require('request-promise');
+const db = require('../db/database');
+var User = db.User;
 
 var baseGithubOptions = {
   json: true, //parses the responses body to automatically be js obj

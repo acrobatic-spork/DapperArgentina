@@ -3,6 +3,8 @@
 const config = '../config';
 const Promise = require('bluebird');
 const request = require('request-promise');
+const db = require('../db/database');
+var Friends = db.Friends;
 
 var addFriend = function (req, res) {
   Friends.create({ 
