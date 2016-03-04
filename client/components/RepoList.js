@@ -16,11 +16,22 @@ class RepoList extends React.Component {
     
   }
   
-  getRepos(searchTerm, language){
+  getRepos(searchTerm, language, filterBy){
     //Fetch repos;
     //refactor to exclude 'self/this' with es6 syntax?
     var self = this;
     Repos.getRepos(function(data) {
+      console.log('fetched repos.....................', data);
+      if(filterBy){
+        switch(filterBy){
+          case 'Popularity':
+            data = data.sort((a,b) => b.stargazers_count-a.stargazers_count);
+            break;
+          case 'Tickets':
+            data = data.sort((a,b) => b.beginner_tickets-a.beginner_tickets);
+            break;
+        }
+      }
       self.setState({
         numberOfRepos: data.length,
         reposToRender: data.slice(0,199)

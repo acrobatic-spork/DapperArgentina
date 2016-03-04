@@ -10,7 +10,9 @@ class RepoSearch extends React.Component {
       searchText: null,
       //default to Javascript for search
       currentLanguage: 'Javascript',
-      languages: []
+      languages: [],
+      sortBy:['default', 'Popularity', 'Tickets' ],
+      currentSort: 'default'
     };
     
     this.searchHandler = this.searchHandler.bind(this);
@@ -40,6 +42,7 @@ class RepoSearch extends React.Component {
   componentDidMount() {
     // Use Materialize custom select input
     this.setLanguages();
+    this.setSort();
   }
 
   searchHandler(e) {
@@ -58,6 +61,21 @@ class RepoSearch extends React.Component {
     return $selected[0].innerText.trim();
   }
 
+  setSort () {
+    $('.repo-sort-dropdown').material_select(this.handleSort.bind(this));
+  }
+
+  grabSelectedSortField() {
+    var $selected = $('.repo-sort-dropdown').find('.selected');
+    return $selected[0].innerText.trim();
+  }
+
+  handleSort(e){
+    var newSort = this.grabSelectedSortField();
+    console.log('sortField is: ', newSort);
+    this.props.searchHandler(this.state.searchText, this.state.language, newSort)
+  }
+
   dummy (){
     //this doesn't actually get called because onChange doesn't work w/ the materialize select.
     //we just feed it in so React doesn't throw any errors
@@ -65,13 +83,18 @@ class RepoSearch extends React.Component {
 
   render () {
     return <div className="row">
-            <div className="input-field col s8">
+            <div className="input-field col s6">
               <input type="text" value={this.state.searchText} 
                 placeholder="search here..." onChange={this.searchHandler} onKeyPress={this.searchHandler} />
             </div>
             <div className="input-field col s2">
               <select className={this.languageDropDownClass} value={this.state.currentLanguage} onChange={this.dummy}>
                 {this.state.languages.map((lang, index) => <option value={lang} key={lang}>{lang}</option>)}
+              </select>
+            </div>
+            <div className="sort-field input-field col s2">
+              <select className='repo-sort-dropdown' value={this.state.currentSort} onChange={this.dummy}>
+                {this.state.sortBy.map((sortField, index) => <option value={sortField} key={sortField}>{sortField}</option>)}
               </select>
             </div>
           </div>;
