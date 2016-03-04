@@ -26,9 +26,11 @@ class ShowUsers extends React.Component {
   render() {
     <div>{
       this.usersToRender.length === 0 ? 'No Users to show yet' :
+      <div class='all-users-view'>
       this.state.usersToRender.map((user, index) => {
         <UserEntry user={user} key={index}>
       });
+      </div>
     }
     </div>
   }
