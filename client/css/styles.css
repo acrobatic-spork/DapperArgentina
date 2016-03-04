@@ -86,6 +86,9 @@ li {
 .fork-button span::before {
   font-size: 2em;
 }
+.fork-button span {
+  display: block;
+}
 .fork-button, .fork-button span::before {
   display: block;
   color :#64dd17;
@@ -118,6 +121,21 @@ li {
 .collapsible-header:hover {
   color:grey;
 }
+
+pre {
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
+
+ background-color: black;
+ color:#CCC;
+
+ border-radius: 3px;
+ padding: 0.25em 0.5em;
+}
+
 
 @media (max-width: 800px) {
   .login-bar > div {

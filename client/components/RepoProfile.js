@@ -81,7 +81,7 @@ class RepoProfile extends React.Component {
                 <div className="row">
                   <strong className="left-align col s3"><span className="octicon octicon-history"></span> updated <TimeAgo date={this.state.repoToRender.updated_at} /></strong>
                   <strong className="center col s3"><span className="octicon octicon-issue-opened"></span> beginner tickets {this.state.repoToRender.beginner_tickets}</strong>
-                  <strong className="center col s3"><span className="octicon octicon-git-branch"></span> forks {this.state.repoToRender.forks}</strong>
+                  <strong className="center col s3"><span className="octicon octicon-git-forked"></span> forks {this.state.repoToRender.forks}</strong>
                 </div>
                 <div className="row">
                   <strong className="left-align col s3"><span className="octicon octicon-calendar"></span> created <TimeAgo date={this.state.repoToRender.created_at} /></strong>
