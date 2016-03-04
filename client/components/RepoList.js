@@ -9,7 +9,8 @@ class RepoList extends React.Component {
     super(props);
     
     this.state = {
-      reposToRender: []
+      reposToRender: [],
+      sortedBy: 'default'
     };
     
     this.getRepos = this.getRepos.bind(this);
@@ -30,7 +31,11 @@ class RepoList extends React.Component {
           case 'Tickets':
             data = data.sort((a,b) => b.beginner_tickets-a.beginner_tickets);
             break;
+          case 'Forks':
+            data = data.sort((a,b) => b.forks-a.forks);
+            break;
         }
+        self.setState({sortedBy: filterBy})
       }
       self.setState({
         numberOfRepos: data.length,
@@ -56,7 +61,7 @@ class RepoList extends React.Component {
     return (
     <div >
       <RepoSearch searchHandler={this.getRepos} />
-      <h4>{this.state.numberOfRepos} Repos with easy issues</h4>
+      <h4>{this.state.numberOfRepos} Repos with easy issues - sorted by {this.state.sortedBy.toLowerCase()}</h4>
       <div className="main-repo-view">
         {this.state.reposToRender.map ((repo, index) => 
           <RepoEntry data={repo} username={this.props.username} key={index} />
