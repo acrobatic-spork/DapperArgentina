@@ -13,8 +13,8 @@ const TicketEntry = (props) => (
                 <span className="card-title activator col s12"><a className="cyan-text lighten-2" href={props.data.html_url} target="_blank">{props.data.title}</a></span>
               </div>
               <div className="row">
-                <p className="col s6"><span className="octicon octicon-calendar"></span><TimeAgo date={props.data.created_at} />
-                <span className="octicon octicon-repo"></span> <Link className="cyan-text lighten-2" to={`/repoProfile/${props.data.repo_id}`}>{props.data.org_name}/{props.data.repo_name}
+                <p className="col s6"><span className="octicon octicon-calendar ticket-icon"></span><TimeAgo date={props.data.created_at} />
+                <span className="octicon octicon-repo ticket-icon"></span> <Link className="cyan-text lighten-2" to={`/repoProfile/${props.data.repo_id}`}>{props.data.org_name}/{props.data.repo_name}
                 </Link></p>
                 <i className="material-icons center activator col s1">info_outline</i>
                 <p className="right-align right col s5">{props.data.language}</p>
