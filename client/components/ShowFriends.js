@@ -1,6 +1,7 @@
 const React = require('react');
 const getFriends = require('../js/friends').getFriends;
 const UserNav = require('./UserNav');
+const Auth = require('../js/auth');
 
 const navLinks = [
   {
@@ -23,12 +24,13 @@ const ShowFriends = class ShowFriends extends React.Component {
   getAllFriendsList() {
     self = this;
     getFriends((data) => {
+      console.log('In get all friends', data)
       if(data.length){
         self.setState({
           friendsToRender: data
         });
       }
-    }, console.log);
+    }, console.log, Auth.getUserId);
   }
 
   componentDidMount(){

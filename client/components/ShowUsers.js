@@ -1,8 +1,10 @@
 const React = require('react');
+const Auth = require('../js/auth');
 const getUsers = require('../js/users').getUsers;
 const UserEntry = require('./UserEntry');
 const UserNav = require('./UserNav');
 const addFriend = require('../js/friends').addFriend;
+const {browserHistory} = require('react-router');
 
 const navLinks = [
   {
@@ -34,6 +36,11 @@ const ShowUsers = class ShowUsers extends React.Component {
     }, console.log);
   }
 
+  handleClick(friend_id){
+
+    addFriend( (res) => browserHistory.push('#/friends'), console.log, Auth.getUserId(), friend_id );
+  }
+
   componentDidMount(){
     this.getAllUsersList();
   }
@@ -50,7 +57,7 @@ const ShowUsers = class ShowUsers extends React.Component {
           <UserNav links={navLinks}/>
           <div class='all-users-view'>
           {this.state.usersToRender.map((user, index) => {
-            return (<UserEntry user={user} key={index}/>)
+            return (<UserEntry handleClick={this.handleClick.bind(this)} user={user} key={index}/>)
             })
           }
           </div>
