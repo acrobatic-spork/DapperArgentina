@@ -366,6 +366,24 @@ var addFriend = function (req, res) {
     });
 }
 
+var getFriends = function (req, res) {
+  Friends.findAll({ where: { user_id: req.query.user_id }})
+    .then(function (friends) {
+      var friendId = friends.map(function (friend) {
+        return friend.friend_id;
+      });
+      return User.findAll({ where: { id: friendId }})
+    })
+    .then(function (friends) {
+      console.log('friend objects: ', friends);
+      res.json(friends);
+    })
+    .catch(function (error) {
+      console.error(error);
+      res.json(error);
+    })
+}
+
 module.exports = {
   getGithubIssuesByLabel: getGithubIssuesByLabel,
   getRepoInformation: getRepoInformation,
