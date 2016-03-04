@@ -30,6 +30,9 @@ class RepoList extends React.Component {
           case 'Tickets':
             data = data.sort((a,b) => b.beginner_tickets-a.beginner_tickets);
             break;
+          case 'Forks':
+            data = data.sort((a,b) => b.forks-a.forks);
+            break;
         }
       }
       self.setState({

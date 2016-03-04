@@ -11,7 +11,7 @@ class RepoSearch extends React.Component {
       //default to Javascript for search
       currentLanguage: 'Javascript',
       languages: [],
-      sortBy:['default', 'Popularity', 'Tickets' ],
+      sortBy:['default', 'Popularity', 'Tickets', 'Forks' ],
       currentSort: 'default'
     };
     
