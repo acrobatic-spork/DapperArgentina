@@ -17,7 +17,10 @@ var User = db.define( 'users', {
   repos_url: Sequelize.STRING,
   avatar_url: Sequelize.STRING,
   access_token: Sequelize.STRING,
-  refresh_token: Sequelize.STRING
+  refresh_token: Sequelize.STRING,
+  num_forks: Sequelize.INTEGER,
+  num_pulls: Sequelize.INTEGER,
+  num_merges: Sequelize.INTEGER
 });
 
 var Friends = db.define( 'users_friends', {
