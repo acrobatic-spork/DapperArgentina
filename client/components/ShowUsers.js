@@ -41,7 +41,7 @@ const ShowUsers = class ShowUsers extends React.Component {
   render() {
     if(this.state.usersToRender.length === 0){
       console.log('length 0')
-     return (<div><UserNav links={navLinks}/>
+     return (<div>
               <div>No Users to show</div></div>) 
     } else {
       console.log('about to render');

@@ -28,22 +28,23 @@ const ShowFriends = class ShowFriends extends React.Component {
 
   render() {
     if(this.state.friendsToRender.length === 0) return (<div>No friends yet</div>)
-    var FriendEntry = () => (
+    else {
+      var FriendEntry = () => (
+        <div>
+          <img src={props.friend.avatar_url} width="50" />
+          {props.friend.name} <br/> {props.friend.html_url} <br/>
+        </div>)
+
+      return (
       <div>
-        <img src={props.friend.avatar_url} width="50" />
-        {props.friend.name} <br/> {props.friend.html_url} <br/>
-      </div>)
-
-    return (
-    <div>
-    <div class='all-friends-view'>
-    {this.state.friendsToRender.map((friend, index) => {
-      return (<FriendEntry friend={friend} key={index}/>)
-      })
+      <div class='all-friends-view'>
+      {this.state.friendsToRender.map((friend, index) => {
+        return (<FriendEntry friend={friend} key={index}/>)
+        })
+      }
+      </div>
+      </div>)   
     }
-    </div>
-    </div>)
-
   }
 }
 
