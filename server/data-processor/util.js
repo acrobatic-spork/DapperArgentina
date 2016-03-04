@@ -71,7 +71,7 @@ var onlyUserContributions = function(user, prCollection) {
     }
     return userContributions;
   }, { pulls: 0, merges: 0});
-}
+};
 
 // Takes a GitHub username and array of repo urls
 var getPullRequests = function(username, urls, callback) {
@@ -316,84 +316,6 @@ var refreshReposFromGithub = function(repos) {
   });
 };
 
-var forkRepo = function (req, res) {
-   User.findOne({where: {username: req.query.username}})
-  .then(function (user) {
-    var options ={
-        uri: 'https://api.github.com/repos/'+req.query.owner+'/'+req.query.repo+'/forks',
-        headers: {
-          'Authorization' : 'Token '+user.dataValues.access_token
-        }
-      }
-    mergeObj(options, baseGithubOptions);  
-    return request.post(options);
-  })
-  .then(function (res) {
-    console.log("creating fork in db.............................................");
-    return UserForks.create({      
-      username: req.query.username,
-      parent_url: res.body.parent.url,
-      parent_repo_id: res.body.parent.id,
-      fork_url: res.body.url
-    })
-  })
-  .then(function(user){
-      console.log('updated user: ', JSON.stringify(user));
-      res.json(user);
-  }).catch(function(error) {
-      console.error('error updating user: ', error);
-      res.status(500);
-      res.send(error);
-  });
-}
-
-var getForkedRepos = function (username) {
-  return UserForks.findAll({where: {
-    username: username
-  }
-})
-};
-
-var getUsers = function (req, res) {
-  User.findAll()
-    .then(function(users) {
-      console.log('users ==================',users);
-      res.json(users);
-    })
-}
-
-var addFriend = function (req, res) {
-  Friends.create({ 
-    user_id: req.body.user_id, 
-    friend_id: req.body.friend_id 
-  })
-  .then(function(friend) {
-      console.log('FRIEND: ', JSON.stringify(friend));
-      res.json(friend);
-    }).catch(function(error) {
-      console.error('error updating user: ', error);
-      res.json(error);
-    });
-}
-
-var getFriends = function (req, res) {
-  Friends.findAll({ where: { user_id: req.query.user_id }})
-    .then(function (friends) {
-      var friendId = friends.map(function (friend) {
-        return friend.friend_id;
-      });
-      return User.findAll({ where: { id: friendId }})
-    })
-    .then(function (friends) {
-      console.log('friend objects: ', friends);
-      res.json(friends);
-    })
-    .catch(function (error) {
-      console.error(error);
-      res.json(error);
-    })
-}
-
 var findAndComparePoints = function (username, obj) {
   User.findOne({ where: { username: username }})
     .then(function (user) {
@@ -419,8 +341,8 @@ var findAndComparePoints = function (username, obj) {
     })
     .catch(function(error) {
       console.error(error);
-    })
-}
+    });
+};
 
 module.exports = {
   getGithubIssuesByLabel: getGithubIssuesByLabel,
@@ -430,10 +352,5 @@ module.exports = {
   refreshReposFromGithub: refreshReposFromGithub,
   getUserGitHubEvents: getUserGitHubEvents,
   getPullRequests: getPullRequests,
-  forkRepo: forkRepo,
-  getForkedRepos: getForkedRepos,
-  getUsers: getUsers,
-  addFriend: addFriend,
-  getFriends: getFriends,
   findAndComparePoints: findAndComparePoints
 };

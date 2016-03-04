@@ -7,6 +7,9 @@ var GitHubStrategy = require('passport-github2').Strategy;
 var methodOverride = require('method-override');
 var config = require('./config');
 var Util = require('./data-processor/util');
+var ForkUtil = require('./models/forks');
+var UserUtil = require('./models/users');
+var FriendUtil = require('./models/friends');
 
 var User = db.User;
 var UserIssues = db.UserIssues;
@@ -150,10 +153,10 @@ app.get('/api/repos', function(req, res){
     });
   });
 
-app.get('/api/fork', Util.forkRepo);
+app.get('/api/fork', ForkUtil.forkRepo);
 
 app.get('/api/user/forks', function (req, res) {
-  Util.getForkedRepos(req.query.username)
+  ForkUtil.getForkedRepos(req.query.username)
   .then(function (results) {
     var forkedParentUrlsId = results.map(function (forkObj) {
       return [forkObj.parent_url, forkObj.parent_repo_id];
@@ -164,10 +167,10 @@ app.get('/api/user/forks', function (req, res) {
   })
 })
 
-app.get('/api/users', Util.getUsers);
+app.get('/api/users', UserUtil.getUsers);
 
-app.post('/api/friend', Util.addFriend);
-app.get('/api/friend', Util.getFriends);
+app.post('/api/friend', FriendUtil.addFriend);
+app.get('/api/friend', FriendUtil.getFriends);
 
 
 app.get('/auth/github', 
