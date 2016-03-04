@@ -115,6 +115,10 @@ li {
   color:#00bcd4;
 }
 
+.collapsible-header:hover {
+  color:grey;
+}
+
 @media (max-width: 800px) {
   .login-bar > div {
     width: 100%;
