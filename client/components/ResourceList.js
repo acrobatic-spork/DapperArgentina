@@ -12,11 +12,11 @@ const ResourceList = (props) => (
       </blockquote>
       <ul className="collapsible popout" data-collapsible="accordion">
         <li>
-          <div className="collapsible-header"><i className="material-icons">filter_drama</i><strong>How to Contribute</strong></div>
+          <div className="collapsible-header active"><i className="material-icons">filter_drama</i><strong>How to Play</strong></div>
             <div className="collapsible-body"><GitInstruct /></div>
         </li>
         <li>
-          <div className="collapsible-header"><i className="material-icons">filter_drama</i><strong>Guides that are good for beginners</strong></div>
+          <div className="collapsible-header"><i className="material-icons">filter_drama</i><strong>Strategy Guides</strong></div>
             <div className="collapsible-body"><Guides /></div>
         </li>
       </ul>
