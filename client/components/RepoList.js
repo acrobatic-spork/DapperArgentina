@@ -2,7 +2,6 @@ const React = require('react');
 const RepoSearch = require('./RepoSearch');
 const RepoEntry = require('./RepoEntry');
 const Repos = require('../js/repos');
-const GitInstruct = require('./GitHubInstructions');
 
 class RepoList extends React.Component {
   
@@ -45,7 +44,6 @@ class RepoList extends React.Component {
     
     return (
     <div >
-      <GitInstruct />
       <RepoSearch searchHandler={this.getRepos} />
       <h4>{this.state.numberOfRepos} Repos with easy issues</h4>
       <div className="main-repo-view">
