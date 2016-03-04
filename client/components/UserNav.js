@@ -4,8 +4,8 @@ const UserNavEntry = require('./UserNavEntry')
 const UserNav = function (props) {
   console.log('In UserNav............')
   return (
-    <div className="navbar-fixed">
-            <nav className="grey darken-3 col s12 " role="navigation">
+    <div >
+            <nav className="grey darken-3 col s16 push-s1" role="navigation">
               <div className="nav-wrapper container col s6 l8">
                 <ul className="right hide-on-small-and-down">
                   {props.links.map ((link, index) => 
