@@ -85,7 +85,7 @@ var getPullRequests = function(username, urls, callback) {
       mergeObj(options, baseGithubOptions);
       
       request.get(options, function (err, result) {
-        console.log('github get request: ', result);
+        // console.log('github get request: ', result);
         if (err) {
           reject (err);
         } else {
@@ -94,7 +94,9 @@ var getPullRequests = function(username, urls, callback) {
             return;
           }
           if(result.body !== ' ') {
-            userStats[url[1]] = onlyUserContributions(username, result.body);
+            var contribs = onlyUserContributions(username, result.body);
+            contribs.id = url[1];
+            userStats.push(contribs);
           } else {
             userStats.push({id:url[1], pulls: 0, merges: 0});
           }

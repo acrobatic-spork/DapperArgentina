@@ -32,7 +32,7 @@ var getForksFromApi = function (successCallback, errCallback, username) {
 
 module.exports.getForks = function(successCallback, errCallback, username) {
   getForksFromApi((data) => {
-    console.log('got fork data: ' + data);
+    console.log('got fork data: ' + JSON.stringify(data));
     return successCallback(data);
   }, errCallback, username);
 };

@@ -1,6 +1,5 @@
 const React = require('react');
-const RepoEntry = require('./RepoEntry');
-const Repos = require('../js/repos');
+const UserRepoEntry = require('./UserRepoEntry');
 
 class RepoList extends React.Component {
   
