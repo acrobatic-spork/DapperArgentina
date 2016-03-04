@@ -395,5 +395,6 @@ module.exports = {
   forkRepo: forkRepo,
   getForkedRepos: getForkedRepos,
   getUsers: getUsers,
-  addFriend: addFriend
+  addFriend: addFriend,
+  getFriends: getFriends
 };
