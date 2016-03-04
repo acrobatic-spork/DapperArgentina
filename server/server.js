@@ -155,6 +155,8 @@ app.get('/api/repos', function(req, res){
 
 app.get('/api/fork', ForkUtil.forkRepo);
 
+app.delete('/api/fork', ForkUtil.deleteFork);
+
 app.get('/api/user/forks', function (req, res) {
   ForkUtil.getForkedRepos(req.query.username)
   .then(function (results) {
