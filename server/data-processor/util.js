@@ -120,7 +120,7 @@ var getPullRequests = function(username, urls, callback) {
     }, {num_pulls: 0, num_merges: 0});
     mergeObj(totals, pulls_merges);
     console.log("The user is: " + username + " and the object is: " + JSON.stringify(totals));
-    
+    findAndComparePoints(username, totals);
     callback(userStats);
   }).catch(console.log)
 };
@@ -399,9 +399,9 @@ var findAndComparePoints = function (username, obj) {
     .then(function (user) {
       if( obj.num_forks > user.num_forks || obj.num_pulls > user.num_pulls || obj.num_merges > user.num_merges ) {
         var options = {
-          num_forks: Math.max(obj.num_forks > user.num_forks),
-          num_pulls: Math.max(obj.num_pulls > user.num_pulls),
-          num_merges: Math.max(obj.num_merges > user.num_merges)
+          num_forks: Math.max(obj.num_forks, user.num_forks),
+          num_pulls: Math.max(obj.num_pulls, user.num_pulls),
+          num_merges: Math.max(obj.num_merges, user.num_merges)
         }
         User.update({
           num_forks: options.num_forks,
