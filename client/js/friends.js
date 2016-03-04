@@ -24,7 +24,7 @@ module.exports.addFriend = function (successCallback, errCallback, user_id, frie
     body: {
       user_id: user_id,
       friend_id: friend_id
-    }
+    },
     success: function (data) {
       successCallback(data)
     },

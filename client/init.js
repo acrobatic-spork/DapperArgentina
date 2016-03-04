@@ -18,8 +18,8 @@ ReactDOM.render((
     <Route path='/' component={App}>
       <IndexRoute component={UserInfo} />
       <Route path='users' component={ShowUsers}>
-        <Route path='users' component{ShowUsers}/>
-        <Route path='friends' component{ShowFriends}/>  
+        <Route path='users' component={ShowUsers}/>
+        <Route path='friends' component={ShowFriends}/>  
       </Route>      
       <Route path='issues' component={TicketList} />
       <Route path='repos' component={RepoList} />
