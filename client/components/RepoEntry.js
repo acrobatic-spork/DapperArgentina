@@ -2,22 +2,47 @@ const React = require('react');
 const Link = require('react-router').Link;
 const TimeAgo = require('../../node_modules/react-timeago/timeago');
 const forkUtil = require('../js/fork');
+const ConfirmFork = require('./ConfirmFork');
 
 class RepoEntry extends React.Component {
   constructor (props) {
     super(props);
+
+    this.state = {
+      showConfirm: false
+    }
   }
 
-  forkRepo (e){
+  handleClick (e) {
     e.preventDefault();
+    this.setState({
+      showConfirm: true
+    });
+  }
+
+  forkRepo (){
     forkUtil.forkRepo(function (data) {
       console.log('successfully forked repo');
     }, console.error, this.props.data.org_name, this.props.data.name, this.props.username);
+    this.closeConfirm();
+  }
+
+  openConfirm () {
+    this.setState({
+      showConfirm: true
+    });
+  }
+
+  closeConfirm () {
+    this.setState({
+      showConfirm: false
+    });
   }
 
   render() {
     return (
     <div className="row">
+      <ConfirmFork isShowing={this.state.showConfirm} openModel={this.openConfirm.bind(this)} closeModal={this.closeConfirm.bind(this)} fork={this.forkRepo.bind(this)}/>
         <div className="col s12 m10">
           <div className="card white">
             <div className="card-content black-text" >
@@ -30,7 +55,7 @@ class RepoEntry extends React.Component {
                   <p className="left-align grey-text col s12">{this.props.data.description}</p>
                 </div>
                 <div className="col s2 right right-align">
-                  <a href="#" className="fork-button" onClick={this.forkRepo.bind(this)}>
+                  <a href="#" className="fork-button" onClick={this.handleClick.bind(this)}>
                     <span className="mega-octicon octicon-git-branch"></span>
                     <span className="small">spork it!</span>
                   </a>
