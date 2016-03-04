@@ -408,7 +408,7 @@ var findAndComparePoints = function (username, obj) {
           num_pulls: options.num_pulls,
           num_merges: options.num_merges
         }, { 
-          username: username 
+          where: {username: username}
         })
         .success(function() { 
              console.log("User points updated successfully!");
