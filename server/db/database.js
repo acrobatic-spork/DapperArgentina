@@ -20,6 +20,16 @@ var User = db.define( 'users', {
   refresh_token: Sequelize.STRING
 });
 
+var Friends = db.define( 'users_friends', {
+  internal_id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  user_id: {type: Sequelize.INTEGER, references: {model: User, key: 'id'}},
+  friend_id: {type: Sequelize.INTEGER, references: {model: User, key: 'id'}}
+})
+
 
 // KEEPING "ISSUES" AND "REPOS" SCHEMAS THE SAME AS
 // DAPPER ARGENTINA DID SO WE DO NOT BREAK THINGS
