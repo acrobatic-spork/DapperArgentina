@@ -1,21 +1,24 @@
 const React = require('react');
 const getUsers = require('../js/users').getUsers;
+const UserEntry = require('./UserEntry');
 
-class ShowUsers extends React.Component {
+const ShowUsers = class ShowUsers extends React.Component {
   constructor(props){
     super(props);
-  }
 
-  this.state = {
-    usersToRender: []
+    this.state = {
+      usersToRender: []
+    }
   }
 
   getAllUsersList() {
     self = this;
     getUsers((data) => {
-      self.setState({
-        usersToRender: data
-      });
+      if(data.length){
+        self.setState({
+          usersToRender: data
+        });
+      }
     }, console.log);
   }
 
@@ -24,14 +27,21 @@ class ShowUsers extends React.Component {
   }
 
   render() {
-    <div>{
-      this.usersToRender.length === 0 ? 'No Users to show yet' :
-      <div class='all-users-view'>
-      this.state.usersToRender.map((user, index) => {
-        <UserEntry user={user} key={index}>
-      });
-      </div>
+    if(this.state.usersToRender.length === 0){
+     return (<div>Hello World</div>) 
+    } else {
+        return (<div>
+        <div class='all-users-view'>
+        {this.state.usersToRender.map((user, index) => {
+          <UserEntry user={user} key={index}/>
+          })
+        }
+        </div>
+      
+      </div>)
     }
-    </div>
   }
 }
+
+
+module.exports = ShowUsers;

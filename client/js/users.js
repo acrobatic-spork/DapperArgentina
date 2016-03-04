@@ -33,7 +33,7 @@ var getUsersFromApi = function (successCallback, errCallback) {
 
 // Get a url for pic, array of sporks...
 module.exports.getUsers = function(successCallback, errCallback) {
-  getUserUsersFromApi((data) => {
+  getUsersFromApi((data) => {
     return successCallback(data);
   }, errCallback);
 };
