@@ -19,6 +19,9 @@ const linksList = [
   {
     name: "Getting Started", url: '/resources'
   },
+  {
+    name: "Add Friends", url: '/users'
+  }
 ];
 
 
