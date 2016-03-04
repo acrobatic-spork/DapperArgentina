@@ -33,7 +33,7 @@ const ShowUsers = class ShowUsers extends React.Component {
         return (<div>
         <div class='all-users-view'>
         {this.state.usersToRender.map((user, index) => {
-          <UserEntry user={user} key={index}/>
+          return (<UserEntry user={user} key={index}/>)
           })
         }
         </div>

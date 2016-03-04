@@ -3,10 +3,10 @@ const React = require('react');
 const UserEntry = function (props){
   console.log('In UserEntry')
   return (
-    <li>
-      <img src={prop.user.avatar_url} />
-      {props.user.name} <br/> {prop.user.html_url} <br/>
-    </li>
+    <div>
+      <img src={props.user.avatar_url} width="50" />
+      {props.user.name} <br/> {props.user.html_url} <br/>
+    </div>
     )
 }
 
