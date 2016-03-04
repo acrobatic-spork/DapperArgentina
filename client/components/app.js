@@ -95,7 +95,7 @@ class App extends React.Component {
     <div className='app-shell grey lighten-2' >
     {this.state.isLoggedIn ? <NavBar links={linksList} /> : <LoginBar /> }
       <div className="row">
-        <div className="main row">
+        <div className="main container">
           {this.state.isLoggedIn ? childrenWithProps : <TicketList /> }
         </div>
       </div>
