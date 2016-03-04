@@ -22,7 +22,6 @@ class UserRepoEntry extends React.Component {
   }
 
   getRepo(id) {
-    //Fetch repo and tickets;
     var that = this;
     Repos.getRepoById(id, (data) => this.setState({repoToRender: data}));
     Issues.getIssuesByRepoId(id, data => this.setState({issues: data}));
@@ -31,7 +30,7 @@ class UserRepoEntry extends React.Component {
   render() {
     return (
     <div className="row">
-        <div className="col s12 m10">
+        <div className="col s12">
           <div className="card white">
             <div className="card-content black-text" >
               <span className="card-title">
@@ -41,9 +40,9 @@ class UserRepoEntry extends React.Component {
                 <p className="left-align grey-text lighten-2 col s12">{this.state.repoToRender.description}</p>
               </div>
               <div className="row">
-                <strong className={"center-align col s4" + (this.state.repoToRender.forked ? "text-light-green" : "text-grey")}><span className="mega-octicon octicon-git-branch"></span></strong>
-                <strong className={"center-align col s4" + (this.state.repoToRender.pulled ? "text-light-green" : "text-grey")}><span className="mega-octicon octicon-git-pull-request"></span></strong>
-                <strong className={"center-align col s4" + (this.state.repoToRender.closed ? "text-light-green" : "text-grey")}><span className="mega-octicon octicon-issue-closed"></span></strong>
+                <strong className={"center-align col s4" + (true ? " light-green-text" : " grey-text")}><span className="mega-octicon octicon-git-branch"></span>forked!</strong>
+                <strong className={"center-align col s4" + (this.props.data.pulls ? " light-green-text" : " grey-text")}><span className="mega-octicon octicon-git-pull-request"></span> {this.props.data.pulls} pull requests</strong>
+                <strong className={"center-align col s4" + (this.props.data.merges ? " light-green-text" : " grey-text")}><span className="mega-octicon octicon-issue-closed"></span> {this.props.data.merges} merged</strong>
               </div>
               <div className="row">
                 <ul className="collection">

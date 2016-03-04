@@ -29,7 +29,7 @@ class RepoList extends React.Component {
     
     return (
     <div >
-      <h4>Your sporked issues:</h4>
+      <h4 className="center-align">Your sporked repos</h4>
       <div className="main-repo-view">
         {this.props.repos.map ((repo, index) => 
           <UserRepoEntry data={repo} key={index} />
