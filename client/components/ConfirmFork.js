@@ -1,4 +1,4 @@
-const React = require('react');
+import React, {PropTypes} from 'react';
 import {ModalContainer, ModalDialog} from 'react-modal-dialog';
 
 class ConfirmFork extends React.Component {
@@ -17,8 +17,8 @@ class ConfirmFork extends React.Component {
     return (<div onClick={this.handleClick}>
       {
         this.state.isShowingModal &&
-        <ModalContainer onClose={this.handleClose}>
-          <ModalDialog onClose={this.handleClose}>
+        <ModalContainer onClose={this.handleClose.bind(this)}>
+          <ModalDialog onClose={this.handleClose.bind(this)}>
             <h4>You're about to fork a repo!</h4>
             <p>Clone (copy) the repo by opening the terminal and running</p> <pre>git clone "link to your forked repo"</pre>
             <p>The link depends on the repo, and can be found on GitHub.</p>
