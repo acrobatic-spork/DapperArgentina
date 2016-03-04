@@ -8,8 +8,8 @@ li {
   margin-bottom: 0.5em;
 }
 
-.octicon::before {
-  font-size: 1.35em;
+.ticket-icon {
+  margin-left: 10px;
 }
 
 .main-ticket-view {
