@@ -19,3 +19,21 @@ module.exports.getUserInfo = function(successCallback, errCallback, user) {
     return successCallback(data);
   }, errCallback, user);
 };
+
+var getUsersFromApi = function (successCallback, errCallback) {
+  var options = {
+    url: '/api/users',
+    type: 'GET',
+    success: successCallback,
+    error: errCallback
+  };
+
+  $.ajax(options);  
+};
+
+// Get a url for pic, array of sporks...
+module.exports.getUsers = function(successCallback, errCallback) {
+  getUserInfoFromApi((data) => {
+    return successCallback(data);
+  }, errCallback);
+};
