@@ -1,6 +1,15 @@
 const React = require('react');
 const getUsers = require('../js/users').getUsers;
 const UserEntry = require('./UserEntry');
+const UserNav = require('./UserNavSub')
+const navLinks = [
+  {
+    name: "Users / Add Users", url: '/users'
+  },
+  {
+    name: "Friends", url: '/friends'
+  }
+];
 
 const ShowUsers = class ShowUsers extends React.Component {
   constructor(props){
@@ -27,6 +36,7 @@ const ShowUsers = class ShowUsers extends React.Component {
   }
 
   render() {
+    <UserNav links={navLinks}/>
     if(this.state.usersToRender.length === 0){
      return (<div>Hello World</div>) 
     } else {
