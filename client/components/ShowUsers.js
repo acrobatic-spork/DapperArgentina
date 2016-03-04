@@ -40,7 +40,7 @@ const ShowUsers = class ShowUsers extends React.Component {
   render() {
     <UserNav links={navLinks}/>
     if(this.state.usersToRender.length === 0){
-     return (<div>Hello World</div>) 
+     return (<div>No Users to show</div>) 
     } else {
         return (<div>
         <div class='all-users-view'>

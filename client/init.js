@@ -19,7 +19,8 @@ ReactDOM.render((
       <IndexRoute component={UserInfo} />
       <Route path='users' component={ShowUsers}>
         <Route path='users' component{ShowUsers}/>
-        <Route path='friends' component{ShowFriends}/>        
+        <Route path='friends' component{ShowFriends}/>  
+      </Route>      
       <Route path='issues' component={TicketList} />
       <Route path='repos' component={RepoList} />
       <Route path='repoProfile/:repoId' component={RepoProfile} />
