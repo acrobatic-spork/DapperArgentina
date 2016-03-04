@@ -9,6 +9,10 @@ class ConfirmFork extends React.Component {
 
   handleClick () { this.props.openModel() }
   handleClose () { this.props.closeModal() }
+  handleFork(e) {
+    e.preventDefault();
+    this.props.fork();
+  }
   render() {
     return (<div onClick={this.handleClick}>
       {
@@ -21,6 +25,8 @@ class ConfirmFork extends React.Component {
             <p>Add the original repo as an upstream remote</p>
             <p>In the repo's main directory, run:</p> <pre>git remote add upstream "link to the original repo"</pre>
             <p><strong>Make changes and commit!</strong></p>
+
+            <button onClick={this.handleFork.bind(this)}>Fork it!</button>
 
             <a className="cyan-text lighten-2 cyan-text lighten-2" href="/resources">Visit our Getting Started page for more details</a>
           </ModalDialog>

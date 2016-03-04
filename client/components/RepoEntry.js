@@ -24,6 +24,7 @@ class RepoEntry extends React.Component {
     forkUtil.forkRepo(function (data) {
       console.log('successfully forked repo');
     }, console.error, this.props.data.org_name, this.props.data.name, this.props.username);
+    this.closeConfirm();
   }
 
   openConfirm () {
@@ -36,13 +37,12 @@ class RepoEntry extends React.Component {
     this.setState({
       showConfirm: false
     });
-    this.forkRepo.bind(this);
   }
 
   render() {
     return (
     <div className="row">
-      <ConfirmFork isShowing={this.state.showConfirm} openModel={this.openConfirm.bind(this)} closeModal={this.closeConfirm.bind(this)}/>
+      <ConfirmFork isShowing={this.state.showConfirm} openModel={this.openConfirm.bind(this)} closeModal={this.closeConfirm.bind(this)} fork={this.forkRepo.bind(this)}/>
         <div className="col s12 m10">
           <div className="card white">
             <div className="card-content black-text" >
