@@ -11,13 +11,8 @@ class GitInstruct extends React.Component {
 
   }
 
-  handleHide (e) {
-    console.log("toggling");
+  toggleHide (e) {
     e.preventDefault();
-    this.toggleHide();
-  }
-
-  toggleHide () {
     if(this.state.hidden) {
       this.setState({
         hidden: false,
@@ -39,9 +34,9 @@ class GitInstruct extends React.Component {
             <div className="card-content black-text">
               <span className="card-title"><strong>How to Contribute</strong></span>
               <div className="col s2 right right-align">
-                <button className="hide-button" onClick={this.handleHide}>
+                <a href="#" className="hide-button" onClick={this.toggleHide.bind(this)}>
                   <span className="mega-octicon octicon-x"></span>
-                </button>
+                </a>
               </div>
               <h5>Fork the Repo</h5>
               <p>To fork, just click the button! The repo will now appear in your list of repos on GitHub</p>
