@@ -384,6 +384,34 @@ var getFriends = function (req, res) {
     })
 }
 
+var findAndComparePoints = function (username, obj) {
+  User.findOne({ where: { username: username }})
+    .then(function (user) {
+      if( obj.num_forks > user.num_forks || obj.num_pulls > user.num_pulls || obj.num_merges > user.num_merges ) {
+        var options = {
+          num_forks: Math.max(obj.num_forks > user.num_forks),
+          num_pulls: Math.max(obj.num_pulls > user.num_pulls),
+          num_merges: Math.max(obj.num_merges > user.num_merges)
+        }
+        User.update({
+          num_forks: options.num_forks,
+          num_pulls: options.num_pulls,
+          num_merges: options.num_merges
+        }, { 
+          username: username 
+        })
+        .success(function() { 
+             console.log("User points updated successfully!");
+         })
+      } else {
+        console.log('no new points earned');
+      }
+    })
+    .catch(function(error) {
+      console.error(error);
+    })
+}
+
 module.exports = {
   getGithubIssuesByLabel: getGithubIssuesByLabel,
   getRepoInformation: getRepoInformation,
@@ -396,5 +424,6 @@ module.exports = {
   getForkedRepos: getForkedRepos,
   getUsers: getUsers,
   addFriend: addFriend,
-  getFriends: getFriends
+  getFriends: getFriends,
+  findAndComparePoints: findAndComparePoints
 };
