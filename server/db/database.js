@@ -136,6 +136,8 @@ User.sync()
     return  UserIssues.sync();
   }).then( function() {
     return UserForks.sync();
+  }).then( function() {
+    return Friends.sync();
   })
 
 module.exports.db = db;
@@ -143,4 +145,6 @@ module.exports.User = User;
 module.exports.Repo = Repo;
 module.exports.Issue = Issue;
 module.exports.UserForks = UserForks;
+module.exports.Friends = Friends;
+
 

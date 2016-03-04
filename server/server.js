@@ -166,6 +166,8 @@ app.get('/api/user/forks', function (req, res) {
 
 app.get('/api/users', Util.getUsers);
 
+app.post('/api/friend', Util.addFriend);
+
 
 app.get('/auth/github', 
   passport.authenticate('github', {scope: ['user', 'repo']}))

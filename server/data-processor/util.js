@@ -14,6 +14,7 @@ var path = require('path');
 var dateFormat = require('dateformat');
 var User = db.User;
 var UserForks = db.UserForks;
+var Friends = db.Friends;
 
 
 var QueueManager = require('./queueManager');
@@ -343,12 +344,26 @@ var getForkedRepos = function (username) {
 })
 };
 
-var getUsers = function () {
+var getUsers = function (req, res) {
   User.findAll()
     .then(function(users) {
       console.log('users ==================',users);
       res.json(users);
     })
+}
+
+var addFriend = function (req, res) {
+  Friends.create({ 
+    user_id: req.body.user_id, 
+    friend_id: req.body.friend_id 
+  })
+  .then(function(friend) {
+      console.log('FRIEND: ', JSON.stringify(friend));
+      res.json(friend);
+    }).catch(function(error) {
+      console.error('error updating user: ', error);
+      res.json(error);
+    });
 }
 
 module.exports = {
@@ -361,5 +376,6 @@ module.exports = {
   getPullRequests: getPullRequests,
   forkRepo: forkRepo,
   getForkedRepos: getForkedRepos,
-  getUsers: getUsers
+  getUsers: getUsers,
+  addFriend: addFriend
 };
