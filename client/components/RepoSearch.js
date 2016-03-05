@@ -45,9 +45,10 @@ class RepoSearch extends React.Component {
 
   searchHandler(e) {
     //If it is called by someone pressing enter, we run the searchHandler
-    if (e.charCode === 13 || e.keyCode === 13) {
+     if (e.charCode === 13 || e.keyCode === 13) {
       this.props.searchHandler(e.target.value, this.state.language);
     }
+    
     //In all cases we update our component state
     this.setState({
       searchText: e.target.value
@@ -58,7 +59,9 @@ class RepoSearch extends React.Component {
     var $selected = $(`.${this.languageDropDownClass}`).find('.selected');
     return $selected[0].innerText.trim();
   }
-
+  quickSearch(e){
+    this.props.quickSearch(e.target.value);
+  }
   setSort () {
     $('.repo-sort-dropdown').material_select(this.handleSort.bind(this));
   }
@@ -84,7 +87,7 @@ class RepoSearch extends React.Component {
   render () {
     return <div className="row">
             <div className="input-field col s6">
-              <input type="text" value={this.state.searchText} 
+              <input type="text" onKeyUp={this.quickSearch.bind(this)} value={this.state.searchText} 
                 placeholder="search here..." onChange={this.searchHandler} onKeyPress={this.searchHandler} />
             </div>
             <div className="input-field col s3">

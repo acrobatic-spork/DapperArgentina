@@ -17,10 +17,10 @@ const linksList = [
     name: "Repos", url: '/repos'
   }, 
   {
-    name: "Getting Started", url: '/resources'
+    name: "Add Friends", url: '/users'
   },
   {
-    name: "Add Friends", url: '/users'
+    name: "Getting Started", url: '/resources'
   }
 ];
 
