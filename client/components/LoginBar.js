@@ -1,11 +1,13 @@
 import React from 'react';
-
+const OctosporkSvg = require('./OctosporkSvg');
 
 const LoginBar = (props) => (
   <header>
   <div className="cyan lighten-2 row login-bar">
-	  <div id="logo-container" className="login-logo">
-		  <a href="#">SporkHub</a>
+	  <div className="login-logo">
+		  <a href="#">
+      <div style={{display:"inline-block", width:"2em"}}><OctosporkSvg /></div>
+      SporkHub</a>
       <a href="/auth/github">
       	<button className="login-button">
       		Login with Github<br/>to Begin <span className="octicon octicon-mark-github"></span>

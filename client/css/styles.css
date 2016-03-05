@@ -37,9 +37,13 @@ li {
 }
 
 .login-logo {
-  font-size: 3em;
+  font-size: 2.5em;
   text-align: center;
   width: 28%;
+}
+
+.login-logo svg {
+  vertical-align: bottom;
 }
 
 .tagline {
