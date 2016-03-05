@@ -14,14 +14,8 @@ class ConfirmFriend extends React.Component {
 
   addFriend (e) {
     e.preventDefault();
-    console.log("Calling addFriend in Confirm with friend id: ", this.props.friend_id);
-    FriendUtil.addFriend( function(res) {
-      console.log("We got a response!"); 
+    FriendUtil.addFriend(console.log, console.error, Number(Auth.getUserId()), Number(this.props.friend_id));     
       this.props.closeModal();
-      }, 
-      function(err) {
-        console.error(err);
-      }, Number(Auth.getUserId()), Number(this.props.friend_id) );     
   }
 
   render() {
@@ -30,7 +24,7 @@ class ConfirmFriend extends React.Component {
         this.props.isShowing &&
         <ModalContainer onClose={this.props.closeModal.bind(this)}>
           <ModalDialog style={this.style} onClose={this.props.closeModal.bind(this)}>
-            <h5>Are you sure you want to add this user as a friend?</h5>
+            <p>Are you sure you want to add this user as a friend?</p>
             <a className="btn cyan" onClick={this.addFriend.bind(this)}>Add Friend!</a>
           </ModalDialog>
         </ModalContainer>
