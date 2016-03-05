@@ -10,7 +10,7 @@ class UserInfo extends React.Component {
   showSporks (num, color) {
     var result = [];
     for (var i = 0; i < num; i++) {
-      result.push(<span className="mega-octicon octicon-mark-github"></span>);
+      result.push(<span className="mega-octicon octicon-mark-github" style={{color: color}}></span>);
     }
     return result;
   }
@@ -34,18 +34,18 @@ class UserInfo extends React.Component {
             <span className="white-text text-darken-1 col s4 center-align">Merges: {this.props.merges}</span>
           </div>
           <div className="col s12 left-align" style={{'margin-bottom': '10px'}}>
-            <span className="col s1 center-align mega-octicon octicon-git-branch"></span>
-            <span className="col s11 fork-sporks">{this.showSporks(this.props.forks)}</span>
+            <span className="col s1 center-align mega-octicon octicon-git-branch blue-grey-text"></span>
+            <span className="col s11 fork-sporks">{this.showSporks(this.props.forks, '#965A38')}</span>
 
           </div>
           <div className="col s12 left-align" style={{'margin-bottom': '10px'}}>
-            <span className="col s1 center-align mega-octicon octicon-git-pull-request"></span>
-            <span className="col s11 pull-sporks">{this.showSporks(this.props.pulls)}</span>
+            <span className="col s1 center-align mega-octicon octicon-git-pull-request blue-grey-text"></span>
+            <span className="col s11 pull-sporks">{this.showSporks(this.props.pulls, '#A8A8A8')}</span>
 
           </div>
           <div className="col s12 left-align" style={{'margin-bottom': '10px'}}>
-            <span className="col s1 center-align mega-octicon octicon-issue-closed"></span>
-            <span className="col s11 merge-sporks">{this.showSporks(this.props.merges)}</span>            
+            <span className="col s1 center-align mega-octicon octicon-issue-closed blue-grey-text"></span>
+            <span className="col s11 merge-sporks">{this.showSporks(this.props.merges, '#C98910')}</span>            
           </div>
         </div>
         <div className="col s12">        
