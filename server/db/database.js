@@ -122,12 +122,6 @@ var UserForks = db.define( 'user_forks', {
     unique: true
    }
 });
-  // user_id: {type: Sequelize.INTEGER, references: {model: Users, key: 'id'}},
-  // room_id: {type: Sequelize.INTEGER, references: {model: Rooms, key: 'id'}},
-
-// Message.belongsTo( User );
-// Message.belongsTo( Room );
-
 
 // sync all tables
 User.sync()

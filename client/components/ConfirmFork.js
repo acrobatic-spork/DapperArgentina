@@ -26,6 +26,7 @@ class ConfirmFork extends React.Component {
     super(props);
     this.state = {
       isForked: false,
+      forkError: false,
       forkInfo: {}
     }
     this.style = { borderRadius: 0 }
@@ -36,8 +37,15 @@ class ConfirmFork extends React.Component {
       // console.log('successfully forked repo: ' + JSON.stringify(data));
       this.setState({isForked: true, forkInfo: data});
       this.props.refreshUserInfo();
-    }.bind(this), console.error, this.props.data.org_name, this.props.data.name, this.props.username);
+    }.bind(this), 
+    function (data) {
+      this.setState({isForked: false, forkError: true});
+      this.props.refreshUserInfo();
+    }.bind(this),
+    this.props.data.org_name, this.props.data.name, this.props.username);
   }
+
+
 
 
 
@@ -53,10 +61,16 @@ class ConfirmFork extends React.Component {
         this.props.isShowing &&
         <ModalContainer onClose={this.handleClose.bind(this)}>
           <ModalDialog style={this.style} onClose={this.handleClose.bind(this)}>
-            <h4>You're about to fork a repo!</h4>
-            <div>this will make a fork on your GitHub account for you to start hacking on</div>
+          { this.state.forkError && <span className="red-text error">Hmm, that didn't work. Have you already sporked this one?</span> }
+            { !this.state.isForked && [
+              <h4>You're about to fork a repo!</h4>,
+              <div>this will make a fork on your GitHub account for you to start hacking on</div>
+            ]}
             <a className={"btn cyan" + (this.state.isForked ? " disabled" : "")} onClick={this.handleFork.bind(this)}><i className="octicon octicon-git-forked"></i>{this.state.isForked ? "Forked!" : "Fork It!"}</a>
-            {this.state.isForked && <ForkInstructions data={this.props.data} forkInfo={this.state.forkInfo} />}
+            {this.state.isForked && [
+              <strong className="cyan-text">Okay, now what?</strong>,
+              <ForkInstructions data={this.props.data} forkInfo={this.state.forkInfo} />
+              ]}
           </ModalDialog>
         </ModalContainer>
       }
