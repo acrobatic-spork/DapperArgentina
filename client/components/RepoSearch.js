@@ -1,5 +1,6 @@
 const React = require('react');
 const Repos = require('../js/repos');
+// const $ = require('jquery');
 
 class RepoSearch extends React.Component {
 
@@ -8,9 +9,8 @@ class RepoSearch extends React.Component {
 
     this.state = {
       searchText: null,
-      //default to Javascript for search
-      currentLanguage: 'Javascript',
-      languages: [],
+      currentLanguage: 'All',
+      languages: ['All', 'Javascript', 'Python', 'Java', 'Ruby', 'CSS'],
       sortBy:['default', 'Popularity', 'Tickets', 'Forks' ],
       currentSort: 'default'
     };
@@ -23,6 +23,9 @@ class RepoSearch extends React.Component {
   languageHandler() {
     //The way this is invoked, we have no access to event details so we grab value usingjquery
     var newLanguage = this.grabSelectedLanguageVal();
+    if(newLanguage === 'All') {
+      newLanguage = null;
+    }
     this.props.searchHandler(this.state.searchText, newLanguage);
     this.setState({
       currentLanguage: newLanguage
@@ -30,13 +33,10 @@ class RepoSearch extends React.Component {
   }
 
   setLanguages () {
-    //We should only run this once per component rendering (ie. componentDidMount)
-    //Multiple calls to material_select screws up the rendering
-    Repos.getLanguages((languages) => {
-      this.setState({
-        languages: languages
-      }, () =>  $(`.${this.languageDropDownClass}`).material_select(this.languageHandler));
-    });
+    this.setState({
+      languages: this.state.languages
+    }, () =>  $(`.${this.languageDropDownClass}`).material_select(this.languageHandler));
+
   }
 
   componentDidMount() {
@@ -75,7 +75,6 @@ class RepoSearch extends React.Component {
     this.setState({
       currentSort: newSort
     });
-    console.log('sortField is: ', newSort);
     this.props.searchHandler(this.state.searchText, this.state.language, newSort)
   }
 
