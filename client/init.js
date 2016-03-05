@@ -2,7 +2,7 @@
 //Code that starts app goes here
 const React = require('react');
 const ReactDOM = require('react-dom');
-const { Router, Route, Link, IndexRoute, hashHistory, RouterContext } = require('react-router');
+const { Router, Route, Link, IndexRoute, hashHistory, RouterContext, browserHistory } = require('react-router');
 
 const App = require('./components/app');
 const TicketList = require('./components/TicketList'); 
@@ -14,7 +14,7 @@ const ShowUsers = require('./components/ShowUsers');
 const ShowFriends = require('./components/ShowFriends');
 
 ReactDOM.render((
-  <Router history={hashHistory}>
+  <Router history={browserHistory}>
     <Route path='/' component={App}>
       <IndexRoute component={UserInfo} />
       <Route path='users' component={ShowUsers} />
