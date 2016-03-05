@@ -1,7 +1,6 @@
 const React = require('react');
 const Repos = require('../js/repos');
 const Issues = require('../js/issues');
-const forkUtil = require('../js/fork');
 const TicketEntry = require('./ticketEntry');
 const TimeAgo = require('react-timeago');
 const ConfirmFork = require('./ConfirmFork');
@@ -22,7 +21,6 @@ class RepoProfile extends React.Component {
 
   getRepo(id) {
     //Fetch repo and tickets;
-    var that = this;
     Repos.getRepoById(id, (data) => this.setState({repoToRender: data}));
     Issues.getIssuesByRepoId(id, data => this.setState({issues: data}));
   }

@@ -49,7 +49,6 @@ class UserRepoEntry extends React.Component {
   }
 
   getRepo(id) {
-    var that = this;
     Repos.getRepoById(id, (data) => this.setState({repoToRender: data}));
     Issues.getIssuesByRepoId(id, data => this.setState({issues: data}));
   }

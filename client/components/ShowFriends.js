@@ -38,7 +38,6 @@ const ShowFriends = class ShowFriends extends React.Component {
   }
 
   render() {
-    var self = this;
     if(this.state.friendsToRender.length === 0) return (
       <div>
         <UserNav links={navLinks}/>
