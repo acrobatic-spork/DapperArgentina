@@ -1,6 +1,6 @@
 const React = require('react');
 const ConfirmFriend = require('./ConfirmFriend'); 
-const SporkBar = require('./SporkBar'); 
+const SporkBar = require('./SporkBar');
 
 
 class UserEntry extends React.Component {
@@ -35,18 +35,17 @@ class UserEntry extends React.Component {
         <ConfirmFriend isShowing={this.state.showConfirm} openModal={this.openConfirm.bind(this)} closeModal={this.closeConfirm.bind(this)} friend_id={this.props.friend_id} />
         <div onClick={this.handleClick.bind(this)} className='card-panel hoverable'>
           <div className='row card-content'>
-            <div className='col s3'>
+            <div className='col s3 center-align'>
               <img className='circle responsive-img' src={this.props.user.avatar_url} width='100px'  />
-              <span><h4>{this.props.user.name}</h4> </span> 
-              <span>Forks {this.props.user.num_forks}</span>
-              <span>Pulls {this.props.user.num_pulls}</span>
-              <span>Merges {this.props.user.num_merges}</span>
-              <p>
-              Github: <a href={this.props.user.html_url}>See @{this.props.user.username} at Github</a>
-              </p>
+              <span><h4><a href={this.props.user.html_url}>{this.props.user.name}</a></h4> </span>
             </div>
-            <div className='col s9'>
+            <div className='col s7 center-align'>
               <SporkBar user={this.props.user}/>
+            </div>
+            <div className='center-align col s2' style={{'border': '1px solid grey'}}>
+              <h5>Spork Score</h5>
+              <hr></hr>
+              <h4>{this.props.user.num_forks+this.props.user.num_pulls+this.props.user.num_merges}</h4>
             </div>
           </div>
         </div>
