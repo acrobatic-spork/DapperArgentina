@@ -12,13 +12,15 @@ const ResourceList = require('./components/ResourceList');
 const UserInfo = require('./components/UserInfo');
 const ShowUsers = require('./components/ShowUsers');
 const ShowFriends = require('./components/ShowFriends');
+const Leaderboard = require('./components/Leaderboard');
 
 ReactDOM.render((
-  <Router history={browserHistory}>
+  <Router history={hashHistory}>
     <Route path='/' component={App}>
       <IndexRoute component={UserInfo} />
       <Route path='users' component={ShowUsers} />
-      <Route path='friends' component={ShowFriends}/>  
+      <Route path='friends' component={ShowFriends}/> 
+      <Route path='leaderboard' component={Leaderboard}/> 
       <Route path='issues' component={TicketList} />
       <Route path='repos' component={RepoList} />
       <Route path='repoProfile/:repoId' component={RepoProfile} />
