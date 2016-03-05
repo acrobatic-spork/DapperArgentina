@@ -28,6 +28,7 @@ class ConfirmDelete extends React.Component {
     forkUtil.deleteFork(function () {
       console.log('successfully deleted repo!');
       this.setState({deleted: true});
+      this.props.refreshUserInfo();
     }.bind(this), console.error, this.props.username, this.props.data.id);
   }
 
