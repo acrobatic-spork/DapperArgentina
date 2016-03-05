@@ -7,15 +7,10 @@ const DeleteInstructions = (props) => (
     <h5>To delete the fork on GitHub:</h5>
     <ol>
       <li>In your repos page on GitHub, click on the link for {props.data.name}</li>
+      <li>Click on <span class="octicon octicon-gear"></span> Settings at the top of the page</li>
+      <li>Scroll down to the Danger Zone</li>
+      <li>Click the scary Delete this Repository button. Type in the repo name, confirm it, and you're done!</li>
     </lo>
-    <pre><code>git clone https://github.com/{props.forkInfo.username}/{props.data.name}.git</code></pre>
-    <p>The link depends on the repo, and can be found on GitHub.</p>
-    <p>Add the original repo as an upstream remote</p>
-    <p>In the repo's main directory, run:</p>
-    <pre><code>git remote add upstream https://github.com/{props.forkInfo.org_name}/{props.data.name}.git</code></pre>
-    <p><strong>Make changes and commit!</strong></p>
-
-    <a className="cyan-text lighten-2 cyan-text lighten-2" href="/resources">Visit our Getting Started page for more details</a>
   </div>
 );
 
