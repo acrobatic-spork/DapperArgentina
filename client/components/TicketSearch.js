@@ -48,11 +48,18 @@ class TicketSearch extends React.Component {
   
   searchHandler(e) {
     //If it is called by someone pressing enter, we run the searchHandler provided to use
+       if (e.charCode === 13 || e.keyCode === 13) {
       this.props.searchHandler(e.target.value, this.state.currentLanguage);
+    }
+
     //In all cases we update our component state
     this.setState({
       searchText: e.target.value
     });
+  }
+  
+  quickSearch(e){
+    this.props.quickSearch(e.target.value);
   }
   
   setSort () {
@@ -86,7 +93,7 @@ class TicketSearch extends React.Component {
   render () {
     return <div className="row">
               <div className="input-field col s6">
-                <input type="text" value={this.state.searchText} 
+                <input type="text" value={this.state.searchText} onKeyUp={this.quickSearch.bind(this)}
                   placeholder="search here..." onChange={this.searchHandler} onKeyPress={this.searchHandler} />
               </div>
               <div className="input-field col s3">
