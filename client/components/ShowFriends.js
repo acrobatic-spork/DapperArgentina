@@ -44,15 +44,15 @@ const ShowFriends = class ShowFriends extends React.Component {
           <div className='row card-content'>
             <div className='col s3 center-align'>
               <img className='circle responsive-img' src={friend.avatar_url} width='100px'  />
-              <span><h4><a href={friend.html_url}>{friend.name}</a></h4> </span>
+              <span><h4><span className="mega-octicon octicon-verified yellow-text text-accent-2"></span><a href={friend.html_url}>{friend.name}</a></h4> </span>
             </div>
-            <div className='col s7'>
+            <div className='col s6'>
               <SporkBar user={friend}/>
             </div>
-            <div className='center-align col s2' style={{'border': '1px solid grey'}}>
+            <div className='center-align col s3' style={{'border': '1px solid grey'}}>
               <h5>Spork Score</h5>
               <hr></hr>
-              <h4>{friend.num_forks+friend.num_pulls+friend.num_merges}</h4>
+              <h4>{friend.num_forks+(friend.num_pulls*5)+(friend.num_merges*10)}</h4>
             </div>
           </div>
         </div>)

@@ -44,7 +44,9 @@ const ShowUsers = class ShowUsers extends React.Component {
           <UserNav links={navLinks}/>
           <div className='all-users-view'>
           {this.state.usersToRender.map((user, index) => {
-            return (<UserEntry user={user} key={index} friend_id={user.id}/>)
+            if(user.username !== this.props.username) {
+              return (<UserEntry user={user} key={index} friend_id={user.id}/>)
+            }
             })
           }
           </div>
