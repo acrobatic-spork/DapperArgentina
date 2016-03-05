@@ -59,7 +59,7 @@ const ShowFriends = class ShowFriends extends React.Component {
       return (
       <div>
       <UserNav links={navLinks}/>
-      <div class='all-friends-view'>
+      <div className='all-friends-view'>
       {this.state.friendsToRender.map((friend, index) => {
         return (<FriendEntry friend={friend} key={index}/>)
         })

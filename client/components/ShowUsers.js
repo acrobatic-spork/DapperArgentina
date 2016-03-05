@@ -50,7 +50,7 @@ const ShowUsers = class ShowUsers extends React.Component {
         return (
         <div>
           <UserNav links={navLinks}/>
-          <div class='all-users-view'>
+          <div className='all-users-view'>
           {this.state.usersToRender.map((user, index) => {
             return (<UserEntry user={user} key={index} friend_id={user.id}/>)
             })
