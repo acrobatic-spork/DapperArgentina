@@ -52,7 +52,7 @@ const ShowFriends = class ShowFriends extends React.Component {
             <div className='center-align col s2' style={{'border': '1px solid grey'}}>
               <h5>Spork Score</h5>
               <hr></hr>
-              <h4>{friend.num_forks+friend.num_pulls+friend.num_merges}</h4>
+              <h4>{friend.num_forks+(friend.num_pulls*5)+(friend.num_merges*10)}</h4>
             </div>
           </div>
         </div>)
