@@ -25,14 +25,10 @@ class ConfirmDelete extends React.Component {
   }
 
   deleteFork () {
-    console.log("The name in props is: " + this.props.username);
-    console.log("And the data: >>> \n" + JSON.stringify(this.props.data));
-    var user = this.props.username;
-    var id = this.props.data.id;
     forkUtil.deleteFork(function () {
       console.log('successfully deleted repo!');
       this.setState({deleted: true});
-    }.bind(this), console.error, user, id);
+    }.bind(this), console.error, this.props.username, this.props.data.id);
   }
 
   handleClick () { this.props.openModel() }
