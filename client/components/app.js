@@ -11,7 +11,7 @@ const linksList = [
     name: "Home", url: '/'
   },
   {
-    name: "issues", url: '/issues'
+    name: "Issues", url: '/issues'
   },
   {
     name: "Repos", url: '/repos'
