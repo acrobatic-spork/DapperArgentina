@@ -29,14 +29,34 @@ class UserEntry extends React.Component {
     });
   }
 
+  addBorder () {
+    if(this.props.isFriend === 'true') {
+      return '5px solid #1a237e'
+    } else {
+      return '';
+    }
+  }
+
+  friendButton () {
+    if(this.props.isFriend === 'true') {
+      return 'btn-floating btn-large waves-effect waves-light red disabled'
+    } else {
+      return 'btn-floating btn-large waves-effect waves-light red';
+    }
+  }
+  dummy(){
+    
+  }
+
   render() {
     return (
       <div>
         <ConfirmFriend isShowing={this.state.showConfirm} closeModal={this.closeConfirm.bind(this)} friend_id={this.props.friend_id} />
-        <div onClick={this.handleClick.bind(this)} className='card-panel hoverable'>
+        <div className='card-panel hoverable'>
+          <a className={this.friendButton()} onClick={this.props.isFriend === 'false' ? this.handleClick.bind(this) : this.dummy}><i className="material-icons">add</i></a>
           <div className='row card-content'>
             <div className='col s3 center-align'>
-              <img className='circle responsive-img' src={this.props.user.avatar_url} width='100px'  />
+              <img style={{border: this.addBorder() }} className='circle responsive-img' src={this.props.user.avatar_url} width='100px'  />
               <span><h4><a href={this.props.user.html_url}>{this.props.user.name}</a></h4> </span>
             </div>
             <div className='col s7 center-align'>
