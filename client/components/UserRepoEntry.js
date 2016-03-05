@@ -5,6 +5,7 @@ const UserIssueEntry = require('./UserIssueEntry');
 const Repos = require('../js/repos');
 const Issues = require('../js/issues');
 const ConfirmDelete = require('./ConfirmDelete'); 
+const SmallLoader = require('./SmallLoader');
 
 class UserRepoEntry extends React.Component {
   constructor (props) {
@@ -13,7 +14,8 @@ class UserRepoEntry extends React.Component {
     this.state = {
       repoToRender: {},
       issues: [],
-      showConfirm: false
+      showConfirm: false,
+      loading: true,
     };
 
     this.getRepo = this.getRepo.bind(this);
@@ -49,8 +51,8 @@ class UserRepoEntry extends React.Component {
   }
 
   getRepo(id) {
-    Repos.getRepoById(id, (data) => this.setState({repoToRender: data}));
-    Issues.getIssuesByRepoId(id, data => this.setState({issues: data}));
+    Repos.getRepoById(id, (data) => this.setState({repoToRender: data, loading:false}));
+    Issues.getIssuesByRepoId(id, (data) => this.setState({issues: data}));
   }
 
   render() {
@@ -60,6 +62,8 @@ class UserRepoEntry extends React.Component {
         <div className="col s12">
           <div className="card white">
             <div className="card-content" >
+            {this.state.loading && <SmallLoader style={{width:"3em", "margin":"1em auto"}}/> }
+
               <span className="card-title">
                 <Link className="left cyan-text lighten-2" to={`/repoProfile/${this.state.repoToRender.id}`}>{this.state.repoToRender.name}</Link>
                 <a href="#" onClick={this.handleClick.bind(this)} className="right delete-icon"><i className="material-icons">delete</i></a>
