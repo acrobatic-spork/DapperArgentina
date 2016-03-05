@@ -62,7 +62,7 @@ class RepoProfile extends React.Component {
           <h4>repo profile</h4>
           <div className="card white">
               <div className="card-content black-text">
-                <span className="card-title"><a className="cyan-text lighten-2" href={this.state.repoToRender.html_url} target="_blank">{this.state.repoToRender.name}</a></span>
+                <span className="card-title"><a className="indigo-text text-darken-4" href={this.state.repoToRender.html_url} target="_blank">{this.state.repoToRender.name}</a></span>
                   <div className="col s2 right right-align">
                     <SporkButton handleClick={this.handleClick.bind(this)} />
                   </div>
@@ -80,9 +80,9 @@ class RepoProfile extends React.Component {
                   <strong className="center col s3"><span className="octicon octicon-eye"></span> watchers {this.state.repoToRender.watchers_count}</strong>
                 </div>
                 <div className="row">
-                  <strong className="left-align col s3"><a className="cyan-text lighten-2" href={"http://www.github.com/" + this.state.repoToRender.org_name} target="_blank">{this.state.repoToRender.org_name}</a></strong>
-                  <strong className="center col s3" ><a className="cyan-text lighten-2" href={this.state.repoToRender.html_url} target="_blank">repo on github</a></strong>
-                  <strong className="center col s3" ><a className="cyan-text lighten-2" href={this.state.repoToRender.html_url+"/wiki"} target="_blank">wiki</a></strong>
+                  <strong className="left-align col s3"><a className="indigo-text textdarken-4" href={"http://www.github.com/" + this.state.repoToRender.org_name} target="_blank">{this.state.repoToRender.org_name}</a></strong>
+                  <strong className="center col s3" ><a className="indigo-text text-darken-4" href={this.state.repoToRender.html_url} target="_blank">repo on github</a></strong>
+                  <strong className="center col s3" ><a className="indigo-text text-darken-4" href={this.state.repoToRender.html_url+"/wiki"} target="_blank">wiki</a></strong>
                   <strong className="right-align col s3">{this.state.repoToRender.language || 'not specified'}</strong>
               </div>
                 <div className="row">

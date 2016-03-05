@@ -3,7 +3,7 @@ const TimeAgo = require('../../node_modules/react-timeago/timeago');
 
 const UserIssueEntry = (props) => (
   <li className="collection-item user-issue row">
-    <div className="issue-title"><a className="cyan-text" href={props.issue.html_url} target="_blank">{props.issue.title}</a></div>
+    <div className="issue-title"><a className="indigo-text" href={props.issue.html_url} target="_blank">{props.issue.title}</a></div>
     <div className="col sm 12">  
       {props.issue.labels.map(function(label, index) {
         return (
