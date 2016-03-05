@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import {ModalContainer, ModalDialog} from 'react-modal-dialog';
 const forkUtil = require('../js/fork');
 const Link = require('react-router').Link;
+const SmallLoader = require('./SmallLoader');
 
 
 const ForkInstructions = (props) => (
@@ -33,7 +34,8 @@ class ConfirmFork extends React.Component {
     this.state = {
       isForked: false,
       forkError: false,
-      forkInfo: {}
+      forkInfo: {},
+      loading:false
     }
     this.style = { borderRadius: 0 }
   }
@@ -41,11 +43,11 @@ class ConfirmFork extends React.Component {
   forkRepo () {
     forkUtil.forkRepo(function (data) {
       // console.log('successfully forked repo: ' + JSON.stringify(data));
-      this.setState({isForked: true, forkInfo: data});
+      this.setState({isForked: true, forkInfo: data, loading:false});
       this.props.refreshUserInfo();
     }.bind(this), 
     function (data) {
-      this.setState({isForked: false, forkError: true});
+      this.setState({isForked: false, forkError: true, loading:false});
       this.props.refreshUserInfo();
     }.bind(this),
     this.props.data.org_name, this.props.data.name, this.props.username);
@@ -59,6 +61,9 @@ class ConfirmFork extends React.Component {
   handleClose () { this.props.closeModal() }
   handleFork(e) {
     e.preventDefault();
+    this.setState({
+      loading:true
+    });
     this.forkRepo();
   }
   render() {
@@ -77,6 +82,7 @@ class ConfirmFork extends React.Component {
               <span className="cyan-text inline-title">Okay, now what?</span>,
               <ForkInstructions data={this.props.data} forkInfo={this.state.forkInfo} />
               ]}
+              {this.state.loading && <div className=" col s2 right-align right"><SmallLoader style={{width:"2.5em", margin:"1em"}}/></div> }
           </ModalDialog>
         </ModalContainer>
       }
