@@ -1,20 +1,24 @@
 import React, {PropTypes} from 'react';
 import {ModalContainer, ModalDialog} from 'react-modal-dialog';
 const forkUtil = require('../js/fork');
+const Link = require('react-router').Link;
 
 
 const ForkInstructions = (props) => (
-  <div>
-    <p>Clone (copy) the repo by opening the terminal and running</p>
-    <pre><code>git clone https://github.com/{props.forkInfo.username}/{props.data.name}.git</code></pre>
-    <p>The link depends on the repo, and can be found on GitHub.</p>
-    <p>Add the original repo as an upstream remote</p>
-    <p>In the repo's main directory, run:</p>
-    <pre><code>git remote add upstream https://github.com/{props.forkInfo.org_name}/{props.data.name}.git</code></pre>
-    <p><strong>Make changes and commit!</strong></p>
-
-    <a className="cyan-text lighten-2 cyan-text lighten-2" href="/resources">Visit our Getting Started page for more details</a>
-  </div>
+  <ul>
+    <li><i class="material-icons">done</i>
+      <strong>Clone (copy) the repo by opening the terminal and running</strong>
+      <pre><code>git clone https://github.com/{props.forkInfo.username}/{props.data.name}.git</code></pre>
+    </li>
+    <li><i class="material-icons">done</i>
+      <strong>Add the original repo as an upstream remote</strong>
+      In the repo's main directory, run:
+      <pre><code>git remote add upstream https://github.com/{props.forkInfo.org_name}/{props.data.name}.git</code></pre>
+    </li>
+    <li><i class="material-icons">done</i>
+      <strong><Link className="left cyan-text" to="/resources">Follow the next steps and best practices in our guide</Link></strong>
+    </li>
+  </ul>
 );
 
 
@@ -68,7 +72,7 @@ class ConfirmFork extends React.Component {
             ]}
             <a className={"btn cyan" + (this.state.isForked ? " disabled" : "")} onClick={this.handleFork.bind(this)}><i className="octicon octicon-git-forked"></i>{this.state.isForked ? "Forked!" : "Fork It!"}</a>
             {this.state.isForked && [
-              <strong className="cyan-text">Okay, now what?</strong>,
+              <span className="cyan-text inline-title">Okay, now what?</span>,
               <ForkInstructions data={this.props.data} forkInfo={this.state.forkInfo} />
               ]}
           </ModalDialog>
