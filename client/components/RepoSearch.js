@@ -82,7 +82,7 @@ class RepoSearch extends React.Component {
   }
 
   render () {
-    return <div className="row">
+    return (<div className="row">
             <div className="input-field col s6">
               <input type="text" onKeyUp={this.quickSearch.bind(this)} value={this.state.searchText} 
                 placeholder="search here..." onChange={this.searchHandler} onKeyPress={this.searchHandler} />
@@ -97,7 +97,7 @@ class RepoSearch extends React.Component {
                 {this.state.sortBy.map((sortField, index) => <option value={sortField} key={sortField}>{sortField}</option>)}
               </select>
             </div>
-          </div>;
+          </div>);
   }
 }
 

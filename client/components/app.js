@@ -40,6 +40,7 @@ class App extends React.Component {
       forks: 0,
       pulls: 0,
       merges: 0,
+      searchLanguages: ['All', 'Javascript', 'CoffeeScript', 'Python', 'Java', 'Ruby', 'HTML', 'CSS']
     };
   }
 
@@ -110,7 +111,7 @@ class App extends React.Component {
         num_pulls: this.state.pulls,
         num_merges: this.state.merges,
         refreshUserInfo: this.refreshUserInfo.bind(this),
-        searchLanguages: ['All', 'Javascript', 'CoffeeScript', 'Python', 'Java', 'Ruby', 'HTML', 'CSS'],
+        searchLanguages: this.state.searchLanguages,
         // ...this.props 
       });
     });
@@ -119,7 +120,7 @@ class App extends React.Component {
     {this.state.isLoggedIn ? <NavBar links={linksList} /> : <LoginBar /> }
       <div className="row">
         <div className="main container">
-          {this.state.isLoggedIn ? childrenWithProps : <TicketList /> }
+          {this.state.isLoggedIn ? childrenWithProps : <TicketList searchLanguages={this.state.searchLanguages}/> }
         </div>
       </div>
     </div>
