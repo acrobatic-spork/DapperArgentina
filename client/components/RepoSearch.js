@@ -1,6 +1,5 @@
 const React = require('react');
 const Repos = require('../js/repos');
-// const $ = require('jquery');
 
 class RepoSearch extends React.Component {
 
@@ -10,7 +9,7 @@ class RepoSearch extends React.Component {
     this.state = {
       searchText: null,
       currentLanguage: 'All',
-      languages: ['All', 'Javascript', 'Python', 'Java', 'Ruby', 'CSS'],
+      languages: ['All', 'Javascript', 'CoffeeScript', 'Python', 'Java', 'Ruby', 'HTML', 'CSS'],
       sortBy:['default', 'Popularity', 'Tickets', 'Forks' ],
       currentSort: 'default'
     };
@@ -33,20 +32,19 @@ class RepoSearch extends React.Component {
   }
 
   setLanguages () {
+    
+  }
+
+  componentDidMount() {
     this.setState({
       languages: this.state.languages
     }, () =>  $(`.${this.languageDropDownClass}`).material_select(this.languageHandler));
 
-  }
-
-  componentDidMount() {
-    // Use Materialize custom select input
-    this.setLanguages();
     this.setSort();
   }
 
   searchHandler(e) {
-    //If it is called by someone pressing enter, we run the searchHandler provided to use
+    //If it is called by someone pressing enter, we run the searchHandler
     if (e.charCode === 13 || e.keyCode === 13) {
       this.props.searchHandler(e.target.value, this.state.language);
     }
