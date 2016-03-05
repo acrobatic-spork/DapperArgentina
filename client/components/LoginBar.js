@@ -6,7 +6,7 @@ const LoginBar = (props) => (
   <div className="cyan lighten-2 row login-bar">
 	  <div id="logo-container" className="login-logo">
 		  <a href="#">SporkHub</a>
-      <a href="http://localhost:3000/auth/github">
+      <a href="/auth/github">
       	<button className="login-button">
       		Login with Github<br/>to Begin <span className="octicon octicon-mark-github"></span>
     		</button>

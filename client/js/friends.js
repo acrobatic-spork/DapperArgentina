@@ -37,5 +37,5 @@ module.exports.addFriend = function (successCallback, errCallback, user_id, frie
     error: function(error) {
       errCallback(error)
     }
-  });  
+  };  
 };
