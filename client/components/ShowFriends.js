@@ -3,6 +3,7 @@ const getFriends = require('../js/friends').getFriends;
 const UserNav = require('./UserNav');
 const Auth = require('../js/auth');
 const navLinks = require('./NavLinks');
+
 const SporkBar = require('./SporkBar');
 
 
