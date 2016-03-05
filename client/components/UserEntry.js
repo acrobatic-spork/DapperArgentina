@@ -3,9 +3,14 @@ const React = require('react');
 const UserEntry = function (props){
   console.log('In UserEntry')
   return (
-    <div>
-      <img src={props.user.avatar_url} width="50" />
-      {props.user.name} <br/> {props.user.html_url} <br/>
+    <div onClick={props.handleClick.bind(null, props.user.id )} className='card-panel hoverable'>
+      <div className='card-content'>
+        <img className='circle responsive-img' src={props.user.avatar_url} width='100px'  />
+        <span><h4>{props.user.name}</h4> </span> 
+        <p>
+        Github: <a href={props.user.html_url}>See @{props.user.username} at Github</a>
+        </p>
+      </div>
     </div>
     )
 }

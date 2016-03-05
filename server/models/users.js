@@ -34,7 +34,6 @@ var getStatsOfRepos = function(user) {
 var getUsers = function (req, res) {
   User.findAll()
     .then(function(users) {
-      console.log('users ==================',users);
       res.json(users);
     })
 }
