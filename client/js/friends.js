@@ -7,6 +7,7 @@ module.exports.getFriends = function (successCallback, errCallback, user_id) {
     url: '/api/friend?user_id='+user_id, // add route to query users db for github info
     type: 'GET',
     success: function (data) {
+      console.log('getFriends client, data:', data)
       successCallback(data)
     },
     error: function(error) {

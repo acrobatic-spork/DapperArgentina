@@ -38,16 +38,22 @@ const ShowFriends = class ShowFriends extends React.Component {
   }
 
   render() {
+    var self = this;
     if(this.state.friendsToRender.length === 0) return (
       <div>
         <UserNav links={navLinks}/>
         <h2>No friends yet. Add some friends <a href='/#/users'>here</a></h2>
       </div>)
     else {
-      var FriendEntry = () => (
+      var FriendEntry = ({friend}) => (
+        <div className='card-panel'>
         <div className='card-content'>
-          <img src={props.friend.avatar_url} />
-          {props.friend.name} <br/> {props.friend.html_url} <br/>
+          <img className='circle' src={friend.avatar_url} width='100px'/>
+          <span><h4>{friend.name}</h4> </span>
+          <span>Forks {friend.num_forks} </span>
+          <span>Pulls {friend.num_pulls} </span>
+          <span>Merges {friend.num_merges} </span> 
+        </div>
         </div>)
 
       return (
