@@ -53,10 +53,8 @@ const Leaderboard = class Leaderboard extends React.Component {
           {this.state.usersToRender.map((user, index) => {
             return (
                 <li className='collection-item avatar'>
-
-                  <span className='title'><h3>{index+1}. {user.name} </h3></span>
-                  <img className='circle responsive-img' style='display:inline' src={user.avatar_url} width='80px'  />
-
+                  <img className='circle responsive-img' style={{float:'left'}} src={user.avatar_url}/>
+                  <span className='title'><h3>{index}. {user.name} </h3></span>
                   <p>Points: {user.userPoints}</p>
                 </li>
               )
