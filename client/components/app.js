@@ -36,7 +36,10 @@ class App extends React.Component {
       name: null,
       username: null,
       avatar_url: null,
-      userRepos: []
+      userRepos: [],
+      forks: 0,
+      pulls: 0,
+      merges: 0
     };
   }
 
@@ -72,7 +75,10 @@ class App extends React.Component {
         userId: userId,
         name: data.name,
         username: data.username,
-        avatar_url: data.avatar_url
+        avatar_url: data.avatar_url,
+        forks: data.num_forks,
+        pulls: data.num_pulls,
+        merges: data.num_merges
       });
       self.getForks(data.username);
       console.log('success callback, data:', data);
@@ -92,7 +98,10 @@ class App extends React.Component {
         username: this.state.username,
         name: this.state.name,
         avatar_url: this.state.avatar_url,
-        userRepos: this.state.userRepos
+        userRepos: this.state.userRepos,
+        forks: this.state.forks,
+        pulls: this.state.pulls,
+        merges: this.state.merges
         // ...this.props 
       });
     });
