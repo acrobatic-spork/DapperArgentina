@@ -3,7 +3,7 @@ const getFriends = require('../js/friends').getFriends;
 const UserNav = require('./UserNav');
 const Auth = require('../js/auth');
 const navLinks = require('./NavLinks');
-
+const SporkBar = require('./SporkBar');
 
 
 const ShowFriends = class ShowFriends extends React.Component {
@@ -40,13 +40,20 @@ const ShowFriends = class ShowFriends extends React.Component {
     else {
       var FriendEntry = ({friend}) => (
         <div className='card-panel'>
-        <div className='card-content'>
-          <img className='circle' src={friend.avatar_url} width='100px'/>
-          <span><h4>{friend.name}</h4> </span>
-          <span>Forks {friend.num_forks} </span>
-          <span>Pulls {friend.num_pulls} </span>
-          <span>Merges {friend.num_merges} </span> 
-        </div>
+          <div className='row card-content'>
+            <div className='col s3 center-align'>
+              <img className='circle responsive-img' src={friend.avatar_url} width='100px'  />
+              <span><h4><a href={friend.html_url}>{friend.name}</a></h4> </span>
+            </div>
+            <div className='col s7'>
+              <SporkBar user={friend}/>
+            </div>
+            <div className='center-align col s2' style={{'border': '1px solid grey'}}>
+              <h5>Spork Score</h5>
+              <hr></hr>
+              <h4>{friend.num_forks+friend.num_pulls+friend.num_merges}</h4>
+            </div>
+          </div>
         </div>)
 
       return (
