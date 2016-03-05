@@ -30,9 +30,9 @@ var getForks = function (successCallback, errCallback, username) {
   $.ajax(options);  
 };
 
-var deleteFork = function(successCallback, errCallback, username, parent_url) {
+var deleteFork = function(successCallback, errCallback, username, repo_id) {
   var options = {
-    url: '/api/fork?username='+username+'&fork='+parent_url,
+    url: '/api/fork?username='+username+'&id='+repo_id,
     type: 'DELETE',
     success: function() {
       successCallback()

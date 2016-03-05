@@ -52,7 +52,7 @@ var forkRepo = function (req, res) {
 }
 
 var deleteFork = function(req, res) {
-  UserForks.findOne({where: {username: req.query.username , parent_url: req.query.fork}})
+  UserForks.findOne({where: {username: req.query.username , parent_repo_id: req.query.id}})
   .then(function (entry) {
     return entry.destroy();
   })

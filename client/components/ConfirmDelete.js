@@ -6,8 +6,8 @@ const DeleteInstructions = (props) => (
   <div>
     <h5>To delete the fork on GitHub:</h5>
     <ol>
-      <li>In your repos page on GitHub, click on the link for {props.data.name}</li>
-      <li>Click on <span class="octicon octicon-gear"></span> Settings at the top of the page</li>
+      <li>In your repos page on GitHub, click on the link for the repo you want to delete.</li>
+      <li>Click on <span className="octicon octicon-gear"></span> Settings at the top of the page</li>
       <li>Scroll down to the Danger Zone</li>
       <li>Click the scary Delete this Repository button. Type in the repo name, confirm it, and you're done!</li>
     </ol>
@@ -25,12 +25,14 @@ class ConfirmDelete extends React.Component {
   }
 
   deleteFork () {
+    console.log("The name in props is: " + this.props.username);
+    console.log("And the data: >>> \n" + JSON.stringify(this.props.data));
     var user = this.props.username;
-    var url = 'https://github.com/'+user+'/'+this.props.data.name+'.git'
+    var id = this.props.data.id;
     forkUtil.deleteFork(function () {
       console.log('successfully deleted repo!');
       this.setState({deleted: true});
-    }.bind(this), console.error, user, url);
+    }.bind(this), console.error, user, id);
   }
 
   handleClick () { this.props.openModel() }
