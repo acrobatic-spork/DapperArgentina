@@ -43,14 +43,6 @@ class RepoProfile extends React.Component {
     });
   }
 
-  forkRepo (){
-    forkUtil.forkRepo(function (data) {
-      console.log('successfully forked repo');
-    }, console.error, this.state.repoToRender.org_name, this.state.repoToRender.name, this.props.username);
-    this.props.refreshUserInfo();
-    this.closeConfirm();
-  }
-
   openConfirm () {
     this.setState({
       showConfirm: true
@@ -67,7 +59,7 @@ class RepoProfile extends React.Component {
     return (
     <div>
       <div className="row main-repo-view"> 
-       <ConfirmFork isShowing={this.state.showConfirm} openModel={this.openConfirm.bind(this)} closeModal={this.closeConfirm.bind(this)} data={this.state.repoToRender} username={this.props.username}/>
+       <ConfirmFork isShowing={this.state.showConfirm} openModel={this.openConfirm.bind(this)} closeModal={this.closeConfirm.bind(this)} data={this.state.repoToRender} username={this.props.username} refreshUserInfo={this.props.refreshUserInfo} />
        <div className="col s12">
           <h4>repo profile</h4>
           <div className="card white">
