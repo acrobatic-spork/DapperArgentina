@@ -51,7 +51,7 @@ class ConfirmDelete extends React.Component {
             <div>If you delete the repo here, it will still be forked on GitHub.</div>
             <a className={"btn cyan" + (this.state.deleted ? " disabled" : "")} onClick={this.deleteFork.bind(this)}><i className="octicon octicon-git-forked"></i>{this.state.deleted ? "Repo Deleted" : "Delete It!"}</a>
             {this.state.deleted && <DeleteInstructions data={this.props.data} username={this.props.username} />}
-            {this.state.loading && <SmallLoader style={{width:"2.5em", "margin-top":"1em", position:"absolute", right:"1.5em", bottom:"1em"}}/> }
+            {this.state.loading && <SmallLoader style={{width:"2.5em", "marginTop":"1em", position:"absolute", right:"1.5em", bottom:"1em"}}/> }
           </ModalDialog>
         </ModalContainer>
       }
