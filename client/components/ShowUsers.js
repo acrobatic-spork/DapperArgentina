@@ -38,7 +38,7 @@ const ShowUsers = class ShowUsers extends React.Component {
 
   handleClick(friend_id){
 
-    addFriend( (res) => browserHistory.push('#/friends'), (err) => console.log(err), Auth.getUserId(), friend_id );
+    addFriend( (res) => browserHistory.push('#/friends'), (err) => console.log(err), Number(Auth.getUserId()), Number(friend_id) );
   }
 
   componentDidMount(){
