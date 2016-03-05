@@ -33,7 +33,6 @@ class TicketSearch extends React.Component {
   componentDidMount(){ 
     // Use Materialize custom select input
    //$(`.${this.languageDropDownClass}`).material_select(this.languageHandler);
-   console.log(this.props.searchLanguages);
     this.setState({
         languages: this.props.searchLanguages
       }, () =>  $(`.${this.languageDropDownClass}`).material_select(this.languageHandler));
