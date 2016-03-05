@@ -2,6 +2,7 @@ const React = require('react');
 const RepoSearch = require('./RepoSearch');
 const RepoEntry = require('./RepoEntry');
 const Repos = require('../js/repos');
+const LoadingAnimation = require('./LoadingAnimation');
 
 class RepoList extends React.Component {
   
@@ -10,7 +11,8 @@ class RepoList extends React.Component {
     
     this.state = {
       reposToRender: [],
-      sortedBy: 'default'
+      sortedBy: 'default',
+      loading: true
     };
     
     this.getRepos = this.getRepos.bind(this);
@@ -37,7 +39,8 @@ class RepoList extends React.Component {
       }
       self.setState({
         numberOfRepos: data.length,
-        reposToRender: data.slice(0,199)
+        reposToRender: data.slice(0,199),
+        loading:false
       });
     }, console.log, searchTerm, language);
   }
@@ -64,6 +67,7 @@ class RepoList extends React.Component {
         {this.state.reposToRender.map ((repo, index) => 
           <RepoEntry data={repo} username={this.props.username} key={index} refreshUserInfo={this.props.refreshUserInfo} />
         )}
+        {this.state.loading && <LoadingAnimation /> }
       </div>
     </div>
     );  
