@@ -72,7 +72,7 @@ class TicketList extends React.Component {
     
     return (
     <div>
-      <TicketSearch quickSearch={this.quickSearch.bind(this)} searchHandler={this.getIssues} />
+      <TicketSearch quickSearch={this.quickSearch.bind(this)} searchHandler={this.getIssues} searchLanguages={this.props.searchLanguages}/>
       <h4>{this.state.numberOfTickets} Easy issues found - sorted by {this.state.currentSort.toLowerCase()}</h4>
       <div className="main-ticket-view">
           {this.state.ticketsToRender.map ((ticket, index) => (
