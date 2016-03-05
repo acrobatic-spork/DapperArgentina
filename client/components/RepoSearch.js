@@ -9,7 +9,6 @@ class RepoSearch extends React.Component {
     this.state = {
       searchText: null,
       currentLanguage: 'All',
-      languages: ['All', 'Javascript', 'CoffeeScript', 'Python', 'Java', 'Ruby', 'HTML', 'CSS'],
       sortBy:['default', 'Popularity', 'Tickets', 'Forks' ],
       currentSort: 'default'
     };
@@ -31,13 +30,9 @@ class RepoSearch extends React.Component {
     });
   }
 
-  setLanguages () {
-    
-  }
-
   componentDidMount() {
     this.setState({
-      languages: this.state.languages
+      languages: this.props.searchLanguages
     }, () =>  $(`.${this.languageDropDownClass}`).material_select(this.languageHandler));
 
     this.setSort();
@@ -73,7 +68,8 @@ class RepoSearch extends React.Component {
     this.setState({
       currentSort: newSort
     });
-    this.props.searchHandler(this.state.searchText, this.state.language, newSort)
+    var lang = this.state.currentLanguage === 'All' ? null : this.state.currentLanguage;
+    this.props.searchHandler(this.state.searchText, lang, newSort)
   }
 
   dummy (){

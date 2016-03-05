@@ -8,9 +8,7 @@ class TicketSearch extends React.Component {
 
     this.state = {
       searchText: null,
-      //default to Javascript for search
-      currentLanguage: 'Javascript',
-      languages: [],
+      currentLanguage: 'All',
       sortBy: ['Most Recent','Oldest'],
       currentSort: 'Most Recent'
     };
@@ -23,26 +21,21 @@ class TicketSearch extends React.Component {
   languageHandler() {
     //The way this is invoked, we have no access to event details so we grab value usingjquery
     var newLanguage = this.grabSelectedLanguageVal();
+    if(newLanguage === 'All') {
+      newLanguage = null;
+    }
     this.props.searchHandler(this.state.searchText, newLanguage);
     this.setState({
       currentLanguage: newLanguage
     });
   }
   
-  setLanguages () {
-    //We should only run this once per component rendering (ie. componentDidMount)
-    //Multiple calls to material_select screws up the rendering
-    Repos.getLanguages((languages) => {
-      this.setState({
-        languages: languages
-      }, () =>  $(`.${this.languageDropDownClass}`).material_select(this.languageHandler));
-    });
-  }
-  
   componentDidMount(){ 
     // Use Materialize custom select input
    //$(`.${this.languageDropDownClass}`).material_select(this.languageHandler);
-    this.setLanguages();
+    this.setState({
+        languages: this.props.searchLanguages
+      }, () =>  $(`.${this.languageDropDownClass}`).material_select(this.languageHandler));
     this.setSort();
   }
   
@@ -76,8 +69,8 @@ class TicketSearch extends React.Component {
     this.setState({
       currentSort: newSort
     });
-    console.log('sortField is: ', newSort);
-    this.props.searchHandler(this.state.searchText, this.state.language, newSort)
+    var lang = this.state.currentLanguage === 'All' ? null : this.state.currentLanguage;
+    this.props.searchHandler(this.state.searchText, lang, newSort);
   }
   
   dummy (){
