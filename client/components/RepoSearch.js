@@ -1,4 +1,3 @@
-const React = require('react');
 const Repos = require('../js/repos');
 
 class RepoSearch extends React.Component {
@@ -9,6 +8,7 @@ class RepoSearch extends React.Component {
     this.state = {
       searchText: null,
       currentLanguage: 'All',
+      languages: [],
       sortBy:['default', 'Popularity', 'Tickets', 'Forks' ],
       currentSort: 'default'
     };
