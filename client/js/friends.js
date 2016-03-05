@@ -11,6 +11,7 @@ module.exports.getFriends = function (successCallback, errCallback, user_id) {
       successCallback(data)
     },
     error: function(error) {
+      console.log('derror in getFriends: ', error);
       errCallback(error)
     }
   };
@@ -36,7 +37,5 @@ module.exports.addFriend = function (successCallback, errCallback, user_id, frie
     error: function(error) {
       errCallback(error)
     }
-  };
-  console.log('options', options)
-  $.ajax(options);  
+  });  
 };

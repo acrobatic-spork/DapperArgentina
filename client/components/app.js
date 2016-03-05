@@ -114,7 +114,7 @@ class App extends React.Component {
       });
     });
     return (
-    <div className='app-shell grey lighten-2' >
+    <div className='app-shell' >
     {this.state.isLoggedIn ? <NavBar links={linksList} /> : <LoginBar /> }
       <div className="row">
         <div className="main container">

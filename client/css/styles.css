@@ -1,5 +1,5 @@
 html {
-  background-color: #e0e0e0;
+  /*background-color: #e0e0e0;*/
 }
 
 li {
@@ -12,7 +12,7 @@ li {
 }
 
 .main-ticket-view {
-  overflow: auto;
+  /*overflow: auto;*/
   max-height: 100vh;
 }
 
