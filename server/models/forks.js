@@ -33,6 +33,7 @@ var forkRepo = function (req, res) {
   })
   .then(function (res) {
     console.log("creating fork in db.............................................");
+    // if (Object.keys(res))
     return UserForks.create({      
       username: req.query.username,
       parent_url: res.body.parent.url,

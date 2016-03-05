@@ -33,7 +33,7 @@ class ConfirmFork extends React.Component {
 
   forkRepo () {
     forkUtil.forkRepo(function (data) {
-      console.log('successfully forked repo: ' + JSON.stringify(data));
+      // console.log('successfully forked repo: ' + JSON.stringify(data));
       this.setState({isForked: true, forkInfo: data});
       this.props.refreshUserInfo();
     }.bind(this), console.error, this.props.data.org_name, this.props.data.name, this.props.username);
