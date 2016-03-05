@@ -2,7 +2,6 @@ const React = require('react');
 const UserNavEntry = require('./UserNavEntry')
 
 const UserNav = function (props) {
-  console.log('In UserNav............')
   return (
         <div>
             <nav className="grey darken-3" role="navigation">
