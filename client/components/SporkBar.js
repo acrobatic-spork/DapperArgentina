@@ -17,27 +17,19 @@
     render () {
       return (
         <div>
-          <div className="row" style={{border: '1px solid grey'}}>
-            <div className="col s12 center-align blue-grey darken-3 z-depth-1" style={{'marginBottom': '10px', padding: '5px'}}>
-              <span className="white-text col s4 center-align">Forks: {this.props.user.forks  || 0}</span>
-              <span className="white-text text-darken-1 col s4 center-align">Pulls: {this.props.user.pulls || 0}</span>
-              <span className="white-text text-darken-1 col s4 center-align">Merges: {this.props.user.merges  || 0}</span>
-            </div>
             <div className="col s12 left-align" style={{'margin-bottom': '10px'}}>
-              <span className="col s1 center-align mega-octicon octicon-repo-forked blue-grey-text"></span>
-              <span className="col s11 fork-sporks">{this.showSporks(this.props.user.forks, '#965A38')}</span>
-
+              <span className="col s1 center-align mega-octicon octicon-git-branch blue-grey-text"></span>
+              <span className="col s11 fork-sporks">{this.showSporks(this.props.user.num_forks, '#965A38')}</span>
             </div>
             <div className="col s12 left-align" style={{'margin-bottom': '10px'}}>
               <span className="col s1 center-align mega-octicon octicon-git-pull-request blue-grey-text"></span>
-              <span className="col s11 pull-sporks">{this.showSporks(this.props.user.pulls, '#A8A8A8')}</span>
+              <span className="col s11 pull-sporks">{this.showSporks(this.props.user.num_pulls, '#A8A8A8')}</span>
 
             </div>
             <div className="col s12 left-align" style={{'margin-bottom': '10px'}}>
               <span className="col s1 center-align mega-octicon octicon-issue-closed blue-grey-text"></span>
-              <span className="col s11 merge-sporks">{this.showSporks(this.props.user.merges, '#C98910')}</span>            
+              <span className="col s11 merge-sporks">{this.showSporks(this.props.user.num_merges, '#C98910')}</span>            
             </div>
-          </div>
         </div>
       );
     }

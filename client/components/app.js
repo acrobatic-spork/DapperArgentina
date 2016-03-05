@@ -106,9 +106,9 @@ class App extends React.Component {
         name: this.state.name,
         avatar_url: this.state.avatar_url,
         userRepos: this.state.userRepos,
-        forks: this.state.forks,
-        pulls: this.state.pulls,
-        merges: this.state.merges,
+        num_forks: this.state.forks,
+        num_pulls: this.state.pulls,
+        num_merges: this.state.merges,
         refreshUserInfo: this.refreshUserInfo.bind(this)
         // ...this.props 
       });

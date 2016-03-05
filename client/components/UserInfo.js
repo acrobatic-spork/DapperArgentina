@@ -21,7 +21,14 @@ class UserInfo extends React.Component {
             <h6 className="grey-text text-darken-1">{this.props.username || 'Username'}</h6>
           </div>
         </div>
-        <SporkBar user={this.props}/>
+        <div className="row" style={{border: '1px solid grey'}}>
+          <div className="col s12 center-align blue-grey darken-3 z-depth-1" style={{'marginBottom': '10px', padding: '5px'}}>
+            <span className="white-text col s4 center-align">Forks: {this.props.num_forks  || 0}</span>
+            <span className="white-text text-darken-1 col s4 center-align">Pulls: {this.props.num_pulls || 0}</span>
+            <span className="white-text text-darken-1 col s4 center-align">Merges: {this.props.num_merges  || 0}</span>
+          </div>
+          <SporkBar user={this.props}/>
+        </div>
         <div className="col s12">
           <h4 className="center-align grey-text text-darken-2">Your sporked repos</h4>  
           {(!Array.isArray(this.props.userRepos)) && <LoadingAnimation /> }
