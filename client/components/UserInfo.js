@@ -9,14 +9,6 @@ class UserInfo extends React.Component {
     super(props);
   }
 
-  showSporks (num, color) {
-    var result = [];
-    for (var i = 0; i < num; i++) {
-      result.push(<span className="mega-octicon octicon-mark-github" style={{color: color}}></span>);
-    }
-    return result;
-  }
-
   render () {
     return (
       <div className="section">
@@ -29,7 +21,7 @@ class UserInfo extends React.Component {
             <h6 className="grey-text text-darken-1">{this.props.username || 'Username'}</h6>
           </div>
         </div>
-        <SporkBar userInfo={this.props}/>
+        <SporkBar user={this.props}/>
         <div className="col s12">
           <h4 className="center-align grey-text text-darken-2">Your sporked repos</h4>  
           {(!Array.isArray(this.props.userRepos)) && <LoadingAnimation /> }
