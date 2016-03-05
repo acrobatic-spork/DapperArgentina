@@ -30,7 +30,7 @@ const ShowFriends = class ShowFriends extends React.Component {
           friendsToRender: data
         });
       }
-    }, console.log, Auth.getUserId);
+    }, console.log, Auth.getUserId());
   }
 
   componentDidMount(){

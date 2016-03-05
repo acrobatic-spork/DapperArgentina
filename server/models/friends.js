@@ -7,6 +7,7 @@ const db = require('../db/database');
 var Friends = db.Friends;
 
 var addFriend = function (req, res) {
+  console.log('addFriend, server:', req.body)
   Friends.create({ 
     user_id: req.body.user_id, 
     friend_id: req.body.friend_id 
