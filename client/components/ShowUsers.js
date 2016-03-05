@@ -8,7 +8,7 @@ const {browserHistory} = require('react-router');
 
 const navLinks = [
   {
-    name: "Users / Add Users", url: '/users'
+    name: "Add Friends", url: '/users'
   },
   {
     name: "Friends", url: '/friends'
