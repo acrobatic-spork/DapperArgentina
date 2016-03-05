@@ -1,6 +1,7 @@
 const React = require('react');
 const UserRepoList = require('./UserRepoList');
 const SporkBar = require('./SporkBar');
+const LoadingAnimation = require('./LoadingAnimation');
 
 class UserInfo extends React.Component {
 
@@ -29,8 +30,10 @@ class UserInfo extends React.Component {
           </div>
         </div>
         <SporkBar userInfo={this.props}/>
-        <div className="col s12">        
-         <UserRepoList repos={this.props.userRepos} username={this.props.username} refreshUserInfo={this.props.refreshUserInfo}/>
+        <div className="col s12">
+          <h4 className="center-align grey-text text-darken-2">Your sporked repos</h4>  
+          {(!Array.isArray(this.props.userRepos)) && <LoadingAnimation /> }
+          { Array.isArray(this.props.userRepos) && <UserRepoList repos={this.props.userRepos} username={this.props.username} refreshUserInfo={this.props.refreshUserInfo}/> }
         </div>
       </div>
     );
