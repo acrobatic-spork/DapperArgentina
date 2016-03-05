@@ -27,9 +27,9 @@ class ConfirmFriend extends React.Component {
           <ModalDialog style={this.style} onClose={this.props.closeModal.bind(this)}>
             <br />
             <p>Are you sure you want to add this user as a friend?</p>
-            <a className="waves-effect waves-light btn cyan" onClick={this.addFriend.bind(this)}>Add Friend!</a>
+            <a className="waves-effect waves-light btn indigo darken-4" onClick={this.addFriend.bind(this)}>Add Friend!</a>
             <span> </span>
-            <a className="waves-effect waves-light btn red lighten-2" onClick={this.props.closeModal}>Cancel</a>
+            <a className="waves-effect waves-light btn amber darken-4" onClick={this.props.closeModal}>Cancel</a>
           </ModalDialog>
         </ModalContainer>
       }
