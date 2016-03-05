@@ -64,7 +64,7 @@ class RepoList extends React.Component {
       <h4>{this.state.numberOfRepos} Repos with easy issues - sorted by {this.state.sortedBy.toLowerCase()}</h4>
       <div className="main-repo-view">
         {this.state.reposToRender.map ((repo, index) => 
-          <RepoEntry data={repo} username={this.props.username} key={index} />
+          <RepoEntry data={repo} username={this.props.username} key={index} refreshUserInfo={this.props.refreshUserInfo} />
         )}
       </div>
     </div>

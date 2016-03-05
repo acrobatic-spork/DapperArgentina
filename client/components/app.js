@@ -88,6 +88,13 @@ class App extends React.Component {
     userId);
   }
 
+  refreshUserInfo() {
+    if (this.state.userId) {
+      this.getUserInfo.call(this, this.state.userId);
+    }
+  }
+  
+
   // Need to load the info when the user logs in
   // Add userinfo somewhere
 
@@ -101,7 +108,8 @@ class App extends React.Component {
         userRepos: this.state.userRepos,
         forks: this.state.forks,
         pulls: this.state.pulls,
-        merges: this.state.merges
+        merges: this.state.merges,
+        refreshUserInfo: this.refreshUserInfo.bind(this)
         // ...this.props 
       });
     });
