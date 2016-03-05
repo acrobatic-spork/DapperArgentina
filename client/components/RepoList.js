@@ -19,7 +19,6 @@ class RepoList extends React.Component {
   
   getRepos(searchTerm, language, filterBy){
     //Fetch repos;
-    //refactor to exclude 'self/this' with es6 syntax?
     var self = this;
     Repos.getRepos(function(data) {
       if(filterBy){
