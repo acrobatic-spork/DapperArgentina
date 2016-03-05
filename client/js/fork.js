@@ -46,7 +46,7 @@ var deleteFork = function(successCallback, errCallback, username, repo_id) {
 }
 
 module.exports = {
-  forkReop: forkRepo,
+  forkRepo: forkRepo,
   getForks: getForks,
   deleteFork: deleteFork
 };

@@ -58,7 +58,7 @@ var deleteFork = function(req, res) {
   })
   .then(function () {
     console.log("Fork was removed!");
-    res.send(200)
+    res.sendStatus(200)
   })
   .catch(function (error) {
     console.log("There was a problem deleting the fork");
