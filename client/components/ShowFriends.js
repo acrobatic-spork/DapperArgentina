@@ -2,15 +2,9 @@ const React = require('react');
 const getFriends = require('../js/friends').getFriends;
 const UserNav = require('./UserNav');
 const Auth = require('../js/auth');
+const navLinks = require('./NavLinks');
 
-const navLinks = [
-  {
-    name: "Users / Add Users", url: '/users'
-  },
-  {
-    name: "Friends", url: '/friends'
-  }
-];
+
 
 const ShowFriends = class ShowFriends extends React.Component {
   constructor(props){
