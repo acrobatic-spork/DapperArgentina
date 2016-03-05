@@ -8,7 +8,6 @@ class UserNavEntry extends React.Component {
   }
 
   render(){
-  console.log('In Show Users Nav Entry')
   return (<li>
       <Link to={this.props.data.url}>{this.props.data.name}</Link>
     </li>)
