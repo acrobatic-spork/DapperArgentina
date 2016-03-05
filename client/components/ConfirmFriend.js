@@ -14,8 +14,9 @@ class ConfirmFriend extends React.Component {
 
   addFriend (e) {
     e.preventDefault();
-    FriendUtil.addFriend(console.log, console.error, Number(Auth.getUserId()), Number(this.props.friend_id));     
+    FriendUtil.addFriend(function(data) {
       this.props.closeModal();
+    }.bind(this), console.error, Number(Auth.getUserId()), Number(this.props.friend_id));     
   }
 
   render() {
