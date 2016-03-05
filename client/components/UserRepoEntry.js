@@ -11,7 +11,8 @@ class UserRepoEntry extends React.Component {
 
     this.state = {
       repoToRender: {},
-      issues: []
+      issues: [],
+      showConfirm: false
     };
 
     this.getRepo = this.getRepo.bind(this);
@@ -27,9 +28,28 @@ class UserRepoEntry extends React.Component {
     });
   }
 
-  deleteRepo(e) {
+  handleClick (e) {
     e.preventDefault();
+    this.setState({
+      showConfirm: true
+    });
   }
+
+  openConfirm () {
+    this.setState({
+      showConfirm: true
+    });
+  }
+
+  closeConfirm () {
+    this.setState({
+      showConfirm: false
+    });
+  }
+
+  // deleteRepo(e) {
+  //   e.preventDefault();
+  // }
 
   getRepo(id) {
     var that = this;
@@ -40,6 +60,7 @@ class UserRepoEntry extends React.Component {
   render() {
     return (
     <div className="row">
+      <ConfirmDelete isShowing={this.state.showConfirm} openModel={this.openConfirm.bind(this)} closeModal={this.closeConfirm.bind(this)} data={this.props.data} username={this.props.username}/>
         <div className="col s12">
           <div className="card white">
             <div className="card-content" >
