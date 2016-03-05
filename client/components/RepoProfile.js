@@ -57,7 +57,7 @@ class RepoProfile extends React.Component {
     return (
     <div>
       <div className="row main-repo-view"> 
-       <ConfirmFork isShowing={this.state.showConfirm} openModel={this.openConfirm.bind(this)} closeModal={this.closeConfirm.bind(this)} data={this.state.repoToRender} username={this.props.username} refreshUserInfo={this.props.refreshUserInfo} />
+       <ConfirmFork isShowing={this.state.showConfirm} closeModal={this.closeConfirm.bind(this)} data={this.state.repoToRender} username={this.props.username} refreshUserInfo={this.props.refreshUserInfo} />
        <div className="col s12">
           <h4>repo profile</h4>
           <div className="card white">

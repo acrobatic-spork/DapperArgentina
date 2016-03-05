@@ -19,7 +19,7 @@ class ConfirmFriend extends React.Component {
   }
 
   render() {
-    return (<div onClick={this.handleClick}>
+    return (<div>
       {
         this.props.isShowing &&
         <ModalContainer onClose={this.props.closeModal.bind(this)}>

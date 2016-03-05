@@ -32,7 +32,7 @@ class UserEntry extends React.Component {
   render() {
     return (
       <div>
-        <ConfirmFriend isShowing={this.state.showConfirm} openModal={this.openConfirm.bind(this)} closeModal={this.closeConfirm.bind(this)} friend_id={this.props.friend_id} />
+        <ConfirmFriend isShowing={this.state.showConfirm} closeModal={this.closeConfirm.bind(this)} friend_id={this.props.friend_id} />
         <div onClick={this.handleClick.bind(this)} className='card-panel hoverable'>
           <div className='row card-content'>
             <div className='col s3 center-align'>

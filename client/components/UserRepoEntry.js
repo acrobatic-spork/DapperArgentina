@@ -56,7 +56,7 @@ class UserRepoEntry extends React.Component {
   render() {
     return (
     <div className="row">
-      <ConfirmDelete isShowing={this.state.showConfirm} openModal={this.openConfirm.bind(this)} closeModal={this.closeConfirm.bind(this)} data={this.props.data} username={this.props.username} refreshUserInfo={this.props.refreshUserInfo}/>
+      <ConfirmDelete isShowing={this.state.showConfirm} closeModal={this.closeConfirm.bind(this)} data={this.props.data} username={this.props.username} refreshUserInfo={this.props.refreshUserInfo}/>
         <div className="col s12">
           <div className="card white">
             <div className="card-content" >
