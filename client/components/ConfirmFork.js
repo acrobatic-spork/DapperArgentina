@@ -53,12 +53,6 @@ class ConfirmFork extends React.Component {
     this.props.data.org_name, this.props.data.name, this.props.username);
   }
 
-
-
-
-
-  handleClick () { this.props.openModel() }
-  handleClose () { this.props.closeModal() }
   handleFork(e) {
     e.preventDefault();
     this.setState({
@@ -67,11 +61,11 @@ class ConfirmFork extends React.Component {
     this.forkRepo();
   }
   render() {
-    return (<div onClick={this.handleClick}>
+    return (<div>
       {
         this.props.isShowing &&
-        <ModalContainer onClose={this.handleClose.bind(this)}>
-          <ModalDialog style={this.style} onClose={this.handleClose.bind(this)}>
+        <ModalContainer onClose={this.props.closeModal.bind(this)}>
+          <ModalDialog style={this.style} onClose={this.props.closeModal.bind(this)}>
           { this.state.forkError && <span className="red-text error">Hmm, that didn't work. Have you already sporked this one?</span> }
             { !this.state.isForked && [
               <h4>You're about to fork a repo!</h4>,
