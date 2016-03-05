@@ -36,7 +36,7 @@ class App extends React.Component {
       name: null,
       username: null,
       avatar_url: null,
-      userRepos: [],
+      userRepos: null,
       forks: 0,
       pulls: 0,
       merges: 0

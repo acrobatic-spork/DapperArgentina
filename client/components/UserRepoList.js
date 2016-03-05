@@ -22,21 +22,18 @@ class RepoList extends React.Component {
     // this.getRepos();
   }
   
-  render () {
-    
+  render () {  
     //for really clean scrolling, we could do something like below to calculate the max height and then set the max height css 
     // var maxHeight = $(window).height() - $('.navbar').outerHeight() - margin * 2;
-    
     return (
-    <div>
-      <div className="divider hide-on-large-only"></div>
-      <h4 className="center-align grey-text text-darken-2">Your sporked repos</h4>
-      <div className="main-repo-view">
-        {this.props.repos.map ((repo, index) => 
-          <UserRepoEntry data={repo} key={index} username={this.props.username} refreshUserInfo={this.props.refreshUserInfo} />
-        )}
+      <div>
+        <div className="divider hide-on-large-only"></div>
+        <div className="main-repo-view">
+          {this.props.repos.map ((repo, index) => 
+            <UserRepoEntry data={repo} key={index} username={this.props.username} refreshUserInfo={this.props.refreshUserInfo} />
+          )}
+        </div>
       </div>
-    </div>
     );  
   }
   
