@@ -91,12 +91,12 @@ class TicketSearch extends React.Component {
                 <input type="text" value={this.state.searchText} 
                   placeholder="search here..." onChange={this.searchHandler} onKeyPress={this.searchHandler} />
               </div>
-              <div className="input-field col s2">
+              <div className="input-field col s3">
                 <select className={this.languageDropDownClass} value={this.state.currentLanguage} onChange={this.dummy}>
                   {this.state.languages.map((lang, index) => <option value={lang} key={lang}>{lang}</option>)}
                 </select>
               </div>
-              <div className="input-field col s2">
+              <div className="input-field col s3">
                 <select className={'issue-sort-dropdown'} value={this.state.currentSort} onChange={this.dummy}>
                   {this.state.sortBy.map((sortField, index) => <option value={sortField} key={sortField}>{sortField}</option>)}
                 </select>
