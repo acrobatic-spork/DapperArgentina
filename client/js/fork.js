@@ -31,7 +31,18 @@ var getForks = function (successCallback, errCallback, username) {
 };
 
 var deleteFork = function(successCallback, errCallback, username, parent_url) {
+  var options = {
+    url: '/api/fork?username='+username+'&fork='+parent_url,
+    type: 'DELETE',
+    success: function() {
+      successCallback()
+    },
+    error: function(error) {
+      errCallback(error)
+    }
+  };
 
+  $.ajax(options);
 }
 
 module.exports = {

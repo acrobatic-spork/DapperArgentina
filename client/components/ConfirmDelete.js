@@ -25,10 +25,12 @@ class ConfirmDelete extends React.Component {
   }
 
   deleteFork () {
+    var user = this.props.username;
+    var url = 'https://github.com/'+user+'/'+{this.props.data.name}+'.git'
     forkUtil.deleteFork(function () {
       console.log('successfully deleted repo!');
       this.setState({deleted: true});
-    }.bind(this), console.error, this.props.data.org_name, this.props.data.name, this.props.username);
+    }.bind(this), console.error, user, url);
   }
 
   handleClick () { this.props.openModel() }
@@ -54,8 +56,5 @@ class ConfirmDelete extends React.Component {
     </div>);
   }      
 }
-
-
-
 
 module.exports = ConfirmDelete;
