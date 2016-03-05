@@ -6,16 +6,16 @@ const Link = require('react-router').Link;
 
 const ForkInstructions = (props) => (
   <ul>
-    <li><i class="material-icons">done</i>
+    <li><i className="material-icons">done</i>
       <strong>Clone (copy) the repo by opening the terminal and running</strong>
       <pre><code>git clone https://github.com/{props.forkInfo.username}/{props.data.name}.git</code></pre>
     </li>
-    <li><i class="material-icons">done</i>
+    <li><i className="material-icons">done</i>
       <strong>Add the original repo as an upstream remote</strong>
       In the repo's main directory, run:
       <pre><code>git remote add upstream https://github.com/{props.forkInfo.org_name}/{props.data.name}.git</code></pre>
     </li>
-    <li><i class="material-icons">done</i>
+    <li><i className="material-icons">done</i>
       <strong><Link className="left cyan-text" to="/resources">Follow the next steps and best practices in our guide</Link></strong>
     </li>
   </ul>
