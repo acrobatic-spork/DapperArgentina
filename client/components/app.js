@@ -101,7 +101,8 @@ class App extends React.Component {
         userRepos: this.state.userRepos,
         forks: this.state.forks,
         pulls: this.state.pulls,
-        merges: this.state.merges
+        merges: this.state.merges,
+        refreshUserInfo: this.getUserInfo.bind(this)
         // ...this.props 
       });
     });

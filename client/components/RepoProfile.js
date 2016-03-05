@@ -43,6 +43,14 @@ class RepoProfile extends React.Component {
     });
   }
 
+  forkRepo (){
+    forkUtil.forkRepo(function (data) {
+      console.log('successfully forked repo');
+    }, console.error, this.state.repoToRender.org_name, this.state.repoToRender.name, this.props.username);
+    this.props.refreshUserInfo();
+    this.closeConfirm();
+  }
+
   openConfirm () {
     this.setState({
       showConfirm: true
