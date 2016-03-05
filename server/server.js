@@ -10,6 +10,7 @@ var Util = require('./data-processor/util');
 var ForkUtil = require('./models/forks');
 var UserUtil = require('./models/users');
 var FriendUtil = require('./models/friends');
+var path = require('path');
 
 var User = db.User;
 var UserIssues = db.UserIssues;
@@ -79,7 +80,10 @@ app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: fals
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.static(__dirname + '/../client'));
+
+
+var distDir = path.resolve(__dirname, '../client');
+app.use(express.static(distDir));
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -192,6 +196,15 @@ app.get('/logout', function(req, res){
     res.redirect('/');
   });
 });
+
+ app.use(function(req, res, next) {
+    if (req.accepts('html') && req.method === 'GET') {
+      console.log("in fallback. req is " + JSON.stringify(req.accepts('html')));
+      res.sendFile(path.join(distDir, '/index.html'));
+    } else {
+      next();
+    }
+  });
 
 console.log(`server running on port ${port} in ${process.env.NODE_ENV} mode`);
 // start listening to requests on port 3000
