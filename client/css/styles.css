@@ -1,7 +1,9 @@
 html {
   /*background-color: #e0e0e0;*/
 }
-
+a.cyan-text:hover {
+  color:#AAA !important;
+}
 li {
   list-style: none;
   margin-bottom: 0.5em;
