@@ -35,6 +35,7 @@ module.exports.addFriend = function (successCallback, errCallback, user_id, frie
       successCallback(data)
     },
     error: function(error) {
+      console.log('error in addFriends post:', error)
       errCallback(error)
     }
   };  
