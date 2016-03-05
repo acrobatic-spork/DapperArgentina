@@ -27,25 +27,25 @@ class UserInfo extends React.Component {
             <h6 className="grey-text text-darken-1">{this.props.username || 'Username'}</h6>
           </div>
         </div>
-        <div className="row">
-          <div className="col s12 center-align white">
-            <span className="grey-text text-darken-1 col s4 center-align">Forks: {this.props.forks}</span>
-            <span className="grey-text text-darken-1 col s4 center-align">Pulls: {this.props.pulls}</span>
-            <span className="grey-text text-darken-1 col s4 center-align">Merges: {this.props.merges}</span>
+        <div className="row" style={{border: '1px solid grey'}}>
+          <div className="col s12 center-align blue-grey darken-3 z-depth-1" style={{'margin-bottom': '10px', padding: '5px'}}>
+            <span className="white-text col s4 center-align">Forks: {this.props.forks}</span>
+            <span className="white-text text-darken-1 col s4 center-align">Pulls: {this.props.pulls}</span>
+            <span className="white-text text-darken-1 col s4 center-align">Merges: {this.props.merges}</span>
           </div>
-          <div className="col s12 left-align">
-            <span className="">FORKS: </span>
-            <span className="fork-sporks">{this.showSporks(this.props.forks)}</span>
+          <div className="col s12 left-align" style={{'margin-bottom': '10px'}}>
+            <span className="col s1 center-align mega-octicon octicon-git-branch"></span>
+            <span className="col s11 fork-sporks">{this.showSporks(this.props.forks)}</span>
 
           </div>
-          <div className="col s12 left-align">
-            <span className="">PULLS: </span>
-            <span className="pull-sporks">{this.showSporks(this.props.pulls)}</span>
+          <div className="col s12 left-align" style={{'margin-bottom': '10px'}}>
+            <span className="col s1 center-align mega-octicon octicon-git-pull-request"></span>
+            <span className="col s11 pull-sporks">{this.showSporks(this.props.pulls)}</span>
 
           </div>
-          <div className="col s12 left-align">
-            <span className="">MERGES: </span>
-            <span className="merge-sporks">{this.showSporks(this.props.merges)}</span>            
+          <div className="col s12 left-align" style={{'margin-bottom': '10px'}}>
+            <span className="col s1 center-align mega-octicon octicon-issue-closed"></span>
+            <span className="col s11 merge-sporks">{this.showSporks(this.props.merges)}</span>            
           </div>
         </div>
         <div className="col s12">        
