@@ -3,7 +3,8 @@ const Link = require('react-router').Link;
 const TimeAgo = require('../../node_modules/react-timeago/timeago');
 const UserIssueEntry = require('./UserIssueEntry');
 const Repos = require('../js/repos');
-const Issues = require('../js/issues'); 
+const Issues = require('../js/issues');
+const ConfirmDelete = require('./ConfirmDelete'); 
 
 class UserRepoEntry extends React.Component {
   constructor (props) {
@@ -66,7 +67,7 @@ class UserRepoEntry extends React.Component {
             <div className="card-content" >
               <span className="card-title">
                 <Link className="left cyan-text lighten-2" to={`/repoProfile/${this.state.repoToRender.id}`}>{this.state.repoToRender.name}</Link>
-                <a href="#" onClick={this.deleteRepo.bind(this)} className="right delete-icon"><i className="material-icons">delete</i></a>
+                <a href="#" onClick={this.handleClick.bind(this)} className="right delete-icon"><i className="material-icons">delete</i></a>
               </span>
               <div className="row">
                 <p className="left-align grey-text lighten-2 col s12">{this.state.repoToRender.description}</p>

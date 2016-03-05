@@ -10,7 +10,7 @@ const DeleteInstructions = (props) => (
       <li>Click on <span class="octicon octicon-gear"></span> Settings at the top of the page</li>
       <li>Scroll down to the Danger Zone</li>
       <li>Click the scary Delete this Repository button. Type in the repo name, confirm it, and you're done!</li>
-    </lo>
+    </ol>
   </div>
 );
 
@@ -26,7 +26,7 @@ class ConfirmDelete extends React.Component {
 
   deleteFork () {
     var user = this.props.username;
-    var url = 'https://github.com/'+user+'/'+{this.props.data.name}+'.git'
+    var url = 'https://github.com/'+user+'/'+this.props.data.name+'.git'
     forkUtil.deleteFork(function () {
       console.log('successfully deleted repo!');
       this.setState({deleted: true});
@@ -48,8 +48,8 @@ class ConfirmDelete extends React.Component {
           <ModalDialog style={this.style} onClose={this.handleClose.bind(this)}>
             <h4>Are you sure you want to delete this repo?</h4>
             <div>If you delete the repo here, it will still be forked on GitHub.</div>
-            <a className={"btn cyan" + (this.state.deleted ? " disabled" : "")} onClick={this.handleFork.bind(this)}><i className="octicon octicon-git-forked"></i>{this.state.deleted ? "Repo Deleted" : "Delete It!"}</a>
-            {this.state.deleted && <DeleteInstructions data={this.props.data} />}
+            <a className={"btn cyan" + (this.state.deleted ? " disabled" : "")} onClick={this.deleteFork.bind(this)}><i className="octicon octicon-git-forked"></i>{this.state.deleted ? "Repo Deleted" : "Delete It!"}</a>
+            {this.state.deleted && <DeleteInstructions data={this.props.data} username={this.props.username} />}
           </ModalDialog>
         </ModalContainer>
       }
