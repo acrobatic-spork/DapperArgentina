@@ -1,3 +1,4 @@
+const React = require('react');
 const Repos = require('../js/repos');
 
 class RepoSearch extends React.Component {
