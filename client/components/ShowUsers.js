@@ -37,7 +37,7 @@ const ShowUsers = class ShowUsers extends React.Component {
   }
 
   handleClick(friend_id){
-
+    console.log("We're adding a friend in SHowUsers");
     addFriend( (res) => browserHistory.push('#/friends'), (err) => console.log(err), Number(Auth.getUserId()), Number(friend_id) );
   }
 
@@ -57,7 +57,7 @@ const ShowUsers = class ShowUsers extends React.Component {
           <UserNav links={navLinks}/>
           <div class='all-users-view'>
           {this.state.usersToRender.map((user, index) => {
-            return (<UserEntry handleClick={this.handleClick.bind(this)} user={user} key={index}/>)
+            return (<UserEntry handleClick={this.handleClick.bind(this)} user={user} key={index} friend_id={user.id}/>)
             })
           }
           </div>
