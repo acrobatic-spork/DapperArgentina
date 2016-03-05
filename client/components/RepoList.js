@@ -77,7 +77,6 @@ class RepoList extends React.Component {
     
     return (
     <div >
-
       <RepoSearch quickSearch={this.quickSearch.bind(this)} searchHandler={this.getRepos} />
       <h4>{this.state.numberOfRepos} Repos with easy issues - sorted by {this.state.sortedBy.toLowerCase()}</h4>
       <div className="main-repo-view">
