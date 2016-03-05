@@ -19,10 +19,8 @@ class RepoList extends React.Component {
   
   getRepos(searchTerm, language, filterBy){
     //Fetch repos;
-    //refactor to exclude 'self/this' with es6 syntax?
     var self = this;
     Repos.getRepos(function(data) {
-      console.log('fetched repos.....................', data);
       if(filterBy){
         switch(filterBy){
           case 'Popularity':
@@ -44,6 +42,22 @@ class RepoList extends React.Component {
     }, console.log, searchTerm, language);
   }
 
+  quickSearch(searchTerm){
+    if(searchTerm){
+      var repos = this.state.reposToRender.filter((repo)=> {
+        return ( (repo.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) ||
+                 (repo.org_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)
+                );
+      })
+    this.setState({
+      reposToRender: repos,
+      numberOfRepos: repos.length
+    });
+    } else {
+      this.getRepos();
+    }
+  }
+
   componentDidUpdate () {
     //Anytime the component renders, scroll to the top of the repo list
     $('.main-repo-view')[0].scrollTop = 0;
@@ -60,7 +74,7 @@ class RepoList extends React.Component {
     
     return (
     <div >
-      <RepoSearch searchHandler={this.getRepos} />
+      <RepoSearch quickSearch={this.quickSearch.bind(this)} searchHandler={this.getRepos} />
       <h4>{this.state.numberOfRepos} Repos with easy issues - sorted by {this.state.sortedBy.toLowerCase()}</h4>
       <div className="main-repo-view">
         {this.state.reposToRender.map ((repo, index) => 

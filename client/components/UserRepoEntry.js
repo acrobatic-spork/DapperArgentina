@@ -49,7 +49,6 @@ class UserRepoEntry extends React.Component {
   }
 
   getRepo(id) {
-    var that = this;
     Repos.getRepoById(id, (data) => this.setState({repoToRender: data}));
     Issues.getIssuesByRepoId(id, data => this.setState({issues: data}));
   }
@@ -57,7 +56,7 @@ class UserRepoEntry extends React.Component {
   render() {
     return (
     <div className="row">
-      <ConfirmDelete isShowing={this.state.showConfirm} openModel={this.openConfirm.bind(this)} closeModal={this.closeConfirm.bind(this)} data={this.props.data} username={this.props.username} refreshUserInfo={this.props.refreshUserInfo}/>
+      <ConfirmDelete isShowing={this.state.showConfirm} closeModal={this.closeConfirm.bind(this)} data={this.props.data} username={this.props.username} refreshUserInfo={this.props.refreshUserInfo}/>
         <div className="col s12">
           <div className="card white">
             <div className="card-content" >
@@ -69,7 +68,7 @@ class UserRepoEntry extends React.Component {
                 <p className="left-align grey-text lighten-2 col s12">{this.state.repoToRender.description}</p>
               </div>
               <div className="row">
-                <strong className={"center-align col s4" + (true ? " light-green-text" : " grey-text")}><span className="mega-octicon octicon-git-branch"></span>forked!</strong>
+                <strong className={"center-align col s4" + (true ? " light-green-text" : " grey-text")}><span className="mega-octicon octicon-repo-forked"></span>forked!</strong>
                 <strong className={"center-align col s4" + (this.props.data.pulls ? " light-green-text" : " grey-text")}><span className="mega-octicon octicon-git-pull-request"></span> {this.props.data.pulls} pull requests</strong>
                 <strong className={"center-align col s4" + (this.props.data.merges ? " light-green-text" : " grey-text")}><span className="mega-octicon octicon-issue-closed"></span> {this.props.data.merges} merged</strong>
               </div>

@@ -1,6 +1,5 @@
 const React = require('react');
 const TimeAgo = require('../../node_modules/react-timeago/timeago');
-const Link = require('react-router').Link;
 
 const UserIssueEntry = (props) => (
   <li className="collection-item user-issue row">

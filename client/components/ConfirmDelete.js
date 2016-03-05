@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import {ModalContainer, ModalDialog} from 'react-modal-dialog';
 const forkUtil = require('../js/fork');
+const SmallLoader = require('./SmallLoader');
 
 const DeleteInstructions = (props) => (
   <div>
@@ -19,36 +20,38 @@ class ConfirmDelete extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      deleted: false
+      deleted: false,
+      loading: false
     }
     this.style = { borderRadius: 0 }
+
   }
 
   deleteFork () {
+    this.setState({loading: true});
     forkUtil.deleteFork(function () {
       console.log('successfully deleted repo!');
-      this.setState({deleted: true});
+      this.setState({deleted: true, loading:false});
       this.props.refreshUserInfo();
     }.bind(this), console.error, this.props.username, this.props.data.id);
   }
 
-  handleClick () { this.props.openModel() }
-  handleClose () { this.props.closeModal() }
   handleDelete(e) {
     e.preventDefault();
     this.deleteFork();
   }
 
   render() {
-    return (<div onClick={this.handleClick}>
+    return (<div>
       {
         this.props.isShowing &&
-        <ModalContainer onClose={this.handleClose.bind(this)}>
-          <ModalDialog style={this.style} onClose={this.handleClose.bind(this)}>
+        <ModalContainer onClose={this.props.closeModal.bind(this)}>
+          <ModalDialog style={this.style} onClose={this.props.closeModal.bind(this)}>
             <h4>Are you sure you want to delete this repo?</h4>
             <div>If you delete the repo here, it will still be forked on GitHub.</div>
             <a className={"btn cyan" + (this.state.deleted ? " disabled" : "")} onClick={this.deleteFork.bind(this)}><i className="octicon octicon-git-forked"></i>{this.state.deleted ? "Repo Deleted" : "Delete It!"}</a>
             {this.state.deleted && <DeleteInstructions data={this.props.data} username={this.props.username} />}
+            {this.state.loading && <SmallLoader style={{width:"2.5em", "margin-top":"1em", position:"absolute", right:"1.5em", bottom:"1em"}}/> }
           </ModalDialog>
         </ModalContainer>
       }

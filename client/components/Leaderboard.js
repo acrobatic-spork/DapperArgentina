@@ -6,6 +6,7 @@ const UserNav = require('./UserNav');
 const {browserHistory} = require('react-router');
 const navLinks = require('./NavLinks');
 
+const SporkSvg = require('./SporkSvg')
 
 const Leaderboard = class Leaderboard extends React.Component {
   constructor(props){
@@ -53,9 +54,15 @@ const Leaderboard = class Leaderboard extends React.Component {
           {this.state.usersToRender.map((user, index) => {
             return (
                 <li className='collection-item avatar'>
+<<<<<<< HEAD
                   <img className='circle responsive-img' style={{float:'left'}} src={user.avatar_url}/>
                   <span className='title'><h3>{index}. {user.name} </h3></span>
                   <p>Points: {user.userPoints}</p>
+=======
+                  <span><img className='circle responsive-img' style={{float:'left'}} src={user.avatar_url}/></span>
+                  <span className='title'><h3>{index}. {user.name} </h3></span>
+                  <div style={{width:'30px'}}><SporkSvg/>Points: {user.userPoints}</div>
+>>>>>>> 222b604c3a6ade7bdd338adcdfbc8ee8e99bf653
                 </li>
               )
             })

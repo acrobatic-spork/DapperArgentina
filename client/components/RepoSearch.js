@@ -8,9 +8,8 @@ class RepoSearch extends React.Component {
 
     this.state = {
       searchText: null,
-      //default to Javascript for search
-      currentLanguage: 'Javascript',
-      languages: [],
+      currentLanguage: 'All',
+      languages: ['All', 'Javascript', 'CoffeeScript', 'Python', 'Java', 'Ruby', 'HTML', 'CSS'],
       sortBy:['default', 'Popularity', 'Tickets', 'Forks' ],
       currentSort: 'default'
     };
@@ -23,6 +22,9 @@ class RepoSearch extends React.Component {
   languageHandler() {
     //The way this is invoked, we have no access to event details so we grab value usingjquery
     var newLanguage = this.grabSelectedLanguageVal();
+    if(newLanguage === 'All') {
+      newLanguage = null;
+    }
     this.props.searchHandler(this.state.searchText, newLanguage);
     this.setState({
       currentLanguage: newLanguage
@@ -30,26 +32,23 @@ class RepoSearch extends React.Component {
   }
 
   setLanguages () {
-    //We should only run this once per component rendering (ie. componentDidMount)
-    //Multiple calls to material_select screws up the rendering
-    Repos.getLanguages((languages) => {
-      this.setState({
-        languages: languages
-      }, () =>  $(`.${this.languageDropDownClass}`).material_select(this.languageHandler));
-    });
+    
   }
 
   componentDidMount() {
-    // Use Materialize custom select input
-    this.setLanguages();
+    this.setState({
+      languages: this.state.languages
+    }, () =>  $(`.${this.languageDropDownClass}`).material_select(this.languageHandler));
+
     this.setSort();
   }
 
   searchHandler(e) {
-    //If it is called by someone pressing enter, we run the searchHandler provided to use
-    if (e.charCode === 13 || e.keyCode === 13) {
+    //If it is called by someone pressing enter, we run the searchHandler
+     if (e.charCode === 13 || e.keyCode === 13) {
       this.props.searchHandler(e.target.value, this.state.language);
     }
+    
     //In all cases we update our component state
     this.setState({
       searchText: e.target.value
@@ -60,7 +59,9 @@ class RepoSearch extends React.Component {
     var $selected = $(`.${this.languageDropDownClass}`).find('.selected');
     return $selected[0].innerText.trim();
   }
-
+  quickSearch(e){
+    this.props.quickSearch(e.target.value);
+  }
   setSort () {
     $('.repo-sort-dropdown').material_select(this.handleSort.bind(this));
   }
@@ -75,7 +76,6 @@ class RepoSearch extends React.Component {
     this.setState({
       currentSort: newSort
     });
-    console.log('sortField is: ', newSort);
     this.props.searchHandler(this.state.searchText, this.state.language, newSort)
   }
 
@@ -87,7 +87,7 @@ class RepoSearch extends React.Component {
   render () {
     return <div className="row">
             <div className="input-field col s6">
-              <input type="text" value={this.state.searchText} 
+              <input type="text" onKeyUp={this.quickSearch.bind(this)} value={this.state.searchText} 
                 placeholder="search here..." onChange={this.searchHandler} onKeyPress={this.searchHandler} />
             </div>
             <div className="input-field col s3">

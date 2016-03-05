@@ -188,11 +188,33 @@ pre {
       transform: rotate(720deg) scale(1, 0.75);
     }
   }
+
+    @keyframes spin2 {
+    0% {
+      transform: rotate(0deg);
+    }
+    15% {
+      transform: rotate(0deg);
+    }
+    85% {
+      transform: rotate(720deg);
+    }
+    100% {
+      transform: rotate(720deg);
+    }
+  }
   
   .anim-box img {
     position: absolute;
     animation: bounce 1s ease-in-out infinite alternate, spin 1s cubic-bezier(.25, 0, .75, 1) infinite alternate;
     height: 100px;
+  }
+
+  .small-loader {
+    height: auto;
+  }
+  .small-loader svg {
+    animation:spin2 1s cubic-bezier(.25, 0, .75, 1) infinite;
   }
 
 @media (max-width: 800px) {

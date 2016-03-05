@@ -1,5 +1,4 @@
 const React = require('react');
-const Auth = require('../js/auth');
 const getUsers = require('../js/users').getUsers;
 const UserEntry = require('./UserEntry');
 const UserNav = require('./UserNav');
