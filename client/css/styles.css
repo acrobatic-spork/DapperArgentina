@@ -1,5 +1,5 @@
-html {
-  /*background-color: #e0e0e0;*/
+html, body {
+  font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
 }
 a.cyan-text:hover {
   color:#AAA !important;
@@ -64,6 +64,10 @@ li {
 
 .nav-logo {
   font-size: 2.1rem;
+}
+
+.nav-logo span {
+  vertical-align: top;
 }
 .user-issue > div {
   margin: 0.5em auto;
@@ -232,7 +236,7 @@ pre {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 992px) {
   .nav-logo {
     float: right;
   }
