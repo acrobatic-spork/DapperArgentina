@@ -13,9 +13,8 @@
       } else {
         var addClass = 'octicon octicon-mark-github';
       }
-      console.log('addClass', addClass);
       for (var i = 0; i < num; i++) {
-        result.push(<span className={addClass} style={{color: color}}></span>);
+        result.push(<span className={addClass} style={{color: color}} key={i}></span>);
       }
       return result;
     }
