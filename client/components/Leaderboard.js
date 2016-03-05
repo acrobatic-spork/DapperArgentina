@@ -61,8 +61,8 @@ const Leaderboard = class Leaderboard extends React.Component {
                       <hr></hr>
                       <span className='title'><h3>{user.name}</h3></span>
                     </div>
-                    <div className='col s7 center-align valign' style={{'max-width': '200px'}}>
-                      <img className='circle responsive-img' src={user.avatar_url}/>
+                    <div className='center-align col s7 valign' style={{'max-width': '200px'}}>
+                      <img className='center-align circle responsive-img' src={user.avatar_url}/>
                     </div>
                   </div>
                   <div className='center-align col s3' style={{'border': '1px solid grey'}}>

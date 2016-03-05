@@ -23,7 +23,7 @@
       return (
         <div>
           <div className="col s12 left-align" style={{'marginBottom': '10px'}}>
-            <span className="col s1 center-align mega-octicon octicon-git-branch blue-grey-text"></span>
+            <span className="col s1 center-align mega-octicon octicon-repo-forked blue-grey-text"></span>
             <span className="col s11 fork-sporks">{this.showSporks(this.props.user.num_forks, '#965A38', this.props.size)}</span>
           </div>
           <div className="col s12 left-align" style={{'marginBottom': '10px'}}>
