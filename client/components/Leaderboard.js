@@ -58,6 +58,7 @@ const Leaderboard = class Leaderboard extends React.Component {
                   <span className='title'><h3>{index}. {user.name} </h3></span>
                   <div style={{width:'30px'}}><SporkSvg/>Points: {user.userPoints}</div>
 
+
                 </li>
               )
             })
