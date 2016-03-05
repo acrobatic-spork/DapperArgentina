@@ -27,7 +27,7 @@ class UserInfo extends React.Component {
             <span className="white-text text-darken-1 col s4 center-align">Pulls: {this.props.num_pulls || 0}</span>
             <span className="white-text text-darken-1 col s4 center-align">Merges: {this.props.num_merges  || 0}</span>
           </div>
-          <SporkBar user={this.props}/>
+          <SporkBar user={this.props} size='large'/>
         </div>
         <div className="col s12">
           <h4 className="center-align grey-text text-darken-2">Your sporked repos</h4>  
