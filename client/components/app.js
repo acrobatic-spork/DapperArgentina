@@ -39,7 +39,7 @@ class App extends React.Component {
       userRepos: null,
       forks: 0,
       pulls: 0,
-      merges: 0
+      merges: 0,
     };
   }
 
@@ -109,7 +109,8 @@ class App extends React.Component {
         num_forks: this.state.forks,
         num_pulls: this.state.pulls,
         num_merges: this.state.merges,
-        refreshUserInfo: this.refreshUserInfo.bind(this)
+        refreshUserInfo: this.refreshUserInfo.bind(this),
+        searchLanguages: ['All', 'Javascript', 'CoffeeScript', 'Python', 'Java', 'Ruby', 'HTML', 'CSS'],
         // ...this.props 
       });
     });
