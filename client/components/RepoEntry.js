@@ -54,7 +54,7 @@ class RepoEntry extends React.Component {
                 <div className="row">
                   <strong className="left-align col s3"><span className="octicon octicon-history"></span> updated <TimeAgo date={this.props.data.updated_at} /></strong>
                   <strong className="center col s3"><span className="octicon octicon-issue-opened"></span> Issues {this.props.data.beginner_tickets}</strong>
-                  <strong className="center col s3"><span className="octicon octicon-git-branch"></span> Forks {this.props.data.forks}</strong>
+                  <strong className="center col s3"><span className="octicon octicon-repo-forked"></span> Forks {this.props.data.forks}</strong>
                 </div>
                 <div className="row">
                   <strong className="left-align col s3"><a className="cyan-text lighten-2" href={"http://www.github.com/" + this.props.data.org_name} target="_blank">{this.props.data.org_name}</a></strong>

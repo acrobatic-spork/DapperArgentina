@@ -24,7 +24,7 @@
               <span className="white-text text-darken-1 col s4 center-align">Merges: {this.props.user.merges  || 0}</span>
             </div>
             <div className="col s12 left-align" style={{'margin-bottom': '10px'}}>
-              <span className="col s1 center-align mega-octicon octicon-git-branch blue-grey-text"></span>
+              <span className="col s1 center-align mega-octicon octicon-repo-forked blue-grey-text"></span>
               <span className="col s11 fork-sporks">{this.showSporks(this.props.user.forks, '#965A38')}</span>
 
             </div>
