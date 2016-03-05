@@ -23,7 +23,7 @@ const TicketEntry = (props) => (
             <div className="col s2">  
               {props.data.labels.map(function(label, index) {
                 return (
-                  <div className="chip white-text" style={{'backgroundColor': '#' + label.color, 'display': 'block'}} key={index}>
+                  <div className="chip white-text hide-on-small-only" style={{'backgroundColor': '#' + label.color, 'display': 'block'}} key={index}>
                     {label.name}
                   </div>
                 )
