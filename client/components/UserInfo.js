@@ -49,7 +49,7 @@ class UserInfo extends React.Component {
           </div>
         </div>
         <div className="col s12">        
-         <UserRepoList repos={this.props.userRepos} username={this.props.username} />
+         <UserRepoList repos={this.props.userRepos} username={this.props.username} refreshUserInfo={this.props.refreshUserInfo}/>
         </div>
       </div>
     );
