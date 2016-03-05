@@ -1,4 +1,3 @@
-const Route = require('react-router').Route;
 const Link = require('react-router').Link;
 const React = require('react');
 
