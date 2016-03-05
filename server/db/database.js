@@ -105,9 +105,8 @@ var UserIssues = db.define( 'user_issues', {
   issue_id: {type: Sequelize.INTEGER, allowNull: false},
   repo_id: {type:Sequelize.INTEGER, allowNull: false},
   user_id: {type: Sequelize.INTEGER, references: {model: User, key: 'id'}},
-  forked_repo_id:{type: Sequelize.INTEGER, allowNull: true}
-}
-);
+  forked_repo_id:{type: Sequelize.INTEGER, allowNull: true},
+});
 
 var UserForks = db.define( 'user_forks', {
   internal_id: {
@@ -118,8 +117,11 @@ var UserForks = db.define( 'user_forks', {
   username: Sequelize.STRING(50), 
   parent_url: Sequelize.STRING,
   parent_repo_id: Sequelize.STRING,
-  fork_url: Sequelize.STRING
-})
+  fork_url: { 
+    type: Sequelize.STRING,
+    unique: true
+   }
+});
   // user_id: {type: Sequelize.INTEGER, references: {model: Users, key: 'id'}},
   // room_id: {type: Sequelize.INTEGER, references: {model: Rooms, key: 'id'}},
 
