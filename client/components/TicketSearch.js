@@ -9,6 +9,7 @@ class TicketSearch extends React.Component {
     this.state = {
       searchText: null,
       currentLanguage: 'All',
+      languages: [],
       sortBy: ['Most Recent','Oldest'],
       currentSort: 'Most Recent'
     };

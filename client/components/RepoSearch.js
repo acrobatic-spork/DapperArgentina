@@ -9,6 +9,7 @@ class RepoSearch extends React.Component {
     this.state = {
       searchText: null,
       currentLanguage: 'All',
+      languages: [],
       sortBy:['default', 'Popularity', 'Tickets', 'Forks' ],
       currentSort: 'default'
     };
