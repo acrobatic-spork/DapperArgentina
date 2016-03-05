@@ -3,7 +3,8 @@ const Link = require('react-router').Link;
 const TimeAgo = require('../../node_modules/react-timeago/timeago');
 const UserIssueEntry = require('./UserIssueEntry');
 const Repos = require('../js/repos');
-const Issues = require('../js/issues'); 
+const Issues = require('../js/issues');
+const ConfirmDelete = require('./ConfirmDelete'); 
 
 class UserRepoEntry extends React.Component {
   constructor (props) {
@@ -11,7 +12,8 @@ class UserRepoEntry extends React.Component {
 
     this.state = {
       repoToRender: {},
-      issues: []
+      issues: [],
+      showConfirm: false
     };
 
     this.getRepo = this.getRepo.bind(this);
@@ -27,9 +29,28 @@ class UserRepoEntry extends React.Component {
     });
   }
 
-  deleteRepo(e) {
+  handleClick (e) {
     e.preventDefault();
+    this.setState({
+      showConfirm: true
+    });
   }
+
+  openConfirm () {
+    this.setState({
+      showConfirm: true
+    });
+  }
+
+  closeConfirm () {
+    this.setState({
+      showConfirm: false
+    });
+  }
+
+  // deleteRepo(e) {
+  //   e.preventDefault();
+  // }
 
   getRepo(id) {
     var that = this;
@@ -40,12 +61,13 @@ class UserRepoEntry extends React.Component {
   render() {
     return (
     <div className="row">
+      <ConfirmDelete isShowing={this.state.showConfirm} openModel={this.openConfirm.bind(this)} closeModal={this.closeConfirm.bind(this)} data={this.props.data} username={this.props.username}/>
         <div className="col s12">
           <div className="card white">
             <div className="card-content" >
               <span className="card-title">
                 <Link className="left cyan-text lighten-2" to={`/repoProfile/${this.state.repoToRender.id}`}>{this.state.repoToRender.name}</Link>
-                <a href="#" onClick={this.deleteRepo.bind(this)} className="right delete-icon"><i className="material-icons">delete</i></a>
+                <a href="#" onClick={this.handleClick.bind(this)} className="right delete-icon"><i className="material-icons">delete</i></a>
               </span>
               <div className="row">
                 <p className="left-align grey-text lighten-2 col s12">{this.state.repoToRender.description}</p>
