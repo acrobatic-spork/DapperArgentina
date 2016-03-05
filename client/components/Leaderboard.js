@@ -5,6 +5,7 @@ const UserEntry = require('./UserEntry');
 const UserNav = require('./UserNav');
 const {browserHistory} = require('react-router');
 const navLinks = require('./NavLinks');
+
 const SporkSvg = require('./SporkSvg')
 
 const Leaderboard = class Leaderboard extends React.Component {
@@ -56,6 +57,7 @@ const Leaderboard = class Leaderboard extends React.Component {
                   <span><img className='circle responsive-img' style={{float:'left'}} src={user.avatar_url}/></span>
                   <span className='title'><h3>{index}. {user.name} </h3></span>
                   <div style={{width:'30px'}}><SporkSvg/>Points: {user.userPoints}</div>
+
                 </li>
               )
             })
