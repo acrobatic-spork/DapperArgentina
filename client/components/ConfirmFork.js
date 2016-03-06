@@ -18,7 +18,7 @@ const ForkInstructions = (props) => (
     </li>
     <li className="collection-item">
       <div className="row">
-      <h5><Link className="left cyan-text" to="/resources"><i className="material-icons">stars</i>Follow the next steps and best practices in our guide</Link></h5>
+      <h5><Link className="left indigo-text text-darken-4" to="/resources"><i className="material-icons">stars</i>Follow the next steps and best practices in our guide</Link></h5>
       </div>
     </li>
   </ul>
@@ -71,9 +71,9 @@ class ConfirmFork extends React.Component {
               <h4>You're about to fork a repo!</h4>,
               <div>this will make a fork on your GitHub account for you to start hacking on</div>
             ]}
-            <a className={"btn cyan" + (this.state.isForked ? " disabled" : "")} onClick={this.handleFork.bind(this)}><i className="octicon octicon-git-forked"></i>{this.state.isForked ? "Forked!" : "Fork It!"}</a>
+            <a className={"btn indigo darken-4" + (this.state.isForked ? " disabled" : "")} onClick={this.handleFork.bind(this)}><i className="octicon octicon-git-forked"></i>{this.state.isForked ? "Forked!" : "Fork It!"}</a>
             {this.state.isForked && [
-              <span className="cyan-text inline-title">Okay, now what?</span>,
+              <span className="indigo-text text-darken-2 inline-title">Okay, now what?</span>,
               <ForkInstructions data={this.props.data} forkInfo={this.state.forkInfo} />
               ]}
               {this.state.loading && <SmallLoader style={{width:"2.5em", "margin-top":"1em", position:"absolute", right:"1.5em", bottom:"1em"}}/> }

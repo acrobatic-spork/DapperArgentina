@@ -101,7 +101,7 @@ li {
 }
 .fork-button, .fork-button span::before {
   display: block;
-  color :#64dd17;
+  color : #00e676;
 
 }
 
@@ -111,7 +111,7 @@ li {
 }
 
 .fork-button:hover, .fork-button:hover span::before {
-  color: #b2ff59;
+  color: #69f0ae;
 }
 .fork-button:hover, .fork-button:hover span::before, .delete-icon:hover {
   text-shadow: 0 8px 17px rgba(0, 0, 0, 0.2);

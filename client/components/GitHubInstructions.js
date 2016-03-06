@@ -23,8 +23,8 @@ const GitInstruct = (props) => (
           Congratulations, you're contributing to the open source community!</p>
         </div>
         <div className="card-action">
-          <a className="cyan-text lighten-2 cyan-text lighten-2" href="https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/">Detailed Instruction</a>
-          <a className="cyan-text lighten-2 cyan-text lighten-2" href="https://guides.github.com/activities/contributing-to-open-source/">GitHub Guide</a>
+          <a className="indigo-text text-darken-4" href="https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/">Detailed Instruction</a>
+          <a className="indigo-text text-darken-4" href="https://guides.github.com/activities/contributing-to-open-source/">GitHub Guide</a>
         </div>
       </div>
     </div>

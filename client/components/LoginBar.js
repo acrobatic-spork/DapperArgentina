@@ -3,7 +3,7 @@ const OctosporkSvg = require('./OctosporkSvg');
 
 const LoginBar = (props) => (
   <header>
-  <div className="cyan lighten-2 row login-bar">
+  <div className="indigo darken-4 row login-bar">
 	  <div className="login-logo">
 		  <a href="#">
       <div style={{display:"inline-block", width:"2em"}}><OctosporkSvg /></div>

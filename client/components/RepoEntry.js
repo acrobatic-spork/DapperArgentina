@@ -42,7 +42,7 @@ class RepoEntry extends React.Component {
                 <div className="row">
                 <div className="col s10">
                 <span className="card-title">
-                  <Link className="left cyan-text lighten-2" to={`/repoProfile/${this.props.data.id}`}>{this.props.data.name}
+                  <Link className="left indigo-text text-darken-4" to={`/repoProfile/${this.props.data.id}`}>{this.props.data.name}
                   </Link>
                 </span>
                   <p className="left-align grey-text col s12">{this.props.data.description}</p>
@@ -57,8 +57,8 @@ class RepoEntry extends React.Component {
                   <strong className="center col s3"><span className="octicon octicon-repo-forked"></span> Forks {this.props.data.forks}</strong>
                 </div>
                 <div className="row">
-                  <strong className="left-align col s3"><a className="cyan-text lighten-2" href={"http://www.github.com/" + this.props.data.org_name} target="_blank">{this.props.data.org_name}</a></strong>
-                  <strong className="center col s3" ><a className="cyan-text lighten-2" href={this.props.data.html_url} target="_blank">Repo on Github</a></strong>
+                  <strong className="left-align col s3"><a className="indigo-text text-darken-4" href={"http://www.github.com/" + this.props.data.org_name} target="_blank">{this.props.data.org_name}</a></strong>
+                  <strong className="center col s3" ><a className="indigo-text text-darken-4" href={this.props.data.html_url} target="_blank">Repo on Github</a></strong>
                   <strong className="center col s3">{this.props.data.language || 'not specified'}</strong>
                 </div>
             </div>

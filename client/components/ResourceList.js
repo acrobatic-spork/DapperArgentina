@@ -27,7 +27,7 @@ class ResourceList extends React.Component {
           </blockquote>
           <ul className="collapsible popout" data-collapsible="accordion">
             <li>
-              <div className="collapsible-header active"><i className="material-icons">stars</i><strong>How to Play</strong></div>
+              <div className="collapsible-header"><i className="material-icons">stars</i><strong>How to Play</strong></div>
                 <div className="collapsible-body"><GitInstruct /></div>
             </li>
             <li>
