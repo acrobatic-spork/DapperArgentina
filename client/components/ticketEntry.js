@@ -10,7 +10,7 @@ const TicketEntry = (props) => (
           <div className="row">
             <div className="col s10">
               <div className="row">
-                <span className="card-title activator col s12"><a className="cyan-text lighten-2" href={props.data.html_url} target="_blank">{props.data.title}</a></span>
+                <span className="card-title col s12"><a className="cyan-text lighten-2" href={props.data.html_url} target="_blank">{props.data.title}</a></span>
               </div>
               <div className="row">
                 <p className="col s6"><span className="octicon octicon-calendar ticket-icon"></span><TimeAgo date={props.data.created_at} />
