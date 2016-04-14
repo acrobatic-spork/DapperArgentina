@@ -40,19 +40,17 @@ class App extends React.Component {
       forks: 0,
       pulls: 0,
       merges: 0,
-      searchLanguages: ['All', 'Javascript', 'CoffeeScript', 'Python', 'Java', 'Ruby', 'HTML', 'CSS']
+      searchLanguages: ['All Languages', 'Javascript', 'CoffeeScript', 'Python', 'Java', 'Ruby', 'C++', 'HTML', 'CSS']
     };
   }
 
   componentWillMount(){
-    console.log('component mounted: ', Auth.getUserId());
     if(Auth.isLoggedIn()){
      var userId = Auth.getUserId();
       this.setState({
         userId: userId,
         isLoggedIn: true
       });
-      console.log('user id ', userId);
       this.getUserInfo(userId);
     }
   }
@@ -82,7 +80,6 @@ class App extends React.Component {
         merges: data.num_merges
       });
       self.getForks(data.username);
-      console.log('success callback, data:', data);
     }, function(error) {
       console.error("Problem getting user data!");
     },
