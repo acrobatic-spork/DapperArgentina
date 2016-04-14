@@ -16,7 +16,7 @@ const TicketEntry = (props) => (
                 <p className="col s6"><span className="octicon octicon-calendar ticket-icon"></span><TimeAgo date={props.data.created_at} />
                 <span className="octicon octicon-repo ticket-icon"></span> <Link className="cyan-text lighten-2" to={`/repoProfile/${props.data.repo_id}`}>{props.data.org_name}/{props.data.repo_name}
                 </Link></p>
-                <i className="material-icons center activator col s1">info_outline</i>
+                <i className="material-icons activator center col s1 clickable">info_outline</i>
                 <p className="right-align right col s5">{props.data.language}</p>
               </div>
             </div>
