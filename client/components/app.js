@@ -8,19 +8,16 @@ const forkUtil = require('../js/fork');
 
 const linksList = [
   {
-    name: "Home", url: '/'
+    name: 'Issues', url: '/issues'
   },
   {
-    name: "Issues", url: '/issues'
-  },
-  {
-    name: "Repos", url: '/repos'
+    name: 'Repos', url: '/repos'
   }, 
   {
-    name: "Add Friends", url: '/users'
+    name: 'Add Friends', url: '/users'
   },
   {
-    name: "Getting Started", url: '/resources'
+    name: 'Getting Started', url: '/resources'
   }
 ];
 
@@ -44,9 +41,9 @@ class App extends React.Component {
     };
   }
 
-  componentWillMount(){
-    if(Auth.isLoggedIn()){
-     var userId = Auth.getUserId();
+  componentWillMount() {
+    if (Auth.isLoggedIn()) {
+      var userId = Auth.getUserId();
       this.setState({
         userId: userId,
         isLoggedIn: true
@@ -65,7 +62,7 @@ class App extends React.Component {
     }.bind(this), console.error, username);
   }
 
-  getUserInfo(userId){
+  getUserInfo(userId) {
     // Get the user's information
     var self = this;
 
@@ -81,7 +78,7 @@ class App extends React.Component {
       });
       self.getForks(data.username);
     }, function(error) {
-      console.error("Problem getting user data!");
+      console.error('Problem getting user data!');
     },
     userId);
   }
@@ -115,8 +112,8 @@ class App extends React.Component {
     return (
     <div className='app-shell' >
     {this.state.isLoggedIn ? <NavBar links={linksList} /> : <LoginBar /> }
-      <div className="row">
-        <div className="main container">
+      <div className='row'>
+        <div className='main container'>
           {this.state.isLoggedIn ? childrenWithProps : <TicketList searchLanguages={this.state.searchLanguages}/> }
         </div>
       </div>
@@ -124,5 +121,6 @@ class App extends React.Component {
     );
   }
 
-};
+}
+
 module.exports = App;

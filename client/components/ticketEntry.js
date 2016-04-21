@@ -3,8 +3,6 @@ const TimeAgo = require('../../node_modules/react-timeago/timeago');
 const Link = require('react-router').Link;
 
 const TicketEntry = (props) => (
-  <div className="row">
-    <div className="col s12 m12">
       <div className="card white">
         <div className="card-content black-text" >
           <div className="row">
@@ -26,7 +24,7 @@ const TicketEntry = (props) => (
                   <div className="chip white-text hide-on-small-only" style={{'backgroundColor': '#' + label.color, 'display': 'block'}} key={index}>
                     {label.name}
                   </div>
-                )
+                );
               })}
             </div>
           </div>
@@ -36,8 +34,6 @@ const TicketEntry = (props) => (
         <p>{props.data.body}</p>
       </div>
       </div>
-    </div>
-  </div>
 );
 
 module.exports = TicketEntry;
