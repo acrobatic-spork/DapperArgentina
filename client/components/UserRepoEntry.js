@@ -27,7 +27,7 @@ class UserRepoEntry extends React.Component {
 
   componentDidMount () {
     $('.collapsible').collapsible({
-      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+      accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
   }
 
@@ -51,7 +51,7 @@ class UserRepoEntry extends React.Component {
   }
 
   getRepo(id) {
-    Repos.getRepoById(id, (data) => this.setState({repoToRender: data, loading:false}));
+    Repos.getRepoById(id, (data) => this.setState({repoToRender: data, loading: false}));
     Issues.getIssuesByRepoId(id, (data) => this.setState({issues: data}));
   }
 

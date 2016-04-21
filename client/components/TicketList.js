@@ -16,43 +16,30 @@ class TicketList extends React.Component {
     this.getIssues = this.getIssues.bind(this);
   }
   
-  getIssues(searchTerm, language, filterBy){
+  getIssues(searchTerm, language) {
     //Fetch issues;
     var self = this;
 
     Issues.getIssues(function(data) {
-      if(filterBy){
-        switch(filterBy){
-          case 'Most Recent':
-              self.setState({currentSort:'Most Recent'})
-              data = data.reverse()
-              break;
-          case 'Oldest':
-          if(self.state.currentSort === 'Oldest') break;
-            data = data.reverse();
-            self.setState({currentSort: 'Oldest'})
-            break;
-        }
-      }
       self.setState({
         numberOfTickets: data.length,
-        ticketsToRender: data.slice(0,199)
+        ticketsToRender: data.slice(0, 199)
       });
     }, console.log, searchTerm, language);
   }
 
-  quickSearch(searchTerm){
-    if(searchTerm){
+  quickSearch(searchTerm) {
+    if (searchTerm) {
       var issues = this.state.ticketsToRender.filter((issue)=> {
         return ( (issue.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) ||
                           (issue.org_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) ||
                             (issue.repo_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)
                         ); 
-      })
-    this.setState({
-      ticketsToRender: issues,
-      numberOfTickets: issues.length
-    });
+      });
+      this.setState({
+        ticketsToRender: issues,
+        numberOfTickets: issues.length
+      });
     } else {
       this.getIssues();
     }
