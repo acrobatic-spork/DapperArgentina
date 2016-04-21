@@ -8,10 +8,10 @@ class RepoSearch extends React.Component {
 
     this.state = {
       searchText: null,
-      currentLanguage: 'All',
+      currentLanguage: 'All Languages',
       languages: [],
-      sortBy:['default', 'Popularity', 'Tickets', 'Forks' ],
-      currentSort: 'default'
+      sortBy: ['Popularity', 'Tickets', 'Forks' ],
+      currentSort: 'Popularity'
     };
     
     this.searchHandler = this.searchHandler.bind(this);
@@ -22,7 +22,7 @@ class RepoSearch extends React.Component {
   languageHandler() {
     //The way this is invoked, we have no access to event details so we grab value usingjquery
     var newLanguage = this.grabSelectedLanguageVal();
-    if(newLanguage === 'All') {
+    if (newLanguage === 'All Languages') {
       newLanguage = null;
     }
     this.props.searchHandler(this.state.searchText, newLanguage);
@@ -41,7 +41,7 @@ class RepoSearch extends React.Component {
 
   searchHandler(e) {
     //If it is called by someone pressing enter, we run the searchHandler
-     if (e.charCode === 13 || e.keyCode === 13) {
+    if (e.charCode === 13 || e.keyCode === 13) {
       this.props.searchHandler(e.target.value, this.state.language);
     }
     
@@ -55,7 +55,7 @@ class RepoSearch extends React.Component {
     var $selected = $(`.${this.languageDropDownClass}`).find('.selected');
     return $selected[0].innerText.trim();
   }
-  quickSearch(e){
+  quickSearch(e) {
     this.props.quickSearch(e.target.value);
   }
   setSort () {
@@ -67,16 +67,16 @@ class RepoSearch extends React.Component {
     return $selected[0].innerText.trim();
   }
 
-  handleSort(e){
+  handleSort(e) {
     var newSort = this.grabSelectedSortField();
     this.setState({
       currentSort: newSort
     });
-    var lang = this.state.currentLanguage === 'All' ? null : this.state.currentLanguage;
-    this.props.searchHandler(this.state.searchText, lang, newSort)
+    var lang = this.state.currentLanguage === 'All Languages' ? null : this.state.currentLanguage;
+    this.props.searchHandler(this.state.searchText, lang, newSort);
   }
 
-  dummy (){
+  dummy () {
     //this doesn't actually get called because onChange doesn't work w/ the materialize select.
     //we just feed it in so React doesn't throw any errors
   }

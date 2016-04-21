@@ -10,7 +10,7 @@ class TicketSearch extends React.Component {
       searchText: null,
       currentLanguage: 'All Languages',
       languages: [],
-      sortBy: ['Most Recent','Oldest'],
+      sortBy: ['Most Recent', 'Oldest'],
       currentSort: 'Most Recent'
     };
     
@@ -22,7 +22,7 @@ class TicketSearch extends React.Component {
   languageHandler() {
     //The way this is invoked, we have no access to event details so we grab value usingjquery
     var newLanguage = this.grabSelectedLanguageVal();
-    if(newLanguage === 'All') {
+    if (newLanguage === 'All Languages') {
       newLanguage = null;
     }
     this.props.searchHandler(this.state.searchText, newLanguage);
@@ -31,18 +31,18 @@ class TicketSearch extends React.Component {
     });
   }
   
-  componentDidMount(){ 
+  componentDidMount() { 
     // Use Materialize custom select input
    //$(`.${this.languageDropDownClass}`).material_select(this.languageHandler);
     this.setState({
-        languages: this.props.searchLanguages
-      }, () =>  $(`.${this.languageDropDownClass}`).material_select(this.languageHandler));
+      languages: this.props.searchLanguages
+    }, () => $(`.${this.languageDropDownClass}`).material_select(this.languageHandler));
     this.setSort();
   }
   
   searchHandler(e) {
     //If it is called by someone pressing enter, we run the searchHandler provided to use
-       if (e.charCode === 13 || e.keyCode === 13) {
+    if (e.charCode === 13 || e.keyCode === 13) {
       this.props.searchHandler(e.target.value, this.state.currentLanguage);
     }
 
@@ -52,7 +52,7 @@ class TicketSearch extends React.Component {
     });
   }
   
-  quickSearch(e){
+  quickSearch(e) {
     this.props.quickSearch(e.target.value);
   }
   
