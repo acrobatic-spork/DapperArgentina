@@ -4,7 +4,7 @@ const Link = require('react-router').Link;
 const ConfirmFork = require('./ConfirmFork');
 const SporkButton = require('./SporkButton');
 
-class TicketEntry extends React.Component {
+class IssueEntry extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -41,8 +41,8 @@ class TicketEntry extends React.Component {
               <span className="card-title ellipsis">{this.props.data.title}</span>
               <div className="row">
                 <div className="col s12">
-                  <span className="issue-section"><i className="octicon octicon-calendar ticket-icon"></i><TimeAgo date={this.props.data.created_at} /></span>
-                  <span className="issue-section"><i className="octicon octicon-repo ticket-icon"></i><Link className="cyan-text lighten-2" to={`/repoProfile/${this.props.data.repo_id}`}>{this.props.data.org_name}/{this.props.data.repo_name}
+                  <span className="issue-section"><i className="octicon octicon-calendar"></i><TimeAgo date={this.props.data.created_at} /></span>
+                  <span className="issue-section"><i className="octicon octicon-repo"></i><Link className="cyan-text lighten-2" to={`/repoProfile/${this.props.data.repo_id}`}>{this.props.data.org_name}/{this.props.data.repo_name}
                   </Link></span>
                   <p className="right-align right col s5">{this.props.data.language}</p>
                 </div>
@@ -73,4 +73,4 @@ class TicketEntry extends React.Component {
   );
   }
 }
-module.exports = TicketEntry;
+module.exports = IssueEntry;

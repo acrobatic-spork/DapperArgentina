@@ -1,7 +1,7 @@
 const React = require('react');
 const Repos = require('../js/repos');
 const Issues = require('../js/issues');
-const TicketEntry = require('./ticketEntry');
+const IssueEntry = require('./IssueEntry');
 const TimeAgo = require('react-timeago');
 const ConfirmFork = require('./ConfirmFork');
 const SporkButton = require('./SporkButton');
@@ -71,7 +71,7 @@ class RepoProfile extends React.Component {
                 </div>
                 <div className="row">
                   <strong className="left-align col s3"><span className="octicon octicon-history"></span> updated <TimeAgo date={this.state.repoToRender.updated_at} /></strong>
-                  <strong className="center col s3"><span className="octicon octicon-issue-opened"></span> beginner tickets {this.state.repoToRender.beginner_tickets}</strong>
+                  <strong className="center col s3"><span className="octicon octicon-issue-opened"></span> beginner issues {this.state.repoToRender.beginner_tickets}</strong>
                   <strong className="center col s3"><span className="octicon octicon-git-forked"></span> forks {this.state.repoToRender.forks}</strong>
                 </div>
                 <div className="row">
@@ -92,10 +92,10 @@ class RepoProfile extends React.Component {
           </div>
         </div>
       </div>
-      <h5>{this.state.repoToRender.beginner_tickets} beginner tickets</h5>
+      <h5>{this.state.repoToRender.beginner_tickets} beginner issues</h5>
       <div className="main-ticket-view">
           {this.state.issues.map ((ticket, index) => 
-            <TicketEntry data={ticket} key={index} />
+            <IssueEntry data={ticket} key={index} />
           )}
       </div>
     </div>

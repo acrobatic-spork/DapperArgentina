@@ -1,6 +1,6 @@
 const React = require('react');
 const TicketSearch = require('./TicketSearch');
-const TicketEntry = require('./ticketEntry');
+const IssueEntry = require('./IssueEntry');
 const Issues = require('../js/issues');
 
 class TicketList extends React.Component {
@@ -63,7 +63,7 @@ class TicketList extends React.Component {
       <h4>{this.state.numberOfTickets} Easy issues found - sorted by {this.state.currentSort.toLowerCase()}</h4>
       <div className="main-ticket-view">
           {this.state.ticketsToRender.map ((ticket, index) => (
-              <TicketEntry data={ticket} key={index} />
+              <IssueEntry data={ticket} key={index} />
             )
           )}
       </div>
