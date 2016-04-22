@@ -18,13 +18,17 @@ const ShowFriends = class ShowFriends extends React.Component {
 
   getAllFriendsList() {
     self = this;
+    var userId = Auth.getUserId();
     getFriends((data) => {
+      var friendsToRender = data.filter((user) => {
+        return user.username !== this.props.username;
+      });
       if (data.length) {
         self.setState({
-          friendsToRender: data
+          friendsToRender
         });
       }
-    }, console.log, Auth.getUserId());
+    }, console.log, userId);
   }
 
   componentDidMount() {

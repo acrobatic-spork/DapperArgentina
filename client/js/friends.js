@@ -2,7 +2,7 @@ const $ = require('jquery');
 
 const getFollowedUsers = function (successCallback, errCallback, userId) {
   var options = {
-    url: '/api/friend?user_id=' + userId, // add route to query users db for github info
+    url: '/api/friend?user_id=' + userId, 
     type: 'GET',
     success: function (data) {
       successCallback(data);
@@ -12,18 +12,16 @@ const getFollowedUsers = function (successCallback, errCallback, userId) {
       errCallback(error);
     }
   };
-
   $.ajax(options);  
 };
 
 const followUser = function (successCallback, errCallback, userId, friendId) {
-  console.log('the stuff sent: ' + userId + ' ' + friendId);
   var toSend = {
     userId,
     friendId
   };
   var options = {
-    url: '/api/friend', // add route to query users db for github info
+    url: '/api/friend', 
     type: 'POST',
     contentType: 'application/json; charset=utf-8',
     data: JSON.stringify(toSend),

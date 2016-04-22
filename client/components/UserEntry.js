@@ -16,7 +16,7 @@ class UserEntry extends React.Component {
     if (this.props.isFriend) {
       FriendUtil.unfollowUser((data) => {}, console.error, Number(Auth.getUserId()), Number(this.props.friend_id));
     } else {
-      FriendUtil.followUser(function(data) { console.log(data); }.bind(this), console.error, Number(Auth.getUserId()), Number(this.props.friend_id));
+      FriendUtil.followUser((data) => {}, console.error, Number(Auth.getUserId()), Number(this.props.friend_id));
     }
   }
 
@@ -30,9 +30,9 @@ class UserEntry extends React.Component {
 
   friendButton () {
     if (this.props.isFriend) {
-      return 'btn-floating btn-large waves-effect waves-light blue center-align';
+      return 'btn-floating btn-large waves-effect waves-light center-align blue';
     } else {
-      return 'btn-floating btn-large waves-effect waves-light red center-align';
+      return 'btn-floating btn-large waves-effect waves-light center-align red';
     }
   }
 
