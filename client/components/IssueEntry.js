@@ -7,6 +7,10 @@ const SporkButton = require('./SporkButton');
 class IssueEntry extends React.Component {
   constructor (props) {
     super(props);
+    // set repo name for fork confirm component
+    if (this.props.data) {
+      this.props.data.name = this.props.data.repo_name;
+    }
     this.state = {
       showConfirm: false
     };
@@ -60,7 +64,7 @@ class IssueEntry extends React.Component {
             </div>
             <div className="issue-icons col s12 m1 right center-align">
               <div className="action-icon row"><i className="material-icons activator clickable center">info_outline</i></div>
-              <div className="action-icon row"><a href="#" onClick={this.handleClick} title="Spork this Repo"><i className="octicon octicon-repo-forked clickable"></i></a></div>
+              <div className="action-icon row"><a href="#" onClick={this.handleClick.bind(this)} title="Spork this Repo"><i className="octicon octicon-repo-forked clickable"></i></a></div>
               <div className="action-icon row"><a href={this.props.data.html_url} target="_blank" title="View issue on GitHub"><i className="octicon octicon-mark-github clickable"></i></a></div>
             </div>
           </div>
