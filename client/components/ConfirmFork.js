@@ -76,7 +76,7 @@ class ConfirmFork extends React.Component {
               <span className="indigo-text text-darken-2 inline-title">Okay, now what?</span>,
               <ForkInstructions data={this.props.data} forkInfo={this.state.forkInfo} />
               ]}
-              {this.state.loading && <SmallLoader style={{width:"2.5em", "margin-top":"1em", position:"absolute", right:"1.5em", bottom:"1em"}}/> }
+              {this.state.loading && <SmallLoader style={{width:"2.5em", "marginTop":"1em", position:"absolute", right:"1.5em", bottom:"1em"}}/> }
           </ModalDialog>
         </ModalContainer>
       }
