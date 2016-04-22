@@ -8,7 +8,7 @@ const getFollowedUsers = function (successCallback, errCallback, userId) {
       successCallback(data);
     },
     error: function(error) {
-      console.log('error getting followed users: ', error);
+      console.error('error getting followed users: ', error);
       errCallback(error);
     }
   };
@@ -29,7 +29,7 @@ const followUser = function (successCallback, errCallback, userId, friendId) {
       successCallback(data);
     },
     error: function(error) {
-      console.log('error following user:', error);
+      console.error('error following user:', error);
       errCallback(error);
     }
   }; 
@@ -50,7 +50,7 @@ const unfollowUser = (successCallback, errCallback, userId, friendId) => {
       successCallback(data);
     },
     error: function(error) {
-      console.log('error following user:', error);
+      console.error('error following user:', error);
       errCallback(error);
     }
   }; 

@@ -5,27 +5,25 @@ const UserEntry = require('./UserEntry');
 const UserNav = require('./UserNav');
 const {browserHistory} = require('react-router');
 const navLinks = require('./NavLinks');
-
-const SporkSvg = require('./SporkSvg')
+const SporkSvg = require('./SporkSvg');
 
 const Leaderboard = class Leaderboard extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
       usersToRender: []
-    }
+    };
   }
 
   getAllUsersList() {
-    console.log('in getAllUsersList')
     self = this;
     getUsers((data) => {
       
-      if(data.length){
-        data = data.map((user, index) => {
-          user.userPoints = 0
-          user.userPoints += ((user.num_forks *  1) + (user.num_pulls * 5) + (user.num_merges * 10))
+      if (data.length) {
+        data = data.map((user) => {
+          user.userPoints = 0;
+          user.userPoints += ((user.num_forks) + (user.num_pulls * 5) + (user.num_merges * 10));
           return user;
         });
         data = data.sort((a, b) => b.userPoints > a.userPoints);
@@ -36,24 +34,22 @@ const Leaderboard = class Leaderboard extends React.Component {
     }, console.log);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getAllUsersList();
   }
 
   render() {
-    if(this.state.usersToRender.length === 0){
-      console.log('length 0')
+    if (this.state.usersToRender.length === 0) {
      return (<div>
               <h3>No Users in the Leaderboard</h3></div>) 
     } else {
-      console.log('about to render');
         return (
         <div>
           <UserNav links={navLinks}/>
           <ul className='collection'>
           {this.state.usersToRender.map((user, index) => {
             return (
-              <div className='card-panel'>
+              <div className='card-panel' key={index}>
                 <div className='row card-content valign-wrapper center-align'>
                   <div className='col s9'>
                     <div className='col s5 valign'>

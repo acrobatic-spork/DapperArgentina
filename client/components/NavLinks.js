@@ -5,9 +5,9 @@ module.exports =  [
     name: "Leaderboard", url: '/leaderboard'
   },
   {
-    name: "Users / Add Users", url: '/users'
+    name: "All Users", url: '/users'
   },
   {
-    name: "Friends", url: '/friends'
+    name: "Following", url: '/friends'
   }
 ];
