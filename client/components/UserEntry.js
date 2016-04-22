@@ -1,6 +1,7 @@
-const React = require('react');
-const ConfirmFriend = require('./ConfirmFriend'); 
+const React = require('react'); 
 const SporkBar = require('./SporkBar');
+const FriendUtil = require('../js/friends');
+const Auth = require('../js/auth');
 
 
 class UserEntry extends React.Component {
@@ -9,28 +10,19 @@ class UserEntry extends React.Component {
     super(props);
     this.state = {
       showConfirm: false
-    }
+    };
   }
 
   handleClick(e) {
     e.preventDefault();
-    this.openConfirm();
-  }
-
-  openConfirm () {
-    this.setState({
-      showConfirm: true
-    });
-  }
-
-  closeConfirm () {
-    this.setState({
-      showConfirm: false
-    });
+    // follow or unfollow
+    FriendUtil.followUser(function(data) {
+      console.log('Following someone');
+    }.bind(this), console.error, Number(Auth.getUserId()), Number(this.props.friend_id));
   }
 
   addBorder () {
-    if(this.props.isFriend === 'true') {
+    if (this.props.isFriend === 'true') {
       return '10px solid #ffff00'
     } else {
       return '';
@@ -38,20 +30,16 @@ class UserEntry extends React.Component {
   }
 
   friendButton () {
-    if(this.props.isFriend === 'true') {
-      return 'btn-floating btn-large waves-effect waves-light red disabled center-align'
+    if (this.props.isFriend === 'true') {
+      return 'btn-floating btn-large waves-effect waves-light red disabled center-align';
     } else {
       return 'btn-floating btn-large waves-effect waves-light red center-align';
     }
-  }
-  dummy(){
-
   }
 
   render() {
     return (
       <div>
-        <ConfirmFriend isShowing={this.state.showConfirm} closeModal={this.closeConfirm.bind(this)} friend_id={this.props.friend_id} />
         <div className='card-panel hoverable'>
           <div className='row card-content'>
             <div className='col s3 center-align'>
@@ -60,7 +48,7 @@ class UserEntry extends React.Component {
             </div>
             <div className='col s7 center-align'>
               <SporkBar user={this.props.user}/>
-              <a className={this.friendButton()} onClick={this.props.isFriend === 'false' ? this.handleClick.bind(this) : this.dummy}><i className="material-icons">supervisor_account</i></a>
+              <a className={this.friendButton()} onClick={this.handleClick.bind(this)}><i className="material-icons">supervisor_account</i></a>
             </div>
             <div className='center-align col s2' style={{'border': '1px solid grey'}}>
               <h5>Spork Score</h5>
@@ -75,4 +63,4 @@ class UserEntry extends React.Component {
   }
 }
 
-module.exports = UserEntry
+module.exports = UserEntry;
