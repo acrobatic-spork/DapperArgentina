@@ -93,10 +93,6 @@ app.use(function(req, res, next) {
 
 var port = process.env.PORT || 3000;
 
-app.get('/api', function(req, res){
-    res.send('Hello World');
-  });
-
 app.get('/api/events/:username', function(req, res) {
     Util.getUserGitHubEvents(req.params.username)
     .then((events) => {
@@ -177,7 +173,7 @@ app.get('/api/users', UserUtil.getUsers);
 
 app.post('/api/friend', FriendUtil.addFriend);
 app.get('/api/friend', FriendUtil.getFriends);
-
+app.delete('/api/friend', FriendUtil.deleteFriend);
 
 app.get('/auth/github', 
   passport.authenticate('github', {scope: ['user', 'repo']}));

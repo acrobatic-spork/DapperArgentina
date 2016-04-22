@@ -8,30 +8,29 @@ class UserEntry extends React.Component {
 
   constructor (props) {
     super(props);
-    this.state = {
-      showConfirm: false
-    };
   }
 
   handleClick(e) {
     e.preventDefault();
     // follow or unfollow
-    FriendUtil.followUser(function(data) {
-      console.log('Following someone');
-    }.bind(this), console.error, Number(Auth.getUserId()), Number(this.props.friend_id));
+    if (this.props.isFriend) {
+      FriendUtil.unfollowUser((data) => {}, console.error, Number(Auth.getUserId()), Number(this.props.friend_id));
+    } else {
+      FriendUtil.followUser(function(data) { console.log(data); }.bind(this), console.error, Number(Auth.getUserId()), Number(this.props.friend_id));
+    }
   }
 
   addBorder () {
-    if (this.props.isFriend === 'true') {
-      return '10px solid #ffff00'
+    if (this.props.isFriend) {
+      return '10px solid #00e676';
     } else {
       return '';
     }
   }
 
   friendButton () {
-    if (this.props.isFriend === 'true') {
-      return 'btn-floating btn-large waves-effect waves-light red disabled center-align';
+    if (this.props.isFriend) {
+      return 'btn-floating btn-large waves-effect waves-light blue center-align';
     } else {
       return 'btn-floating btn-large waves-effect waves-light red center-align';
     }

@@ -65,9 +65,9 @@ class ShowUsers extends React.Component {
           {this.state.usersToRender.map((user, index) => {
 
             if (user.id in this.state.friendIdObject) {
-              return (<UserEntry isFriend='true' user={user} key={index} friend_id={user.id}/>)
+              return (<UserEntry isFriend={true} user={user} key={index} friend_id={user.id}/>)
             } else {
-              return (<UserEntry isFriend='false' user={user} key={index} friend_id={user.id}/>)
+              return (<UserEntry isFriend={false} user={user} key={index} friend_id={user.id}/>)
             }
 
           })

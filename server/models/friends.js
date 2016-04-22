@@ -8,6 +8,7 @@ var Friends = db.Friends;
 var User = db.User;
 
 var addFriend = function (req, res) {
+  console.log('got to server add friend');
   Friends.create({ 
     user_id: req.body.userId, 
     friend_id: req.body.friendId 
@@ -38,7 +39,7 @@ var getFriends = function (req, res) {
 };
 
 var deleteFriend = function (req, res) {
-  
+  return Friends.destroy({ where: { user_id: req.body.userId, friend_id: req.body.friendId } });
 };
 
 module.exports = {
