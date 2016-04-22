@@ -10,7 +10,8 @@ class IssueEntry extends React.Component {
     this.state = {
       showConfirm: false
     };
-  }  
+  }
+
   handleClick (e) {
     e.preventDefault();
     this.setState({
@@ -59,13 +60,13 @@ class IssueEntry extends React.Component {
             </div>
             <div className="issue-icons col s12 m1 right center-align">
               <div className="action-icon row"><i className="material-icons activator clickable center">info_outline</i></div>
-              <div className="action-icon row"><a href="#" onClick={this.props.handleClick} title="Spork this Repo"><i className="octicon octicon-repo-forked clickable"></i></a></div>
+              <div className="action-icon row"><a href="#" onClick={this.handleClick} title="Spork this Repo"><i className="octicon octicon-repo-forked clickable"></i></a></div>
               <div className="action-icon row"><a href={this.props.data.html_url} target="_blank" title="View issue on GitHub"><i className="octicon octicon-mark-github clickable"></i></a></div>
             </div>
           </div>
       </div>
       <div className="card-reveal">
-      <div className="card-title"><span className="ellipsis grey-text text-darken-4 col s11">{this.props.data.title}</span><i className="material-icons clickable right">clear</i></div>
+        <span className="card-title"><span className="card-title ellipsis grey-text text-darken-4 col s11">{this.props.data.title}</span><i className="material-icons clickable right">clear</i></span>
         <p className="grey-text text-darken-2">{this.props.data.body}</p>
       </div>
     </div>
