@@ -1,5 +1,5 @@
 const React = require('react');
-const getFriends = require('../js/friends').getFriends;
+const getFriends = require('../js/friends').getFollowedUsers;
 const UserNav = require('./UserNav');
 const Auth = require('../js/auth');
 const navLinks = require('./NavLinks');
@@ -8,32 +8,35 @@ const SporkBar = require('./SporkBar');
 
 
 const ShowFriends = class ShowFriends extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
       friendsToRender: []
-    }
+    };
   }
 
   getAllFriendsList() {
     self = this;
+    var userId = Auth.getUserId();
     getFriends((data) => {
-      console.log('In get all friends', data)
-      if(data.length){
+      var friendsToRender = data.filter((user) => {
+        return user.username !== this.props.username;
+      });
+      if (data.length) {
         self.setState({
-          friendsToRender: data
+          friendsToRender
         });
       }
-    }, console.log, Auth.getUserId());
+    }, console.log, userId);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getAllFriendsList();
   }
 
   render() {
-    if(this.state.friendsToRender.length === 0) return (
+    if (this.state.friendsToRender.length === 0) return (
       <div>
         <UserNav links={navLinks}/>
         <h2>No friends yet. Add some friends <a href='/#/users'>here</a></h2>

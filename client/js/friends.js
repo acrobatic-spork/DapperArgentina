@@ -1,43 +1,64 @@
 const $ = require('jquery');
 
-module.exports = {};
-
-module.exports.getFriends = function (successCallback, errCallback, user_id) {
+const getFollowedUsers = function (successCallback, errCallback, userId) {
   var options = {
-    url: '/api/friend?user_id='+user_id, // add route to query users db for github info
+    url: '/api/friend?user_id=' + userId, 
     type: 'GET',
     success: function (data) {
-      console.log('getFriends client, data:', data)
-      successCallback(data)
+      successCallback(data);
     },
     error: function(error) {
-      console.log('derror in getFriends: ', error);
-      errCallback(error)
+      console.error('error getting followed users: ', error);
+      errCallback(error);
     }
   };
-
   $.ajax(options);  
 };
 
-module.exports.addFriend = function (successCallback, errCallback, user_id, friend_id) {
-  console.log('addFriend....', user_id, friend_id)
+const followUser = function (successCallback, errCallback, userId, friendId) {
   var toSend = {
-      user_id: user_id,
-      friend_id: friend_id
-    };
+    userId,
+    friendId
+  };
   var options = {
-    url: '/api/friend', // add route to query users db for github info
+    url: '/api/friend', 
     type: 'POST',
-    contentType: "application/json; charset=utf-8",
+    contentType: 'application/json; charset=utf-8',
     data: JSON.stringify(toSend),
     success: function (data) {
-      console.log('add friend:', data)
-      successCallback(data)
+      successCallback(data);
     },
     error: function(error) {
-      console.log('error in addFriends post:', error)
-      errCallback(error)
+      console.error('error following user:', error);
+      errCallback(error);
     }
   }; 
-  $.ajax(options) 
+  $.ajax(options);
+};
+
+const unfollowUser = (successCallback, errCallback, userId, friendId) => {
+  var toSend = {
+    userId,
+    friendId
+  };
+  var options = {
+    url: '/api/friend',
+    type: 'DELETE',
+    contentType: 'application/json; charset=utf-8',
+    data: JSON.stringify(toSend),
+    success: function (data) {
+      successCallback(data);
+    },
+    error: function(error) {
+      console.error('error following user:', error);
+      errCallback(error);
+    }
+  }; 
+  $.ajax(options);
+};
+
+module.exports = {
+  getFollowedUsers,
+  followUser,
+  unfollowUser
 };

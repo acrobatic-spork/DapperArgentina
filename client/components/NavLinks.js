@@ -2,12 +2,12 @@
 
 module.exports =  [
   {
-    name: "Users / Add Users", url: '/users'
-  },
-  {
-    name: "Friends", url: '/friends'
-  },
-  {
     name: "Leaderboard", url: '/leaderboard'
+  },
+  {
+    name: "All Users", url: '/users'
+  },
+  {
+    name: "Following", url: '/friends'
   }
 ];

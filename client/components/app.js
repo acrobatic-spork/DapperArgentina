@@ -14,7 +14,7 @@ const linksList = [
     name: 'Repos', url: '/repos'
   }, 
   {
-    name: 'Add Friends', url: '/users'
+    name: 'Leaderboard', url: '/users'
   },
   {
     name: 'Getting Started', url: '/resources'
