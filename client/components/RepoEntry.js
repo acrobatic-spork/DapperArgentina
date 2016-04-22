@@ -10,7 +10,7 @@ class RepoEntry extends React.Component {
 
     this.state = {
       showConfirm: false
-    }
+    };
   }
 
   handleClick (e) {
@@ -48,7 +48,7 @@ class RepoEntry extends React.Component {
                   <p className="left-align grey-text col s12">{this.props.data.description}</p>
                 </div>
                 <div className="col s2 right right-align">
-                  <SporkButton handleClick={this.handleClick.bind(this)} />
+                  <SporkButton handleClick={this.handleClick.bind(this)} mega={true} />
                 </div>
                 </div>
                 <div className="row">
@@ -57,7 +57,7 @@ class RepoEntry extends React.Component {
                   <strong className="center col s3"><span className="octicon octicon-repo-forked"></span> Forks {this.props.data.forks}</strong>
                 </div>
                 <div className="row">
-                  <strong className="left-align col s3"><a className="indigo-text text-darken-4" href={"http://www.github.com/" + this.props.data.org_name} target="_blank">{this.props.data.org_name}</a></strong>
+                  <strong className="left-align col s3"><a className="indigo-text text-darken-4" href={'http://www.github.com/' + this.props.data.org_name} target="_blank">{this.props.data.org_name}</a></strong>
                   <strong className="center col s3" ><a className="indigo-text text-darken-4" href={this.props.data.html_url} target="_blank">Repo on Github</a></strong>
                   <strong className="center col s3">{this.props.data.language || 'not specified'}</strong>
                 </div>

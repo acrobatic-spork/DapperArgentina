@@ -16,7 +16,7 @@ const LoginBar = (props) => (
 			</div>
 			<div className="tagline">
       	<li><span className="octicon octicon-rocket"></span> Contribute to Open Source Projects.</li>
-      	<li><span className="octicon octicon-rocket"></span> Earn Sporks by finding and solving outstanding issues in your favorite open source projects</li>
+      	<li><span className="octicon octicon-rocket"></span> Earn Spork points by finding and solving outstanding issues in your favorite open source projects</li>
       </div>
 			</div>
 	  </header>
