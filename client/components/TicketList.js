@@ -63,7 +63,7 @@ class TicketList extends React.Component {
       <h4>{this.state.numberOfTickets} Easy issues found - sorted by {this.state.currentSort.toLowerCase()}</h4>
       <div className="main-ticket-view">
           {this.state.ticketsToRender.map ((ticket, index) => (
-              <IssueEntry data={ticket} key={index} />
+              <IssueEntry data={ticket} username={this.props.username} refreshUserInfo={this.props.refreshUserInfo} key={index} />
             )
           )}
       </div>

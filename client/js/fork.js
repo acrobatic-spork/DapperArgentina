@@ -2,13 +2,13 @@ const $ = require('jquery');
 
 var forkRepo = function (successCallback, errCallback, owner, repo, username) {
   var options = {
-    url: '/api/fork?owner='+owner+'&repo='+repo+'&username='+username,
+    url: '/api/fork?owner=' + owner + '&repo=' + repo + '&username=' + username,
     type: 'GET',
     success: function (data) {
-      successCallback(data)
+      successCallback(data);
     },
     error: function (error) {
-      errCallback(error)
+      errCallback(error);
     }
   };
 
@@ -17,13 +17,13 @@ var forkRepo = function (successCallback, errCallback, owner, repo, username) {
 
 var getForks = function (successCallback, errCallback, username) {
   var options = {
-    url: '/api/user/forks?username='+username,
+    url: '/api/user/forks?username=' + username,
     type: 'GET',
     success: function (data) {
-      successCallback(data)
+      successCallback(data);
     },
     error: function(error) {
-      errCallback(error)
+      errCallback(error);
     }
   };
 
@@ -32,18 +32,18 @@ var getForks = function (successCallback, errCallback, username) {
 
 var deleteFork = function(successCallback, errCallback, username, repo_id) {
   var options = {
-    url: '/api/fork?username='+username+'&id='+repo_id,
+    url: '/api/fork?username=' + username + '&id=' + repo_id,
     type: 'DELETE',
     success: function() {
-      successCallback()
+      successCallback();
     },
     error: function(error) {
-      errCallback(error)
+      errCallback(error);
     }
   };
 
   $.ajax(options);
-}
+};
 
 module.exports = {
   forkRepo: forkRepo,
