@@ -31,7 +31,8 @@ passport.deserializeUser(function(obj, done) {
 //   Strategies in Passport require a `verify` function, which accept
 //   credentials (in this case, an accessToken, refreshToken, and GitHub
 //   profile), and invoke a callback with a user object.
-passport.use(new GitHubStrategy({
+passport.use(new GitHubStrategy(
+  {
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
     callbackURL: config.authCallbackUrl
@@ -48,7 +49,7 @@ passport.use(new GitHubStrategy({
           avatar_url: profile._json.avatar_url,
           access_token: accessToken,
           refresh_token: refreshToken
-        }).then(function(user){
+        }).then(function(user) {
           console.log('updated user: ', JSON.stringify(user));
           return done(null, user);
         }).catch(function(error) {
@@ -106,52 +107,52 @@ app.get('/api/events/:username', function(req, res) {
   });
 
 app.get('/api/users/:user_id', function(req, res) {
-    User.findById(req.params.user_id)
-    .then((user) => {
-      res.json(user);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.statusCode = 501;
-      res.send('Unknown Server Error');
-    });
+  User.findById(req.params.user_id)
+  .then((user) => {
+    res.json(user);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.statusCode = 501;
+    res.send('Unknown Server Error');
   });
+});
 
 app.get('/api/users/issues/:user_id', function(req, res) {
-    UserIssues.findAll({
-      where: {
-        user_id: req.params.user_id
-      }
-    })
-    .then((issues) => {
-      res.json(issues);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.statusCode = 501;
-      res.send('Unknown Server Error');
-    });
+  UserIssues.findAll({
+    where: {
+      user_id: req.params.user_id
+    }
+  })
+  .then((issues) => {
+    res.json(issues);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.statusCode = 501;
+    res.send('Unknown Server Error');
   });
+});
 
 
 app.get('/api/issues', function(req, res) {
-    Issues.getIssues()
-    .then((results) => res.send(results))
-    .catch((err) => {
-      console.log(err);
-      res.statusCode = 501;
-      res.send('Unknown Server Error');
-    });
+  Issues.getIssues()
+  .then((results) => res.send(results))
+  .catch((err) => {
+    console.log(err);
+    res.statusCode = 501;
+    res.send('Unknown Server Error');
   });
+});
 
-app.get('/api/repos', function(req, res){
-    Repos.getRepos()
-    .then((results) => res.send(results))
-    .catch(() => {
-      res.statusCode = 501;
-      res.send('Unknown Server Error');
-    });
+app.get('/api/repos', function(req, res) {
+  Repos.getRepos()
+  .then((results) => res.send(results))
+  .catch(() => {
+    res.statusCode = 501;
+    res.send('Unknown Server Error');
   });
+});
 
 app.get('/api/fork', ForkUtil.forkRepo);
 
@@ -162,15 +163,14 @@ app.get('/api/user/forks', function (req, res) {
   .then(function (results) {
     var forkedParentUrlsId = results.map(function (forkObj) {
       return [forkObj.parent_url, forkObj.parent_repo_id];
-    })
+    });
     Util.getPullRequests(req.query.username, forkedParentUrlsId, function(response) {
       res.json(response);
-    })
-  })
+    });
+  });
 });
 
 app.get('/api/users', UserUtil.getUsers);
-
 app.post('/api/friend', FriendUtil.addFriend);
 app.get('/api/friend', FriendUtil.getFriends);
 app.delete('/api/friend', FriendUtil.deleteFriend);
@@ -186,20 +186,20 @@ app.get('/auth/github/callback',
     res.redirect('/');
   });
 
-app.get('/logout', function(req, res){
+app.get('/logout', function(req, res) {
   req.session.destroy(() => {
     res.redirect('/');
   });
 });
 
- app.use(function(req, res, next) {
-    if (req.accepts('html') && req.method === 'GET') {
-      console.log("in fallback. req is " + JSON.stringify(req.accepts('html')));
-      res.sendFile(path.join(distDir, '/index.html'));
-    } else {
-      next();
-    }
-  });
+app.use(function(req, res, next) {
+  if (req.accepts('html') && req.method === 'GET') {
+    console.log('in fallback. req is ' + JSON.stringify(req.accepts('html')));
+    res.sendFile(path.join(distDir, '/index.html'));
+  } else {
+    next();
+  }
+});
 
 console.log(`server running on port ${port} in ${process.env.NODE_ENV} mode`);
 // start listening to requests on port 3000

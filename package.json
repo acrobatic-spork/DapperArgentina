@@ -68,7 +68,6 @@
     "eslint": "^2.1.0",
     "eslint-config-hackreactor": "git://github.com/hackreactor-labs/eslint-config-hackreactor",
     "eslint-plugin-react": "^3.16.1",
-    "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1"
   }
 }
