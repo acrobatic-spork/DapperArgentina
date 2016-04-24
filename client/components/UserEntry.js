@@ -10,35 +10,42 @@ class UserEntry extends React.Component {
     super(props);
 
     this.state = {
+      isFriend: null,
       imgBorder: '',
-      buttonColor: 'red'
+      buttonColor: ''
     };
   }
 
   componentDidMount() {
+    this.setState({
+      isFriend: this.props.isFriend
+    });
     if (this.props.isFriend) {
       this.setState({
         imgBorder: '10px solid #00e676',
         buttonColor: 'blue'
-      }); 
+      });
+    } else {
+      this.setState({
+        buttonColor: 'red'
+      });
     }
   }
 
   handleClick(e) {
     e.preventDefault();
-    var self = this;
-    if (this.props.isFriend) {
-      FriendUtil.unfollowUser((data) => {
-        console.log(data); 
+    if (this.state.isFriend) {
+      FriendUtil.unfollowUser(() => {
         this.setState({
+          isFriend: false,
           imgBorder: '',
           buttonColor: 'red'
         });
       }, console.error, Number(Auth.getUserId()), Number(this.props.friend_id));
     } else {
-      FriendUtil.followUser((data) => {
-        console.log(data);
+      FriendUtil.followUser(() => {
         this.setState({
+          isFriend: true,
           imgBorder: '10px solid #00e676',
           buttonColor: 'blue'
         });
@@ -69,7 +76,7 @@ class UserEntry extends React.Component {
         </div>
 
       </div>
-    )
+    );
   }
 }
 

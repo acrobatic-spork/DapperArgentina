@@ -39,7 +39,14 @@ var getFriends = function (req, res) {
 };
 
 var deleteFriend = function (req, res) {
-  return Friends.destroy({ where: { user_id: req.body.userId, friend_id: req.body.friendId } });
+  Friends.destroy({ where: { user_id: req.query.user_id, friend_id: req.query.friend_id } })
+    .then(function (data) {
+      res.json(data);
+    })
+    .catch(function (error) {
+      console.error(error);
+      res.send(error);
+    });
 };
 
 module.exports = {

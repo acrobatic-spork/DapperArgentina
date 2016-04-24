@@ -54,26 +54,25 @@ class ShowUsers extends React.Component {
   }
 
   render() {
-    if(this.state.usersToRender.length === 0){
-     return (<div>
-              <div>No Users to show</div></div>) 
+    if (this.state.usersToRender.length === 0) {
+      return (<div>No Users to show</div>);
     } else {
-        return (
+      return (
         <div>
           <UserNav links={navLinks}/>
           <div className='all-users-view'>
           {this.state.usersToRender.map((user, index) => {
 
             if (user.id in this.state.friendIdObject) {
-              return (<UserEntry isFriend={true} user={user} key={index} friend_id={user.id}/>)
+              return (<UserEntry isFriend={true} user={user} key={index} friend_id={user.id}/>);
             } else {
-              return (<UserEntry isFriend={false} user={user} key={index} friend_id={user.id}/>)
+              return (<UserEntry isFriend={false} user={user} key={index} friend_id={user.id}/>);
             }
 
           })
           }
           </div>
-      </div>)
+        </div>);
     }
   }
 }
