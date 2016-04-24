@@ -47,10 +47,11 @@ const unfollowUser = (successCallback, errCallback, userId, friendId) => {
     contentType: 'application/json; charset=utf-8',
     data: JSON.stringify(toSend),
     success: function (data) {
+      console.log('user was unfollowed');
       successCallback(data);
     },
     error: function(error) {
-      console.error('error following user:', error);
+      console.error('error unfollowing user:', error);
       errCallback(error);
     }
   }; 

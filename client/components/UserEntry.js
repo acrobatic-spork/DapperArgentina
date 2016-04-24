@@ -8,17 +8,39 @@ class UserEntry extends React.Component {
 
   constructor (props) {
     super(props);
+
+    this.state = {
+      isFriend: null
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      isFriend: this.props.isFriend
+    });
   }
 
   handleClick(e) {
     e.preventDefault();
-    // follow or unfollow
+    var self = this;
     if (this.props.isFriend) {
-      FriendUtil.unfollowUser((data) => {}, console.error, Number(Auth.getUserId()), Number(this.props.friend_id));
+      FriendUtil.unfollowUser((data) => {
+        console.log(data); 
+        this.setState({
+          isFriend: false
+        });
+      }, console.error, Number(Auth.getUserId()), Number(this.props.friend_id));
     } else {
-      FriendUtil.followUser((data) => {}, console.error, Number(Auth.getUserId()), Number(this.props.friend_id));
+      FriendUtil.followUser((data) => {
+        console.log(data);
+        this.setState({
+          isFriend: true
+        });
+      }, console.error, Number(Auth.getUserId()), Number(this.props.friend_id));
     }
   }
+
+
 
   addBorder () {
     if (this.props.isFriend) {
@@ -52,7 +74,7 @@ class UserEntry extends React.Component {
             <div className='center-align col s2' style={{'border': '1px solid grey'}}>
               <h5>Spork Score</h5>
               <hr></hr>
-              <h4>{this.props.user.num_forks+(this.props.user.num_pulls*5)+(this.props.user.num_merges*10)}</h4>
+              <h4>{this.props.user.num_forks + (this.props.user.num_pulls * 5) + (this.props.user.num_merges * 10)}</h4>
             </div>
           </div>
         </div>
@@ -61,5 +83,6 @@ class UserEntry extends React.Component {
     )
   }
 }
+
 
 module.exports = UserEntry;
