@@ -10,7 +10,7 @@ class UserEntry extends React.Component {
     super(props);
 
     this.state = {
-      isFriend: null,
+      isFriend: this.props.isFriend,
       imgBorder: '',
       buttonColor: ''
     };
