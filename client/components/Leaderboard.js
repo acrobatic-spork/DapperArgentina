@@ -40,8 +40,7 @@ const Leaderboard = class Leaderboard extends React.Component {
 
   render() {
     if (this.state.usersToRender.length === 0) {
-     return (<div>
-              <h3>No Users in the Leaderboard</h3></div>) 
+     return (<div><h3>No Users in the Leaderboard</h3></div>) 
     } else {
         return (
         <div>
@@ -57,7 +56,7 @@ const Leaderboard = class Leaderboard extends React.Component {
                       <hr></hr>
                       <span className='title'><h3>{user.name}</h3></span>
                     </div>
-                    <div className='center-align col s7 valign' style={{'max-width': '200px'}}>
+                    <div className='center-align col s7 valign' style={{'maxWidth': '200px'}}>
                       <img className='center-align circle responsive-img' src={user.avatar_url}/>
                     </div>
                   </div>

@@ -1,5 +1,5 @@
 const React = require('react');
-const Auth = require('../js/auth')
+const Auth = require('../js/auth');
 const NavEntry = require('./NavEntry');
 const OctosporkSvg = require('./OctosporkSvg');
 
@@ -17,7 +17,7 @@ const NavBar = class NavBar extends React.Component {
         <nav className="indigo darken-4" role="navigation">
           <div className="nav-wrapper container col s12 l8">
             <a className="nav-logo" href="#">
-              <div style={{display:"inline-block", width:"2em"}}><OctosporkSvg /></div>
+              <div style={{display: 'inline-block', width: '2em'}}><OctosporkSvg /></div>
               SporkHub
             </a>
             <ul className="right hide-on-med-and-down">

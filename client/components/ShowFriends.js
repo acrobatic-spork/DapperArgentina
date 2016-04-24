@@ -36,17 +36,18 @@ const ShowFriends = class ShowFriends extends React.Component {
   }
 
   render() {
-    if (this.state.friendsToRender.length === 0) return (
+    if (this.state.friendsToRender.length === 0) {
+      return (
       <div>
         <UserNav links={navLinks}/>
         <h2>No friends yet. Add some friends <a href='/#/users'>here</a></h2>
-      </div>)
-    else {
+      </div>);
+    } else {
       var FriendEntry = ({friend}) => (
         <div className='card-panel'>
           <div className='row card-content'>
             <div className='col s3 center-align'>
-              <img className='circle responsive-img' src={friend.avatar_url} width='100px'  />
+              <img className='circle responsive-img' src={friend.avatar_url} width='100px' />
               <span><h4><a href={friend.html_url}>{friend.name}</a></h4> </span>
             </div>
             <div className='col s6'>
@@ -55,24 +56,25 @@ const ShowFriends = class ShowFriends extends React.Component {
             <div className='center-align col s3' style={{'border': '1px solid grey'}}>
               <h5>Spork Score</h5>
               <hr></hr>
-              <h4>{friend.num_forks+(friend.num_pulls*5)+(friend.num_merges*10)}</h4>
+              <h4>{friend.num_forks + (friend.num_pulls * 5) + (friend.num_merges * 10)}</h4>
             </div>
           </div>
-        </div>)
+        </div> );
 
       return (
       <div>
       <UserNav links={navLinks}/>
       <div className='all-friends-view'>
-      {this.state.friendsToRender.map((friend, index) => {
-        return (<FriendEntry friend={friend} key={index}/>)
+      {
+        this.state.friendsToRender.map((friend, index) => {
+          return (<FriendEntry friend={friend} key={index} />);
         })
       }
       </div>
-      </div>)   
+      </div>);   
     }
   }
-}
+};
 
 
 module.exports = ShowFriends;

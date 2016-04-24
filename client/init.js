@@ -15,7 +15,7 @@ const ShowFriends = require('./components/ShowFriends');
 const Leaderboard = require('./components/Leaderboard');
 
 ReactDOM.render((
-  <Router history={hashHistory}>
+  <Router history={browserHistory}>
     <Route path='/' component={App}>
       <IndexRoute component={UserInfo} />
       <Route path='users' component={ShowUsers} />
