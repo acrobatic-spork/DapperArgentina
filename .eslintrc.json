@@ -21,5 +21,8 @@
     "ecmaFeatures": {
       "jsx": true
     }
+  },
+  "rules": {
+    "camelcase": 0
   }
 }

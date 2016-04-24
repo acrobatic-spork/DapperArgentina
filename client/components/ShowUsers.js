@@ -65,15 +65,12 @@ class ShowUsers extends React.Component {
           <UserNav links={navLinks}/>
           <div className='all-users-view'>
           {this.state.usersToRender.map((user, index) => {
-
             if (user.id in this.state.friendIdObject) {
               return (<UserEntry isFriend={true} user={user} key={index} friend_id={user.id}/>);
             } else {
               return (<UserEntry isFriend={false} user={user} key={index} friend_id={user.id}/>);
             }
-
-          })
-          }
+          })}
           </div>
         </div>);
     } else {

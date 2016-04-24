@@ -37,7 +37,7 @@ class IssueEntry extends React.Component {
 
   render() {
     return (
-       <div className="row">
+      <div className="row">
       <ConfirmFork isShowing={this.state.showConfirm} openModel={this.openConfirm.bind(this)} closeModal={this.closeConfirm.bind(this)} data={this.props.data} username={this.props.username} refreshUserInfo={this.props.refreshUserInfo} />
       <div className="card white">
         <div className="card-content black-text" >
@@ -56,7 +56,9 @@ class IssueEntry extends React.Component {
                 <div className="col s12">
                   {this.props.data.labels.map(function(label, index) {
                     return (
-                      <div className="chip white-text hide-on-small-only" style={{'backgroundColor': '#' + label.color}} key={index}>{label.name}</div>
+                      <div className="issue-label grey lighten-3" key={index}>
+                        {label.name} <div className="label-dot" style={{'backgroundColor': '#' + label.color}}></div>
+                      </div>
                     );
                   })}
                 </div>

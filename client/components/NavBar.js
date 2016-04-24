@@ -8,7 +8,7 @@ const NavBar = class NavBar extends React.Component {
     super(props);
   }
   componentDidMount () {
-    $('.button-collapse').sideNav();
+    $('.button-collapse').sideNav({closeOnClick: true});
   }
   
   render() {
@@ -32,6 +32,9 @@ const NavBar = class NavBar extends React.Component {
               {this.props.links.map ((link, index) => 
                 <NavEntry data={link} key={index} />
               )}
+              <li>
+                <a href='' onClick={Auth.logOut}>Log Out</a>
+              </li>
             </ul>
             <a href="#" data-activates="nav-mobile" className="button-collapse hide-on-large-only"><i className="material-icons">menu</i></a>
           </div>
