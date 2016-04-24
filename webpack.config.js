@@ -25,10 +25,14 @@ module.exports = {
     progress: true,
     colors: true,
     contentBase: 'client',
+    port: 3000,
     proxy: {
       '/api/*': {
-        target: 'http://localhost:3000',
+        target: 'http://localhost:3001',
         secure: false
+      },
+      '/auth/*': {
+        target: 'http://localhost:3001'
       }
     }
   }
