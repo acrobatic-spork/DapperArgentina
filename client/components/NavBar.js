@@ -14,7 +14,7 @@ const NavBar = class NavBar extends React.Component {
   render() {
     return (
       <div className="navbar-fixed">
-        <nav className="grey darken-4" role="navigation">
+        <nav className="indigo darken-4" role="navigation">
           <div className="nav-wrapper container col s12 l8">
             <a className="nav-logo" href="#">
               <div style={{display: 'inline-block', width: '2em'}}><OctosporkSvg /></div>

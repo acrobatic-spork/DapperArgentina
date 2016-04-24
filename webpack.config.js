@@ -18,5 +18,18 @@ module.exports = {
         }
       }
     ]
+  },
+  devServer: {
+    historyApiFallback: true,
+    devtool: 'source-map',
+    progress: true,
+    colors: true,
+    contentBase: 'client',
+    proxy: {
+      '/api/*': {
+        target: 'http://localhost:3000',
+        secure: false
+      }
+    }
   }
 };
