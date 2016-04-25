@@ -1,7 +1,7 @@
 const React = require('react');
 const Repos = require('../js/repos');
 
-class TicketSearch extends React.Component {
+class IssueSearch extends React.Component {
 
   constructor(props) {
     super(props);
@@ -93,4 +93,4 @@ class TicketSearch extends React.Component {
   }
 }
 
-module.exports = TicketSearch;
+module.exports = IssueSearch;

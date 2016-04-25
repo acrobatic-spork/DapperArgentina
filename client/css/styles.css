@@ -203,13 +203,13 @@ pre {
   
   @keyframes bounce {
     0% {
-      transform: translate(0px, 300px);
+      top: 300px;
     }
     50% {
-      transform: translate(0px, 30px);
+      top: 30px;
     }
     100% {
-      transform: translate(0px, 300px);
+      top: 300px;
     }
   }
   
