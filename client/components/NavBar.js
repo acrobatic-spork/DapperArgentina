@@ -13,10 +13,10 @@ const NavBar = class NavBar extends React.Component {
   
   render() {
     return (
-      <div className="navbar-fixed">
+      <div className="navbar-fixed" style={{zIndex: '100'}}>
         <nav className="indigo darken-4" role="navigation">
           <div className="nav-wrapper container col s12 l8">
-            <a className="nav-logo" href="#">
+            <a className="nav-logo" href="/">
               <div style={{display: 'inline-block', width: '2em'}}><OctosporkSvg /></div>
               SporkHub
             </a>

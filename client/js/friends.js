@@ -37,20 +37,15 @@ const followUser = function (successCallback, errCallback, userId, friendId) {
 };
 
 const unfollowUser = (successCallback, errCallback, userId, friendId) => {
-  var toSend = {
-    userId,
-    friendId
-  };
   var options = {
-    url: '/api/friend',
+    url: '/api/friend?user_id=' + userId + '&friend_id=' + friendId,
     type: 'DELETE',
     contentType: 'application/json; charset=utf-8',
-    data: JSON.stringify(toSend),
-    success: function (data) {
-      successCallback(data);
+    success: function () {
+      successCallback();
     },
     error: function(error) {
-      console.error('error following user:', error);
+      console.error('error unfollowing user:', error);
       errCallback(error);
     }
   }; 
