@@ -13,7 +13,7 @@ class AllUsers extends React.Component {
     super(props);
 
     this.state = {
-      usersToRender: [],
+      usersToRender: null,
       friendIdObject: {}
     };
   }
@@ -56,9 +56,12 @@ class AllUsers extends React.Component {
   }
 
   render() {
-    if (this.state.usersToRender.length === 0) {
+    if (this.state.usersToRender === null) {
+      return (<LoadingAnimation />);
+    } else if (this.state.usersToRender.length === 0) {
       return (<div>No Users to show</div>);
-    } else if (Object.keys(this.state.friendIdObject).length) {
+    } else {
+    // } else if (Object.keys(this.state.friendIdObject).length) {
       return (
         <div>
           <UserNav links={navLinks}/>
@@ -72,8 +75,6 @@ class AllUsers extends React.Component {
           })}
           </div>
         </div>);
-    } else {
-      return (<LoadingAnimation />);
     }
   }
 }
