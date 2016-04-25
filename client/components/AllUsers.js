@@ -14,15 +14,15 @@ class AllUsers extends React.Component {
 
     this.state = {
       usersToRender: null,
-      friendIdObject: null
+      friendIdObject: {},
     };
   }
 
   getAllUsersList() {
     var self = this;
-    getUsers((data) => {
-      if (data.length) {
-        var usersToRender = data.filter((user) => {
+    getUsers((allUsers) => {
+      if (allUsers.length) {
+        var usersToRender = allUsers.filter((user) => {
           return user.username !== this.props.username;
         });
         if (!Array.isArray(usersToRender)) {
@@ -38,25 +38,32 @@ class AllUsers extends React.Component {
   getFollowedUsersList() {
     var self = this;
     var friendIdObject = {};
-    getFollowedUsers((data) => {
-      if (data.length) {
-        data.forEach((friend) => {
-          friendIdObject[friend.id] = friend.id;
-        });
-        this.setState({
-          friendIdObject
-        });
-      }
-    }, console.log, Auth.getUserId());
+    return new Promise(function(resolve, reject) {
+      getFollowedUsers((data) => {
+        if (data.length) {
+          data.forEach((friend) => {
+            friendIdObject[friend.id] = friend.id;
+          });
+          self.setState({
+            friendIdObject
+          });
+        }
+        resolve(friendIdObject);
+      },
+      function(error) { reject(error); },
+      Auth.getUserId());
+    });
   }
 
   componentDidMount() {
-    this.getAllUsersList();
-    this.getFollowedUsersList();
+    this.getFollowedUsersList()
+    .then(function() {
+      this.getAllUsersList();
+    }.bind(this));
   }
 
   render() {
-    if (this.state.friendIdObject === null) {
+    if (this.state.usersToRender === null) {
       return (<LoadingAnimation />);
     } else if (this.state.usersToRender.length === 0) {
       return (<div>No Users to show</div>);
@@ -65,13 +72,13 @@ class AllUsers extends React.Component {
         <div>
           <UserNav links={navLinks}/>
           <div className='all-users-view'>
-          {this.state.usersToRender.map((user, index) => {
+          {this.state.usersToRender.map(function (user, index) {
             if (user.id in this.state.friendIdObject) {
               return (<UserEntry isFriend={true} user={user} key={index} friend_id={user.id}/>);
             } else {
               return (<UserEntry isFriend={false} user={user} key={index} friend_id={user.id}/>);
             }
-          })}
+          }.bind(this))}
           </div>
         </div>);
     }

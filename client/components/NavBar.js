@@ -13,7 +13,7 @@ const NavBar = class NavBar extends React.Component {
   
   render() {
     return (
-      <div className="navbar-fixed" style={{zIndex: '100'}}>
+      <div className="navbar-fixed">
         <nav className="indigo darken-4" role="navigation">
           <div className="nav-wrapper container col s12 l8">
             <a className="nav-logo" href="/">
