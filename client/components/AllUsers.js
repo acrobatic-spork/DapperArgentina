@@ -4,12 +4,11 @@ const UserEntry = require('./UserEntry');
 const UserNav = require('./UserNav');
 const followUser = require('../js/friends').followUser;
 const getFollowedUsers = require('../js/friends').getFollowedUsers;
-const {browserHistory} = require('react-router');
 const navLinks = require('./NavLinks');
 const Auth = require('../js/auth');
 const LoadingAnimation = require('./LoadingAnimation');
 
-class ShowUsers extends React.Component {
+class AllUsers extends React.Component {
   constructor(props) {
     super(props);
 
@@ -80,4 +79,4 @@ class ShowUsers extends React.Component {
 }
 
 
-module.exports = ShowUsers;
+module.exports = AllUsers;

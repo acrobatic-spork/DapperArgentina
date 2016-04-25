@@ -1,6 +1,11 @@
 html, body {
   font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
 }
+.cf:after {
+    content:" ";
+    display:block;
+    clear:both;
+}
 a.cyan-text:hover {
   color:#AAA !important;
 }
@@ -14,6 +19,9 @@ li {
 }
 .issue-section i {
   margin-right: 0.5em;
+}
+.language {
+  font-style: italic;
 }
 
 .main-ticket-view {
@@ -88,7 +96,7 @@ li {
   height:2em;
   border-radius: 1em;
   padding: 0.25em 0.5em;
-  margin-right:0.25em;
+  margin:0 0.25em 0.25em 0;
 }
 .label-dot {
   display: inline-block;
