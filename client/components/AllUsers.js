@@ -14,7 +14,7 @@ class AllUsers extends React.Component {
 
     this.state = {
       usersToRender: null,
-      friendIdObject: {}
+      friendIdObject: null
     };
   }
 
@@ -56,7 +56,7 @@ class AllUsers extends React.Component {
   }
 
   render() {
-    if (this.state.usersToRender === null) {
+    if (this.state.friendIdObject === null) {
       return (<LoadingAnimation />);
     } else if (this.state.usersToRender.length === 0) {
       return (<div>No Users to show</div>);
