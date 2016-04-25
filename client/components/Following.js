@@ -25,7 +25,7 @@ const FriendEntry = (props) => (
   </div> 
 );
 
-class ShowFriends extends React.Component {
+class Following extends React.Component {
   constructor (props) {
     super(props);
 
@@ -70,7 +70,7 @@ class ShowFriends extends React.Component {
       return (
         <div>
           <UserNav links={navLinks}/>
-          <h2>You're not following anyone yet. Follow other sporkers <a href='/#/users'>here</a></h2>
+          <h2>You're not following anyone yet. Follow other sporkers <a href='/users'>here</a></h2>
         </div>
       );   
     }
@@ -78,4 +78,4 @@ class ShowFriends extends React.Component {
 }
 
 
-module.exports = ShowFriends;
+module.exports = Following;

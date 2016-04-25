@@ -1,13 +1,13 @@
 
 
-module.exports =  [
+module.exports = [
   {
-    name: "Leaderboard", url: '/leaderboard'
+    name: 'Leaderboard', url: '/leaderboard'
   },
   {
-    name: "All Users", url: '/users'
+    name: 'All Users', url: '/users'
   },
   {
-    name: "Following", url: '/friends'
+    name: 'Following', url: '/following'
   }
 ];

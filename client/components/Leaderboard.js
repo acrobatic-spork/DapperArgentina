@@ -40,9 +40,9 @@ const Leaderboard = class Leaderboard extends React.Component {
 
   render() {
     if (this.state.usersToRender.length === 0) {
-     return (<div><h3>No Users in the Leaderboard</h3></div>) 
+      return (<div><h3>No Users in the Leaderboard</h3></div>);
     } else {
-        return (
+      return (
         <div>
           <UserNav links={navLinks}/>
           <ul className='collection'>
@@ -67,14 +67,14 @@ const Leaderboard = class Leaderboard extends React.Component {
                   </div>
                 </div>
               </div>
-              )
-            })
+            );
+          })
           }
           </ul>
-      </div>)
+      </div>);
     }
   }
-}
+};
 
 
 module.exports = Leaderboard;

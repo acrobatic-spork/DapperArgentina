@@ -95,16 +95,16 @@ app.use(function(req, res, next) {
 var port = process.env.PORT || 3000;
 
 app.get('/api/events/:username', function(req, res) {
-    Util.getUserGitHubEvents(req.params.username)
-    .then((events) => {
-      res.json(events);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.statusCode = 501;
-      res.send('Error Getting GitHub Events');
-    });
+  Util.getUserGitHubEvents(req.params.username)
+  .then((events) => {
+    res.json(events);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.statusCode = 501;
+    res.send('Error Getting GitHub Events');
   });
+});
 
 app.get('/api/users/:user_id', function(req, res) {
   User.findById(req.params.user_id)

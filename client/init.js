@@ -10,16 +10,16 @@ const RepoList = require('./components/RepoList');
 const RepoProfile = require('./components/RepoProfile'); 
 const ResourceList = require('./components/ResourceList');
 const UserInfo = require('./components/UserInfo');
-const ShowUsers = require('./components/ShowUsers');
-const ShowFriends = require('./components/ShowFriends');
+const AllUsers = require('./components/AllUsers');
+const Following = require('./components/Following');
 const Leaderboard = require('./components/Leaderboard');
 
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path='/' component={App}>
       <IndexRoute component={UserInfo} />
-      <Route path='users' component={ShowUsers} />
-      <Route path='friends' component={ShowFriends}/> 
+      <Route path='users' component={AllUsers} />
+      <Route path='following' component={Following}/> 
       <Route path='leaderboard' component={Leaderboard}/> 
       <Route path='issues' component={TicketList} />
       <Route path='repos' component={RepoList} />
