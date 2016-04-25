@@ -7,6 +7,7 @@ const getFollowedUsers = require('../js/friends').getFollowedUsers;
 const {browserHistory} = require('react-router');
 const navLinks = require('./NavLinks');
 const Auth = require('../js/auth');
+const LoadingAnimation = require('./LoadingAnimation');
 
 class ShowUsers extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class ShowUsers extends React.Component {
 
     this.state = {
       usersToRender: [],
+      friendIdObject: {}
     };
   }
 
@@ -36,12 +38,14 @@ class ShowUsers extends React.Component {
 
   getFollowedUsersList() {
     var self = this;
-    self.friendIdObject = {};
+    var friendIdObject = {};
     getFollowedUsers((data) => {
       if (data.length) {
-        var friendIdObject = {};
         data.forEach((friend) => {
-          self.friendIdObject[friend.id] = friend.id;
+          friendIdObject[friend.id] = friend.id;
+        });
+        this.setState({
+          friendIdObject
         });
       }
     }, console.log, Auth.getUserId());
@@ -55,14 +59,14 @@ class ShowUsers extends React.Component {
   render() {
     if (this.state.usersToRender.length === 0) {
       return (<div>No Users to show</div>);
-    } else if (Object.keys(this.friendIdObject).length) {
+    } else if (Object.keys(this.state.friendIdObject).length) {
       return (
         <div>
           <UserNav links={navLinks}/>
           <div className='all-users-view'>
           {this.state.usersToRender.map((user, index) => {
 
-            if (user.id in this.friendIdObject) {
+            if (user.id in this.state.friendIdObject) {
               return (<UserEntry isFriend={true} user={user} key={index} friend_id={user.id}/>);
             } else {
               return (<UserEntry isFriend={false} user={user} key={index} friend_id={user.id}/>);
@@ -73,7 +77,7 @@ class ShowUsers extends React.Component {
           </div>
         </div>);
     } else {
-      return (<div>Loading...</div>);
+      return (<LoadingAnimation />);
     }
   }
 }

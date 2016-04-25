@@ -42,7 +42,6 @@ const unfollowUser = (successCallback, errCallback, userId, friendId) => {
     type: 'DELETE',
     contentType: 'application/json; charset=utf-8',
     success: function () {
-      console.log('user was unfollowed');
       successCallback();
     },
     error: function(error) {

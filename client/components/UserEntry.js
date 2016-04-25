@@ -26,7 +26,6 @@ class UserEntry extends React.Component {
         buttonColor: 'blue'
       });
     } else {
-      console.log(this.props.isFriend);
       this.setState({
         buttonColor: 'red'
       });
