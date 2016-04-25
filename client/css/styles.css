@@ -178,6 +178,14 @@ li {
   color: #00bcd4;
 }
 
+.follow-button {
+  margin: 1em auto;
+}
+
+.follow-button i {
+  vertical-align: bottom;
+}
+
 pre {
  white-space: pre-wrap;       /* css-3 */
  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
@@ -203,13 +211,13 @@ pre {
   
   @keyframes bounce {
     0% {
-      transform: translate(0px, 300px);
+      top: 300px;
     }
     50% {
-      transform: translate(0px, 30px);
+      top: 30px;
     }
     100% {
-      transform: translate(0px, 300px);
+      top: 300px;
     }
   }
   

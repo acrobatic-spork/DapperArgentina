@@ -10,7 +10,7 @@ class RepoSearch extends React.Component {
       searchText: null,
       currentLanguage: 'All Languages',
       languages: [],
-      sortBy: ['Popularity', 'Tickets', 'Forks' ],
+      sortBy: ['Popularity', 'Issues', 'Forks' ],
       currentSort: 'Popularity'
     };
     
@@ -34,7 +34,7 @@ class RepoSearch extends React.Component {
   componentDidMount() {
     this.setState({
       languages: this.props.searchLanguages
-    }, () =>  $(`.${this.languageDropDownClass}`).material_select(this.languageHandler));
+    }, () => $(`.${this.languageDropDownClass}`).material_select(this.languageHandler));
 
     this.setSort();
   }
@@ -83,21 +83,21 @@ class RepoSearch extends React.Component {
 
   render () {
     return (<div className="row">
-            <div className="input-field col s6">
-              <input type="text" onKeyUp={this.quickSearch.bind(this)} value={this.state.searchText} 
-                placeholder="search here..." onChange={this.searchHandler} onKeyPress={this.searchHandler} />
-            </div>
-            <div className="input-field col s3">
-              <select className={this.languageDropDownClass} value={this.state.currentLanguage} onChange={this.dummy}>
-                {this.state.languages.map((lang, index) => <option value={lang} key={lang}>{lang}</option>)}
-              </select>
-            </div>
-            <div className="sort-field input-field col s3">
-              <select className='repo-sort-dropdown' value={this.state.currentSort} onChange={this.dummy}>
-                {this.state.sortBy.map((sortField, index) => <option value={sortField} key={sortField}>{sortField}</option>)}
-              </select>
-            </div>
-          </div>);
+      <div className="input-field col s6">
+        <input type="text" onKeyUp={this.quickSearch.bind(this)} value={this.state.searchText} 
+          placeholder="search here..." onChange={this.searchHandler} onKeyPress={this.searchHandler} />
+      </div>
+      <div className="input-field col s3">
+        <select className={this.languageDropDownClass} value={this.state.currentLanguage} onChange={this.dummy}>
+          {this.state.languages.map((lang, index) => <option value={lang} key={lang}>{lang}</option>)}
+        </select>
+      </div>
+      <div className="sort-field input-field col s3">
+        <select className='repo-sort-dropdown' value={this.state.currentSort} onChange={this.dummy}>
+          {this.state.sortBy.map((sortField, index) => <option value={sortField} key={sortField}>{sortField}</option>)}
+        </select>
+      </div>
+    </div>);
   }
 }
 

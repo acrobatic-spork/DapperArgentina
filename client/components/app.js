@@ -3,7 +3,7 @@ const NavBar = require('./NavBar');
 const LoginBar = require('./LoginBar');
 const Users = require('../js/users');
 const Auth = require('../js/auth');
-const TicketList = require('./TicketList');
+const IssueList = require('./IssueList');
 const forkUtil = require('../js/fork');
 
 const linksList = [
@@ -114,7 +114,7 @@ class App extends React.Component {
     {this.state.isLoggedIn ? <NavBar links={linksList} /> : <LoginBar /> }
       <div className='row'>
         <div className='main container'>
-          {this.state.isLoggedIn ? childrenWithProps : <TicketList searchLanguages={this.state.searchLanguages}/> }
+          {this.state.isLoggedIn ? childrenWithProps : <IssueList searchLanguages={this.state.searchLanguages}/> }
         </div>
       </div>
     </div>

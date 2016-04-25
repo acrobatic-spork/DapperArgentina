@@ -5,7 +5,7 @@ const ReactDOM = require('react-dom');
 const { Router, Route, IndexRoute, browserHistory, hashHistory } = require('react-router');
 
 const App = require('./components/app');
-const TicketList = require('./components/TicketList'); 
+const IssueList = require('./components/IssueList'); 
 const RepoList = require('./components/RepoList'); 
 const RepoProfile = require('./components/RepoProfile'); 
 const ResourceList = require('./components/ResourceList');
@@ -21,7 +21,7 @@ ReactDOM.render((
       <Route path='users' component={AllUsers} />
       <Route path='following' component={Following}/> 
       <Route path='leaderboard' component={Leaderboard}/> 
-      <Route path='issues' component={TicketList} />
+      <Route path='issues' component={IssueList} />
       <Route path='repos' component={RepoList} />
       <Route path='repoProfile/:repoId' component={RepoProfile} />
       <Route path='resources' component={ResourceList} />

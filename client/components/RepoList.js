@@ -11,7 +11,7 @@ class RepoList extends React.Component {
     
     this.state = {
       reposToRender: [],
-      sortedBy: 'default',
+      sortedBy: 'popularity',
       loading: true
     };
     
@@ -19,43 +19,43 @@ class RepoList extends React.Component {
     
   }
   
-  getRepos(searchTerm, language, filterBy){
+  getRepos(searchTerm, language, filterBy) {
     //Fetch repos;
     var self = this;
     Repos.getRepos(function(data) {
-      if(filterBy){
-        switch(filterBy){
-          case 'Popularity':
-            data = data.sort((a,b) => b.stargazers_count-a.stargazers_count);
-            break;
-          case 'Tickets':
-            data = data.sort((a,b) => b.beginner_tickets-a.beginner_tickets);
-            break;
-          case 'Forks':
-            data = data.sort((a,b) => b.forks-a.forks);
-            break;
+      if (filterBy) {
+        switch (filterBy) {
+        case 'Popularity':
+          data = data.sort((a, b) => b.stargazers_count - a.stargazers_count);
+          break;
+        case 'Issues':
+          data = data.sort((a, b) => b.beginner_tickets - a.beginner_tickets);
+          break;
+        case 'Forks':
+          data = data.sort((a, b) => b.forks - a.forks);
+          break;
         }
-        self.setState({sortedBy: filterBy})
+        self.setState({sortedBy: filterBy});
       }
       self.setState({
         numberOfRepos: data.length,
-        reposToRender: data.slice(0,199),
-        loading:false
+        reposToRender: data.slice(0, 199),
+        loading: false
       });
     }, console.log, searchTerm, language);
   }
 
-  quickSearch(searchTerm){
-    if(searchTerm){
+  quickSearch(searchTerm) {
+    if (searchTerm) {
       var repos = this.state.reposToRender.filter((repo)=> {
         return ( (repo.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) ||
                  (repo.org_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)
                 );
-      })
-    this.setState({
-      reposToRender: repos,
-      numberOfRepos: repos.length
-    });
+      });
+      this.setState({
+        reposToRender: repos,
+        numberOfRepos: repos.length
+      });
     } else {
       this.getRepos();
     }
@@ -67,7 +67,7 @@ class RepoList extends React.Component {
   }
   
   componentDidMount () {
-    this.getRepos();
+    this.getRepos(null, null, 'Popularity');
   }
   
   render () {
@@ -76,7 +76,7 @@ class RepoList extends React.Component {
     // var maxHeight = $(window).height() - $('.navbar').outerHeight() - margin * 2;
     
     return (
-    <div >
+    <div>
       <RepoSearch quickSearch={this.quickSearch.bind(this)} searchHandler={this.getRepos} searchLanguages={this.props.searchLanguages}/>
       <h4>{this.state.numberOfRepos} Repos with easy issues - sorted by {this.state.sortedBy.toLowerCase()}</h4>
       <div className="main-repo-view">
