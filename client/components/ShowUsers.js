@@ -8,24 +8,25 @@ const {browserHistory} = require('react-router');
 const navLinks = require('./NavLinks');
 const Auth = require('../js/auth');
 
-
 class ShowUsers extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       usersToRender: [],
-      friendIdObject: {}
     };
   }
 
   getAllUsersList() {
-    self = this;
+    var self = this;
     getUsers((data) => {
       if (data.length) {
         var usersToRender = data.filter((user) => {
           return user.username !== this.props.username;
         });
+        if (!Array.isArray(usersToRender)) {
+          usersToRender = [usersToRender];
+        }
         self.setState({
           usersToRender
         });
@@ -34,15 +35,13 @@ class ShowUsers extends React.Component {
   }
 
   getFollowedUsersList() {
-    self = this;
+    var self = this;
+    self.friendIdObject = {};
     getFollowedUsers((data) => {
       if (data.length) {
         var friendIdObject = {};
         data.forEach((friend) => {
-          friendIdObject[friend.id] = friend.id;
-        });
-        self.setState({
-          friendIdObject: friendIdObject
+          self.friendIdObject[friend.id] = friend.id;
         });
       }
     }, console.log, Auth.getUserId());
@@ -56,14 +55,14 @@ class ShowUsers extends React.Component {
   render() {
     if (this.state.usersToRender.length === 0) {
       return (<div>No Users to show</div>);
-    } else {
+    } else if (Object.keys(this.friendIdObject).length) {
       return (
         <div>
           <UserNav links={navLinks}/>
           <div className='all-users-view'>
           {this.state.usersToRender.map((user, index) => {
 
-            if (user.id in this.state.friendIdObject) {
+            if (user.id in this.friendIdObject) {
               return (<UserEntry isFriend={true} user={user} key={index} friend_id={user.id}/>);
             } else {
               return (<UserEntry isFriend={false} user={user} key={index} friend_id={user.id}/>);
@@ -73,6 +72,8 @@ class ShowUsers extends React.Component {
           }
           </div>
         </div>);
+    } else {
+      return (<div>Loading...</div>);
     }
   }
 }
