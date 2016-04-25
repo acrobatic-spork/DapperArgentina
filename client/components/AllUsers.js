@@ -61,7 +61,6 @@ class AllUsers extends React.Component {
     } else if (this.state.usersToRender.length === 0) {
       return (<div>No Users to show</div>);
     } else {
-    // } else if (Object.keys(this.state.friendIdObject).length) {
       return (
         <div>
           <UserNav links={navLinks}/>
