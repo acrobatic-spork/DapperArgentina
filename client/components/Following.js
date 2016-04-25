@@ -70,7 +70,7 @@ class Following extends React.Component {
       return (
         <div>
           <UserNav links={navLinks}/>
-          <h2>You're not following anyone yet. Follow other sporkers <a href='/users'>here</a></h2>
+          <h3>You're not following anyone yet. Follow other sporkers <a href='/users'>here</a></h3>
         </div>
       );   
     }
