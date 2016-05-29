@@ -7,7 +7,7 @@ const {browserHistory} = require('react-router');
 const navLinks = require('./NavLinks');
 const SporkSvg = require('./SporkSvg');
 
-const Leaderboard = class Leaderboard extends React.Component {
+class Leaderboard extends React.Component {
   constructor(props) {
     super(props);
 

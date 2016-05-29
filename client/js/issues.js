@@ -8,7 +8,7 @@ var languages = [];
 
 var getIssuesFromApi = function (successCallback, errCallback) {
   var options = {
-    url: 'http://45.55.29.22:3000/api/issues',
+    url: '/api/issues',
     type: 'GET',
     success: successCallback,
     error: errCallback
