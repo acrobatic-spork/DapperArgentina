@@ -11,6 +11,9 @@ var ForkUtil = require('./models/forks');
 var UserUtil = require('./models/users');
 var FriendUtil = require('./models/friends');
 var path = require('path');
+var https = require('https');
+var fs = require('fs');
+
 
 var User = db.User;
 var UserIssues = db.UserIssues;
@@ -18,6 +21,8 @@ var UserForks = db.UserForks;
 
 var GITHUB_CLIENT_ID = config.githubClientId;
 var GITHUB_CLIENT_SECRET = config.githubSecret;
+
+var AUTH_SECRET = config.authSecret;
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -75,7 +80,7 @@ Repos = new Repos();
 app.use(bodyParser.json());
 
 app.use(methodOverride());
-app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(session({ secret: AUTH_SECRET, resave: false, saveUninitialized: false }));
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
 app.use(passport.initialize());
@@ -204,6 +209,16 @@ app.use(function(req, res, next) {
 console.log(`server running on port ${port} in ${process.env.NODE_ENV} mode`);
 // start listening to requests on port 3000
 app.listen(port);
+
+if (process.env.NODE_ENV === 'production') {
+  var httpsOptions = {
+    key: fs.readFileSync('/path/to/privkey.pem'),
+    cert: fs.readFileSync('/path/to/fullchain.pem'),
+    ca: fs.readFileSync('/path/to/chain.pem')
+  };
+  https.createServer(httpsOptions, app).listen(443);
+}
+
 
 // export our app for testing and flexibility, required by index.js
 module.exports = app;

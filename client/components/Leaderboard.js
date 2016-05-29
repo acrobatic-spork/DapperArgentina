@@ -26,7 +26,15 @@ const Leaderboard = class Leaderboard extends React.Component {
           user.userPoints += ((user.num_forks) + (user.num_pulls * 5) + (user.num_merges * 10));
           return user;
         });
-        data = data.sort((a, b) => b.userPoints > a.userPoints);
+        data = data.sort((a, b) => {
+          if (b.userPoints > a.userPoints) {
+            return 1;
+          }
+          if (a.userPoints > b.userPoints) {
+            return -1;
+          }
+          return 0;
+        });
         self.setState({
           usersToRender: data
         });

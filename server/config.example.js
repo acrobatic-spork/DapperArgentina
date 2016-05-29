@@ -6,6 +6,7 @@ var config = {
   dbName: '',
   githubClientId: '',
   githubSecret: '',
+  authSecret: '',
 };
 
 module.exports = config;
