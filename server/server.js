@@ -212,9 +212,9 @@ app.listen(port);
 
 if (process.env.NODE_ENV === 'production') {
   var httpsOptions = {
-    key: fs.readFileSync('/path/to/privkey.pem'),
-    cert: fs.readFileSync('/path/to/fullchain.pem'),
-    ca: fs.readFileSync('/path/to/chain.pem')
+    key: fs.readFileSync('/etc/letsencrypt/live/sporkhub.xyz/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/sporkhub.xyz/fullchain.pem'),
+    ca: fs.readFileSync('/etc/letsencrypt/live/sporkhub.xyz/chain.pem')
   };
   https.createServer(httpsOptions, app).listen(443);
 }
