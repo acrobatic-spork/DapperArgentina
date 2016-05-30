@@ -7,7 +7,7 @@ var languages = [];
 
 var getReposFromApi = function (successCallback, errCallback, searchTerm, language) {
   var options = {
-    url: 'http://45.55.29.22:3000/api/repos',
+    url: '/api/repos',
     type: 'GET',
     success: successCallback,
     error: errCallback
@@ -17,8 +17,8 @@ var getReposFromApi = function (successCallback, errCallback, searchTerm, langua
 };
 
 var findById = function(collection, id) {
-  for (var i=0; i<collection.length; i++) {
-    if(collection[i].id.toString() === id) {
+  for (var i = 0; i < collection.length; i++) {
+    if (collection[i].id.toString() === id) {
       return collection[i];
     }
   }
@@ -34,11 +34,11 @@ var returnFilteredRepos = function(searchTerm, language) {
     
     //handle null language
     repo.language = repo.language || '';
-    if(language) {
+    if (language) {
       languageMatch = (language.toLowerCase() === repo.language.toLowerCase());
     }
     
-    if(searchTerm) {
+    if (searchTerm) {
       var searchMatch = ( (repo.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) ||
                           (repo.org_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)
                         );                   
@@ -95,7 +95,7 @@ module.exports.getLanguages = function(successCallback) {
     }, (err)=>console.log(err), null, null);
     return;
   } 
-  if(languages.length === 0) {
+  if (languages.length === 0) {
     setLanguages();
     successCallback(languages);
     return;
