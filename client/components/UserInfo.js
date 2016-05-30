@@ -14,7 +14,7 @@ class UserInfo extends React.Component {
       <div className="section">
         <div className="row center-align">
           <div>
-            <img className="circle responsive-img" src={ this.props.avatar_url || 'http://static1.squarespace.com/static/55842e41e4b0875de16c3ebc/t/55e09d99e4b0db1790432d93/1440783771027/Profile+Holder.png' } width='200'/>
+            <img className="circle responsive-img" src={ this.props.avatar_url || 'https://static1.squarespace.com/static/55842e41e4b0875de16c3ebc/t/55e09d99e4b0db1790432d93/1440783771027/Profile+Holder.png' } width='200'/>
           </div>
           <div>
             <h5 className="indigo-text">{ this.props.name || 'Name' }</h5>
