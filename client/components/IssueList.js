@@ -11,7 +11,8 @@ class IssueList extends React.Component {
     
     this.state = {
       numberOfIssues: 0,
-      issuesToRender: null, 
+      issuesToRender: [],
+      loading: true,
       currentSort: 'Most Recent'
     };
     
@@ -25,7 +26,8 @@ class IssueList extends React.Component {
     Issues.getIssues(function(data) {
       self.setState({
         numberOfIssues: data.length,
-        issuesToRender: data.slice(0, 199)
+        issuesToRender: data.slice(0, 199),
+        loading: false
       });
     }, console.log, searchTerm, language);
   }
@@ -60,12 +62,12 @@ class IssueList extends React.Component {
       <IssueSearch quickSearch={this.quickSearch.bind(this)} searchHandler={this.getIssues} searchLanguages={this.props.searchLanguages}/>
       <h4>{this.state.numberOfIssues} Easy issues found - sorted by {this.state.currentSort.toLowerCase()}</h4>
       <div className="main-ticket-view">
-          { (this.state.issuesToRender === null) ? <LoadingAnimation /> :
-            this.state.issuesToRender.map ((ticket, index) => (
+          {this.state.issuesToRender.map ((ticket, index) => (
               <IssueEntry data={ticket} username={this.props.username} refreshUserInfo={this.props.refreshUserInfo} key={index} />
             )
           )
           }
+          {this.state.loading && <LoadingAnimation />}
       </div>
     </div>
     );  
