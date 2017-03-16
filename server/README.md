@@ -1,5 +1,5 @@
 
-#Server
+# Server
 
 The backend is comprised of a few parts:
   - A web server which is responsible for serving static content and data via our REST API.  The entry point for this
@@ -15,9 +15,9 @@ The backend is comprised of a few parts:
 - Node 5.6
 - MySQL 5.5
 
-##Setup
+## Setup
   
-###Database Setup
+### Database Setup
 First, you need to setup the mysql database.  Steps are:
   1. Install mysql if you do not already have it
   1.5 in terminal, start mysql server if it is not already running
@@ -38,15 +38,15 @@ First, you need to setup the mysql database.  Steps are:
   your database w/ live data.  server/data-processor/fetchIssuesRepos.js and server/data-processor/refreshRepos.js.
   5. View the repos and issues tables and make sure you have data.
   
-###Dev Environment
+### Dev Environment
 After setting your database up, you're almost ready to start working, just run `npm install` to install dependencies, `npm run start`
 will start the web server.   If you want to rerun the background data collection, you can either run the .js files manually
 as we did when setting up the database or run devops/data-processor.sh.
 
-###Prod Environment
+### Prod Environment
 Below are instructions for setting up a production environment, where the web server is always running and the background jobs run automatically.
 
-####Tips for setup on a standard DigitalOcean Ubuntu 14.04 server
+#### Tips for setup on a standard DigitalOcean Ubuntu 14.04 server
 
 you probably need to create a swapfile in order for npm install to work correctly. See [here](https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-12-04) for how to do that.
 
@@ -65,7 +65,7 @@ sudo n stable
 ```
 
   
-####Pushing code to production server  
+#### Pushing code to production server  
 Read the following link.  You'll want to use the file in /devops/post-receive for the post receive hook. It contains hooks to 
 automatically run webpack. Remember that you'll need to copy any future changes to post-receive to /var/repo/gitbegin.git/hooks.  You could potentially
 symlink to the copy in devops.
@@ -76,14 +76,14 @@ Below is the folder structure we are using for the git workflow.
   - Source code folder - /var/www/gitbegin
   - Git repo folder - /var/repo/gitbegin.git 
   
-####Automating server startup and background jobs
+#### Automating server startup and background jobs
 We use the npm forever package and cron jobs to make sure the server always starts and stays running. Cron is also used to automate
 the background Git data collection.  These scripts are located at devops/starter.sh and devops/data-processor.sh. To set this up:
   1. Install the npm forever package using `npm install -g forever`
   2. Open cron w/ the command `crontab -e`
   3. Copy the cron configurations from devops/cronjobs.txt to your crontab config file.
   
-###My stuff isn't working.
+### My stuff isn't working.
 If you're having problems w/ the automation, cron and the data-processor background job write their logs to /server/logs.
 The web server logs write to the default forever location.  You can find this by running the command 'forever logs' and it 
 will print the location of the log.

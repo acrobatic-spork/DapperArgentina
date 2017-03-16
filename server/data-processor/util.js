@@ -213,7 +213,7 @@ var getRepoInformation = repoQueue.createQueuedFunction(function (orgName, repoN
  */
 var convertIssueToDbIssue = function(obj) {
   //reduce down to properties we care about
-  obj = pick(obj, ['id','title','comments','created_at', 'updated_at', 'html_url', 'assignee','repository_url','number', 'labels', 'body']);
+  obj = pick(obj, ['id', 'title', 'comments', 'created_at', 'updated_at', 'html_url', 'assignee', 'repository_url', 'labels', 'body']);
 
   //Assignee is either null or an object.  We want the username:
   if (obj.assignee) {

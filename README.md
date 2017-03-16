@@ -36,6 +36,12 @@ To build the client source:
 npm run build  
 ```
 
+To start the server:
+
+```sh
+mysql.server start
+```
+
 To launch dev server with live reload and live rebuild:  
 
 ```sh

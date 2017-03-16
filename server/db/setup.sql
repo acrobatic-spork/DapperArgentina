@@ -14,7 +14,6 @@ use gitBegin;
 CREATE TABLE issues (
   internal_id int AUTO_INCREMENT PRIMARY KEY,
   id int NOT NULL,
-  number int,
   repo_name nvarchar(50),
   org_name nvarchar(50), 
   title nvarchar(2000) NOT NULL,
