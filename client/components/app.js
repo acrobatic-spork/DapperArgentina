@@ -52,8 +52,6 @@ class App extends React.Component {
     }
   }
 
-    
-  
   getForks(username) {
     forkUtil.getForks(function(data) {
       this.setState({
