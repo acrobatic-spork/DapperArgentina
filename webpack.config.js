@@ -9,7 +9,7 @@ var buildDir = appRoot;
 
 module.exports = {
   context: __dirname,
-  entry: ['whatwg-fetch', path.resolve(appRoot, 'init.js')],
+  entry: path.resolve(appRoot, 'init.js'),
   output: {
     path: buildDir,
     filename: 'bundle.js'

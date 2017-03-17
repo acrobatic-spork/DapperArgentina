@@ -282,37 +282,37 @@ var getRepoInformation = repoQueue.createQueuedFunction(function (orgName, repoN
  * database w/ new information from the github api.  Returns a promise which
  * resolves to the number of repos actually updated in the db
  */
-var refreshReposFromGithub = function(repos) {
-  if(!repos) {
-    return 0;
-  }
-    //Update all repos from API
-  var countUpdates = 0;
+// var refreshReposFromGithub = function(repos) {
+//   if(!repos) {
+//     return 0;
+//   }
+//     //Update all repos from API
+//   var countUpdates = 0;
 
-  var allRepoGets = repos.map((repo) => {
-    return getRepoInformation(repo.org_name, repo.name, repo.etag)
-    .then((result) => {
-      var objToInsert = convertRepoToDbRepo(result.body, result.headers);
-      return db('repos').where({name: objToInsert.name, org_name: objToInsert.org_name})
-                        .update(objToInsert)
-                        .then(() => countUpdates++);
-    })
-    .catch((result) => {
-      if(result.statusCode === 304) {
-        //Github is telling us there is no change since last time we updated
-        //It determines this based on the etag we provide in the GET request
-      } else {
-        console.error('Error getting new repo information', result);
-      }
-    });
-  });
+//   var allRepoGets = repos.map((repo) => {
+//     return getRepoInformation(repo.org_name, repo.name, repo.etag)
+//     .then((result) => {
+//       var objToInsert = convertRepoToDbRepo(result.body, result.headers);
+//       return db('repos').where({name: objToInsert.name, org_name: objToInsert.org_name})
+//                         .update(objToInsert)
+//                         .then(() => countUpdates++);
+//     })
+//     .catch((result) => {
+//       if(result.statusCode === 304) {
+//         //Github is telling us there is no change since last time we updated
+//         //It determines this based on the etag we provide in the GET request
+//       } else {
+//         console.error('Error getting new repo information', result);
+//       }
+//     });
+//   });
 
-  return Promise.all(allRepoGets)
-  .then(() => {
-    console.log(`Updated ${countUpdates} repos`);
-    return countUpdates;
-  });
-};
+//   return Promise.all(allRepoGets)
+//   .then(() => {
+//     console.log(`Updated ${countUpdates} repos`);
+//     return countUpdates;
+//   });
+// };
 
 var findAndComparePoints = function (username, obj) {
   User.findOne({ where: { username: username }})
@@ -345,9 +345,6 @@ var findAndComparePoints = function (username, obj) {
 module.exports = {
   getGithubIssuesByLabel: getGithubIssuesByLabel,
   getRepoInformation: getRepoInformation,
-  convertIssueToDbIssue: convertIssueToDbIssue,
-  convertRepoToDbRepo: convertRepoToDbRepo,
-  refreshReposFromGithub: refreshReposFromGithub,
   getUserGitHubEvents: getUserGitHubEvents,
   getPullRequests: getPullRequests,
   findAndComparePoints: findAndComparePoints
