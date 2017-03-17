@@ -2,14 +2,14 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtendedDefinePlugin = require('extended-define-webpack-plugin');
-var config = require(path.resolve(__dirname, 'server/config.js'));
+var config = require(path.resolve(__dirname, 'config.js'));
 
 var appRoot = path.resolve(__dirname, 'client/');
 var buildDir = appRoot;
 
 module.exports = {
   context: __dirname,
-  entry: path.resolve(appRoot, 'init.js'),
+  entry: ['whatwg-fetch', path.resolve(appRoot, 'init.js')],
   output: {
     path: buildDir,
     filename: 'bundle.js'

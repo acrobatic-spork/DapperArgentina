@@ -1,8 +1,10 @@
 const React = require('react');
+const { connect } = require('react-redux');
 const IssueSearch = require('./IssueSearch');
 const IssueEntry = require('./IssueEntry');
 const Issues = require('../js/issues');
 const LoadingAnimation = require('./LoadingAnimation');
+const { getIssues } = require('../actions');
 
 class IssueList extends React.Component {
   
@@ -10,26 +12,17 @@ class IssueList extends React.Component {
     super(props);
     
     this.state = {
-      numberOfIssues: 0,
-      issuesToRender: [],
-      loading: true,
-      currentSort: 'Most Recent'
+      currentSort: 'Most Recent',
+      loading: this.props.fetching
     };
     
     this.getIssues = this.getIssues.bind(this);
   }
   
   getIssues(searchTerm, language) {
-    //Fetch issues;
-    var self = this;
-
-    Issues.getIssues(function(data) {
-      self.setState({
-        numberOfIssues: data.length,
-        issuesToRender: data.slice(0, 199),
-        loading: false
-      });
-    }, console.log, searchTerm, language);
+    if (!this.props.issues.length) {
+      this.props.getIssues(searchTerm, language);
+    }
   }
 
   quickSearch(searchTerm) {
@@ -50,24 +43,36 @@ class IssueList extends React.Component {
   }
 
   componentDidMount () {
-    this.getIssues();
+    this.props.getIssues();
   }
   componentDidUpdate () {    
     //Anytime the component renders, scroll to the top of the issue list
     $('.main-ticket-view')[0].scrollTop = 0;
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (typeof(nextProps.fetching) === 'boolean') {
+      this.setState({loading: nextProps.fetching});
+    }
+  }
+
+  renderIssues() {
+    return (
+      <div>
+        <h4>{this.props.issues.length} Easy issues found - sorted by {this.state.currentSort.toLowerCase()}</h4>
+        {this.props.issues.map(issue => (
+          <IssueEntry data={issue} username={this.props.username} refreshUserInfo={this.props.refreshUserInfo} key={issue.id + issue.title} />
+        ))}
+      </div>
+    );
+  }
+
   render () {
     return (
     <div>
       <IssueSearch quickSearch={this.quickSearch.bind(this)} searchHandler={this.getIssues} searchLanguages={this.props.searchLanguages}/>
-      <h4>{this.state.numberOfIssues} Easy issues found - sorted by {this.state.currentSort.toLowerCase()}</h4>
       <div className="main-ticket-view">
-          {this.state.issuesToRender.map ((ticket, index) => (
-              <IssueEntry data={ticket} username={this.props.username} refreshUserInfo={this.props.refreshUserInfo} key={index} />
-            )
-          )
-          }
-          {this.state.loading && <LoadingAnimation />}
+        {this.state.loading ? <LoadingAnimation /> : this.renderIssues()}
       </div>
     </div>
     );  
@@ -75,4 +80,11 @@ class IssueList extends React.Component {
   
 }
 
-module.exports = IssueList;
+const mapStateToProps = function(state) {
+  return {
+    issues: state.issues.list,
+    fetching: state.issues.fetching,
+  };
+};
+
+module.exports = connect(mapStateToProps, { getIssues })(IssueList);
