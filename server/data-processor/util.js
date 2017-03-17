@@ -3,15 +3,15 @@
  */
 'use strict';
 
-const request = require('request-promise');
+//const request = require('request-promise');
 const Promise = require('bluebird');
 const db = require('../db/database');
 const parseLink = require('parse-link-header');
-const config = require('../config');
+const config = require('../../config');
 var mergeObj = require('lodash.merge');
 var pick = require('lodash.pick');
 var path = require('path');
-var dateFormat = require('dateformat');
+//var dateFormat = require('dateformat');
 var User = db.User;
 
 
@@ -211,108 +211,108 @@ var getRepoInformation = repoQueue.createQueuedFunction(function (orgName, repoN
 /**Takes an object that looks like a github API issue obj and converts it
  * to an obj that contains only columns in our db (w/ keys that match db columns)
  */
-var convertIssueToDbIssue = function(obj) {
-  //reduce down to properties we care about
-  obj = pick(obj, ['id','title','comments','created_at', 'updated_at', 'html_url', 'assignee','repository_url','number', 'labels', 'body']);
+// var convertIssueToDbIssue = function(obj) {
+//   //reduce down to properties we care about
+//   obj = pick(obj, ['id', 'title', 'comments', 'created_at', 'updated_at', 'html_url', 'assignee', 'repository_url', 'labels', 'body']);
 
-  //Assignee is either null or an object.  We want the username:
-  if (obj.assignee) {
-    obj.assignee = obj.assignee.login;
-  }
+//   //Assignee is either null or an object.  We want the username:
+//   if (obj.assignee) {
+//     obj.assignee = obj.assignee.login;
+//   }
 
-  //Labels is an array of objects with a url property we don't want.
-  if (obj.labels) {
-    obj.labels.map(function(label) {
-      delete label.url;
-    });
-    obj.labels = JSON.stringify(obj.labels);
-  }
+//   //Labels is an array of objects with a url property we don't want.
+//   if (obj.labels) {
+//     obj.labels.map(function(label) {
+//       delete label.url;
+//     });
+//     obj.labels = JSON.stringify(obj.labels);
+//   }
 
-  //Limit body value to 1500 characters
-  if (typeof obj.body === 'string') {
-    obj.body = obj.body.substring(0,1499);
-  }
+//   //Limit body value to 1500 characters
+//   if (typeof obj.body === 'string') {
+//     obj.body = obj.body.substring(0,1499);
+//   }
 
-  //Convert dates to JS dates so knex can reconvert back to mysql
-  obj.created_at = dateFormat(obj.created_at, 'yyyy-mm-dd HH:MM:ss');
-  obj.updated_at = dateFormat(obj.updated_at, 'yyyy-mm-dd HH:MM:ss');
+//   //Convert dates to JS dates so knex can reconvert back to mysql
+//   obj.created_at = dateFormat(obj.created_at, 'yyyy-mm-dd HH:MM:ss');
+//   obj.updated_at = dateFormat(obj.updated_at, 'yyyy-mm-dd HH:MM:ss');
 
-  //Parse repo and org name out of URL
-  var repoPath = path.parse(obj.repository_url);
-  obj.repo_name = repoPath.base;
-  obj.org_name = path.parse(repoPath.dir).base;
+//   //Parse repo and org name out of URL
+//   var repoPath = path.parse(obj.repository_url);
+//   obj.repo_name = repoPath.base;
+//   obj.org_name = path.parse(repoPath.dir).base;
 
-  //Delete keys we needed but that we don't want in our db;
-  delete obj.repository_url;
+//   //Delete keys we needed but that we don't want in our db;
+//   delete obj.repository_url;
 
-  return obj;
-};
+//   return obj;
+// };
 
 /**Takes a Github API Repo object and converts it to an object
  * that contains the columns we want to insert/update into our database.
  */
-var convertRepoToDbRepo = function(obj, headers) {
-  //reduce down to properties we care about
-  obj = pick(obj, ['id','name','language','description','stargazers_count',
-          'watchers_count', 'has_wiki', 'has_pages','open_issues','forks','created_at',
-          'updated_at','pushed_at','html_url']);
+// var convertRepoToDbRepo = function(obj, headers) {
+//   //reduce down to properties we care about
+//   obj = pick(obj, ['id','name','language','description','stargazers_count',
+//           'watchers_count', 'has_wiki', 'has_pages','open_issues','forks','created_at',
+//           'updated_at','pushed_at','html_url']);
 
 
-  //Convert dates to JS dates so knex can reconvert back to mysql
-  var mysqlDateFormat = 'yyyy-mm-dd HH:MM:ss';
-  obj.created_at = dateFormat(obj.created_at, mysqlDateFormat);
-  obj.updated_at = dateFormat(obj.updated_at, mysqlDateFormat);
-  obj.pushed_at = dateFormat(obj.pushed_at, mysqlDateFormat);
-  obj.data_refreshed_at = dateFormat(new Date(), mysqlDateFormat);
+//   //Convert dates to JS dates so knex can reconvert back to mysql
+//   var mysqlDateFormat = 'yyyy-mm-dd HH:MM:ss';
+//   obj.created_at = dateFormat(obj.created_at, mysqlDateFormat);
+//   obj.updated_at = dateFormat(obj.updated_at, mysqlDateFormat);
+//   obj.pushed_at = dateFormat(obj.pushed_at, mysqlDateFormat);
+//   obj.data_refreshed_at = dateFormat(new Date(), mysqlDateFormat);
 
-  //Parse repo and org name out of URL
-  var repoPath = path.parse(obj.html_url);
-  obj.org_name = path.parse(repoPath.dir).base;
+//   //Parse repo and org name out of URL
+//   var repoPath = path.parse(obj.html_url);
+//   obj.org_name = path.parse(repoPath.dir).base;
 
-  //Add header information if provided
-  if (headers) {
-    obj.etag = headers.etag;
-  }
+//   //Add header information if provided
+//   if (headers) {
+//     obj.etag = headers.etag;
+//   }
 
-  return obj;
-};
+//   return obj;
+// };
 
 
 /**Accepts an array of objects ({name: ,org_name, etag:}) and updates our
  * database w/ new information from the github api.  Returns a promise which
  * resolves to the number of repos actually updated in the db
  */
-var refreshReposFromGithub = function(repos) {
-  if(!repos) {
-    return 0;
-  }
-    //Update all repos from API
-  var countUpdates = 0;
+// var refreshReposFromGithub = function(repos) {
+//   if(!repos) {
+//     return 0;
+//   }
+//     //Update all repos from API
+//   var countUpdates = 0;
 
-  var allRepoGets = repos.map((repo) => {
-    return getRepoInformation(repo.org_name, repo.name, repo.etag)
-    .then((result) => {
-      var objToInsert = convertRepoToDbRepo(result.body, result.headers);
-      return db('repos').where({name: objToInsert.name, org_name: objToInsert.org_name})
-                        .update(objToInsert)
-                        .then(() => countUpdates++);
-    })
-    .catch((result) => {
-      if(result.statusCode === 304) {
-        //Github is telling us there is no change since last time we updated
-        //It determines this based on the etag we provide in the GET request
-      } else {
-        console.error('Error getting new repo information', result);
-      }
-    });
-  });
+//   var allRepoGets = repos.map((repo) => {
+//     return getRepoInformation(repo.org_name, repo.name, repo.etag)
+//     .then((result) => {
+//       var objToInsert = convertRepoToDbRepo(result.body, result.headers);
+//       return db('repos').where({name: objToInsert.name, org_name: objToInsert.org_name})
+//                         .update(objToInsert)
+//                         .then(() => countUpdates++);
+//     })
+//     .catch((result) => {
+//       if(result.statusCode === 304) {
+//         //Github is telling us there is no change since last time we updated
+//         //It determines this based on the etag we provide in the GET request
+//       } else {
+//         console.error('Error getting new repo information', result);
+//       }
+//     });
+//   });
 
-  return Promise.all(allRepoGets)
-  .then(() => {
-    console.log(`Updated ${countUpdates} repos`);
-    return countUpdates;
-  });
-};
+//   return Promise.all(allRepoGets)
+//   .then(() => {
+//     console.log(`Updated ${countUpdates} repos`);
+//     return countUpdates;
+//   });
+// };
 
 var findAndComparePoints = function (username, obj) {
   User.findOne({ where: { username: username }})
@@ -345,9 +345,6 @@ var findAndComparePoints = function (username, obj) {
 module.exports = {
   getGithubIssuesByLabel: getGithubIssuesByLabel,
   getRepoInformation: getRepoInformation,
-  convertIssueToDbIssue: convertIssueToDbIssue,
-  convertRepoToDbRepo: convertRepoToDbRepo,
-  refreshReposFromGithub: refreshReposFromGithub,
   getUserGitHubEvents: getUserGitHubEvents,
   getPullRequests: getPullRequests,
   findAndComparePoints: findAndComparePoints

@@ -5,6 +5,8 @@ const Users = require('../js/users');
 const Auth = require('../js/auth');
 const IssueList = require('./IssueList');
 const forkUtil = require('../js/fork');
+const { getIssues } = require('../actions');
+const { connect } = require('react-redux');
 
 const linksList = [
   {
@@ -42,6 +44,7 @@ class App extends React.Component {
   }
 
   componentWillMount() {
+    this.props.getIssues();
     if (Auth.isLoggedIn()) {
       var userId = Auth.getUserId();
       this.setState({
@@ -52,8 +55,6 @@ class App extends React.Component {
     }
   }
 
-    
-  
   getForks(username) {
     forkUtil.getForks(function(data) {
       this.setState({
@@ -123,4 +124,4 @@ class App extends React.Component {
 
 }
 
-module.exports = App;
+module.exports = connect(null, { getIssues })(App);

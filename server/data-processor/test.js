@@ -7,7 +7,7 @@
 // var util = require('./util');
 var QueueManager = require('./queueManager');
 var request = require('request-promise');
-var config = require('../config');
+var config = require('../../config');
 var mergeObj = require('lodash.merge');
 
 /**Basic gitHub request information that we want to use in almost all API interactions */

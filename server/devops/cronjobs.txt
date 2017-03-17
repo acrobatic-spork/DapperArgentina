@@ -7,5 +7,4 @@
 0 * * * * /var/www/sporkhub/server/devops/data-processor.sh >> /var/www/sporkhub/server/logs/data-processor.log 2>&1
 
 #Try to renew the certificates twice per day
-0 5 16 * * * /root/certbot-auto renew
-
+0 5 16 * * * ./root/certbot-auto renew

@@ -1,4 +1,4 @@
-const config = require('../config');
+const config = require('../../config');
 const Sequelize = require( 'sequelize' );
 var db = new Sequelize( config.dbName, config.dbUser, config.dbPassword );
 
@@ -31,7 +31,7 @@ var Friends = db.define( 'users_friends', {
   },
   user_id: {type: Sequelize.INTEGER, references: {model: User, key: 'id'}},
   friend_id: {type: Sequelize.INTEGER, references: {model: User, key: 'id'}}
-})
+});
 
 
 // KEEPING "ISSUES" AND "REPOS" SCHEMAS THE SAME AS
@@ -120,7 +120,7 @@ var UserForks = db.define( 'user_forks', {
   fork_url: { 
     type: Sequelize.STRING,
     unique: true
-   }
+  }
 });
 
 // sync all tables
@@ -137,7 +137,7 @@ User.sync()
     return UserForks.sync();
   }).then( function() {
     return Friends.sync();
-  })
+  });
 
 module.exports.db = db;
 module.exports.User = User;

@@ -1,6 +1,6 @@
 'use strict';
 
-const config = '../config';
+const config = '../../config';
 const Promise = require('bluebird');
 const request = require('request-promise');
 const db = require('../db/database');
